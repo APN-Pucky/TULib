@@ -28,7 +28,8 @@ public class XMLParser {
 	private Document level_document;
 	private Document document;
 
-	public XMLParser() {
+	public XMLParser(boolean empty) {
+		if(!empty) {
 		System.out.println("XMLParser Start");
 		try {
 			File dir = new File("data/");
@@ -78,9 +79,12 @@ public class XMLParser {
 			e.printStackTrace();
 		}
 		System.out.println("XMLParser Done");
+		}
 
 	}
-
+	  public XMLParser() {
+		    this(false);
+		  }
 	public Pair<Card[], Card[]> loadCards() {
 		System.out.println("Loading Cards");
 		int max_id = 0;
