@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,11 +26,11 @@ import javax.crypto.CipherOutputStream;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+import de.neuwirthinformatik.Alexander.TU.TU;
 import de.neuwirthinformatik.Alexander.TU.Basic.Card.CardCategory;
 import de.neuwirthinformatik.Alexander.TU.Basic.Card.CardInstance;
-import de.neuwirthinformatik.Alexander.TU.Basic.Card.CardType;
 import de.neuwirthinformatik.Alexander.TU.Basic.Card.CardInstance.Info;
-import de.neuwirthinformatik.Alexander.TU.TU;
+import de.neuwirthinformatik.Alexander.TU.Basic.Card.CardType;
 import de.neuwirthinformatik.Alexander.TU.util.Pair;
 import de.neuwirthinformatik.Alexander.TU.util.StringUtil;
 import de.neuwirthinformatik.Alexander.TU.util.Task;
@@ -414,6 +413,44 @@ public class GlobalData {
 		}
 		return deck;
 	}
+	public static Deck constructDeck(String deck)
+	{
+		int com=0,dom=0;
+		deck = GlobalData.removeHash(deck);
+		String[] ss = deck.split(", *");
+		ArrayList ids = new ArrayList<Integer>();
+		for(String s :ss) {
+			int id = getIDByNameAndLevel(s);
+			if(isCommander(id)){
+				com = id;
+			}
+			else if(isDominion(id)){
+				dom = id;
+			}
+			else {
+				ids.add(id);
+			}
+		}
+		int[] idss = new int[ids.size()];
+		for(int i = 0; i < idss.length; i++) {
+			idss[i] = (int) ids.get(i);
+		}
+		return new Deck(com,dom,idss);
+	}
+	@Deprecated
+	public static Deck constructDeckOld(String deck)
+	{
+		deck = GlobalData.removeHash(deck);
+		String[] ss = deck.split(", *");
+		int com = GlobalData.getIDByNameAndLevel(ss[0]);
+		int dom = GlobalData.getIDByNameAndLevel(ss[1]);
+		int[] ids = new int[ss.length-2];
+		for(int i =2; i < ss.length;i++)
+		{
+			ids[i-2] =  GlobalData.getIDByNameAndLevel(ss[i]);
+		};
+		return new Deck(com,dom,ids);
+	}
 
 	public static Deck constructDeck(int[] deck) {
 		int com = deck[0];
@@ -431,18 +468,7 @@ public class GlobalData {
 		return constructDeck(deck).toIDArray();
 	}
 
-	public static Deck constructDeck(String deck) {
-		deck = GlobalData.removeHash(deck);
-		String[] ss = deck.split(", *");
-		int com = GlobalData.getIDByNameAndLevel(ss[0]);
-		int dom = GlobalData.getIDByNameAndLevel(ss[1]);
-		int[] ids = new int[ss.length - 2];
-		for (int i = 2; i < ss.length; i++) {
-			ids[i - 2] = GlobalData.getIDByNameAndLevel(ss[i]);
-		}
-		;
-		return new Deck(com, dom, ids);
-	}
+	
 
 	public static Card[] constructCardArray(String deck) {
 		deck = GlobalData.removeHash(deck);
