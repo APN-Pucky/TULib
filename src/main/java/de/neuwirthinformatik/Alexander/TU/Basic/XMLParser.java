@@ -32,7 +32,6 @@ import de.neuwirthinformatik.Alexander.TU.util.StringUtil;
 public class XMLParser {
 	private int CARD_SECTIONS_COUNT = 0;
 	private Integer[] card_per_sec = new Integer[CARD_SECTIONS_COUNT + 1];
-	private int card_count = 1;
 	private int fusion_count = 0;
 	private int mission_count = 0;
 	private Document[] card_documents = new Document[CARD_SECTIONS_COUNT + 1];
@@ -48,6 +47,26 @@ public class XMLParser {
 			sum += i;
 		}
 		return sum;
+	}
+	
+	public void reloadLatestCardSection() {reloadLatestCardSection(CARD_SECTIONS_COUNT);}
+	public void reloadLatestCardSection(int sec) {
+		try
+		{
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+		
+			card_documents[sec]= dBuilder.parse(new BufferedInputStream(
+					new URL("http://mobile-dev.tyrantonline.com/assets/cards_section_" + sec+ ".xml").openStream()));
+			card_documents[sec].getDocumentElement().normalize();
+			NodeList nList = card_documents[sec].getElementsByTagName("unit");
+			card_per_sec[sec] = nList.getLength();
+			//card_count += nList.getLength();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	public XMLParser(boolean empty, boolean download) {
@@ -122,6 +141,8 @@ public class XMLParser {
 							CARD_SECTIONS_COUNT++;
 					}
 					card_documents = new Document[CARD_SECTIONS_COUNT + 1];
+					card_per_sec = new Integer[CARD_SECTIONS_COUNT+1];
+					card_per_sec[0] = 0;
 					for (int i = 1; i <= CARD_SECTIONS_COUNT; i++) {
 						File inputFile = new File("data/cards_section_" + i + ".xml");
 						DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -129,7 +150,7 @@ public class XMLParser {
 						card_documents[i] = dBuilder.parse(inputFile);
 						card_documents[i].getDocumentElement().normalize();
 						NodeList nList = card_documents[i].getElementsByTagName("unit");
-						card_count += nList.getLength();
+						card_per_sec[i] = nList.getLength();
 					}
 
 					File inputFile = new File("data/fusion_recipes_cj2.xml");
@@ -198,7 +219,7 @@ public class XMLParser {
 	public Pair<Card[], Card[]> loadCards() {
 		System.out.println("Loading Cards");
 		int max_id = 0;
-		Card[] distinct_cards = new Card[card_count];
+		Card[] distinct_cards = new Card[card_count()];
 		int id, rarity, fusion_level, fort_type, set, bundle;
 		String name, picture;
 		int f;

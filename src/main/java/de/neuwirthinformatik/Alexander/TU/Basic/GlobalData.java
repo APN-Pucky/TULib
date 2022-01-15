@@ -87,7 +87,10 @@ public class GlobalData {
 	}
 
 	public static void simple_update(boolean nullxml) {
-		xml = new XMLParser();
+		if(nullxml)
+			xml = new XMLParser();
+		else
+			xml.reloadLatestCardSection();
 		Pair<Card[], Card[]> p = xml.loadCards();
 		distinct_cards = p.t;
 		all_cards = p.u;
