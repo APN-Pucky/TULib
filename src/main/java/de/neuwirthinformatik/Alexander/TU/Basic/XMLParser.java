@@ -1,19 +1,27 @@
 package de.neuwirthinformatik.Alexander.TU.Basic;
 
 import java.io.File;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import de.neuwirthinformatik.Alexander.TU.Basic.Card.CardInstance;
 import de.neuwirthinformatik.Alexander.TU.TU;
+import de.neuwirthinformatik.Alexander.TU.Basic.Card.CardInstance;
 import de.neuwirthinformatik.Alexander.TU.util.Pair;
 import de.neuwirthinformatik.Alexander.TU.util.StringUtil;
 
@@ -29,62 +37,65 @@ public class XMLParser {
 	private Document document;
 
 	public XMLParser(boolean empty) {
-		if(!empty) {
-		System.out.println("XMLParser Start");
-		try {
-			File dir = new File("data/");
-			for (File f : dir.listFiles()) {
-				if (f.getName().matches("cards_section_\\d+.xml") && GlobalData.readFile(f.getAbsolutePath()).length() > 10)
-					CARD_SECTIONS_COUNT++;
-			}
-			card_documents = new Document[CARD_SECTIONS_COUNT + 1];
-			for (int i = 1; i <= CARD_SECTIONS_COUNT; i++) {
-				File inputFile = new File("data/cards_section_" + i + ".xml");
+		if (!empty) {
+			System.out.println("XMLParser Start");
+			try {
+				File dir = new File("data/");
+				for (File f : dir.listFiles()) {
+					if (f.getName().matches("cards_section_\\d+.xml")
+							&& GlobalData.readFile(f.getAbsolutePath()).length() > 10)
+						CARD_SECTIONS_COUNT++;
+				}
+				card_documents = new Document[CARD_SECTIONS_COUNT + 1];
+				for (int i = 1; i <= CARD_SECTIONS_COUNT; i++) {
+					File inputFile = new File("data/cards_section_" + i + ".xml");
+					DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+					DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+					card_documents[i] = dBuilder.parse(inputFile);
+					card_documents[i].getDocumentElement().normalize();
+					NodeList nList = card_documents[i].getElementsByTagName("unit");
+					card_count += nList.getLength();
+				}
+
+				File inputFile = new File("data/fusion_recipes_cj2.xml");
 				DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 				DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-				card_documents[i] = dBuilder.parse(inputFile);
-				card_documents[i].getDocumentElement().normalize();
-				NodeList nList = card_documents[i].getElementsByTagName("unit");
-				card_count += nList.getLength();
+				fusion_document = dBuilder.parse(inputFile);
+				fusion_document.getDocumentElement().normalize();
+				NodeList nList = fusion_document.getElementsByTagName("fusion_recipe");
+				fusion_count += nList.getLength();
+
+				inputFile = new File("data/missions.xml");
+				dbFactory = DocumentBuilderFactory.newInstance();
+				dBuilder = dbFactory.newDocumentBuilder();
+				mission_document = dBuilder.parse(inputFile);
+				mission_document.getDocumentElement().normalize();
+				nList = mission_document.getElementsByTagName("mission");
+				mission_count += nList.getLength();
+
+				inputFile = new File("data/levels.xml");
+				dbFactory = DocumentBuilderFactory.newInstance();
+				dBuilder = dbFactory.newDocumentBuilder();
+				level_document = dBuilder.parse(inputFile);
+				level_document.getDocumentElement().normalize();
+
+				dbFactory = DocumentBuilderFactory.newInstance();
+				dBuilder = dbFactory.newDocumentBuilder();
+				document = dBuilder.parse(TU.class.getResourceAsStream("/resources/cardSources.xml"));
+				document.getDocumentElement().normalize();
+
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-
-			File inputFile = new File("data/fusion_recipes_cj2.xml");
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			fusion_document = dBuilder.parse(inputFile);
-			fusion_document.getDocumentElement().normalize();
-			NodeList nList = fusion_document.getElementsByTagName("fusion_recipe");
-			fusion_count += nList.getLength();
-
-			inputFile = new File("data/missions.xml");
-			dbFactory = DocumentBuilderFactory.newInstance();
-			dBuilder = dbFactory.newDocumentBuilder();
-			mission_document = dBuilder.parse(inputFile);
-			mission_document.getDocumentElement().normalize();
-			nList = mission_document.getElementsByTagName("mission");
-			mission_count += nList.getLength();
-
-			inputFile = new File("data/levels.xml");
-			dbFactory = DocumentBuilderFactory.newInstance();
-			dBuilder = dbFactory.newDocumentBuilder();
-			level_document = dBuilder.parse(inputFile);
-			level_document.getDocumentElement().normalize();
-
-			dbFactory = DocumentBuilderFactory.newInstance();
-			dBuilder = dbFactory.newDocumentBuilder();
-			document = dBuilder.parse(TU.class.getResourceAsStream("/resources/cardSources.xml"));
-			document.getDocumentElement().normalize();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		System.out.println("XMLParser Done");
+			System.out.println("XMLParser Done");
 		}
 
 	}
-	  public XMLParser() {
-		    this(false);
-		  }
+
+	public XMLParser() {
+		this(false);
+	}
+
 	public Pair<Card[], Card[]> loadCards() {
 		System.out.println("Loading Cards");
 		int max_id = 0;
@@ -520,5 +531,131 @@ public class XMLParser {
 			}
 		}
 		return skill_borders;
+	}
+
+	public String getCardXML(Card c) {
+		DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder documentBuilder = null;
+		try {
+			documentBuilder = documentFactory.newDocumentBuilder();
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		}
+		Document d = documentBuilder.newDocument();
+		Element root = d.createElement("unit");
+		d.appendChild(root);
+		root.appendChild(d.createComment("!!! TODO change id pic asset_bundle set !!!"));
+		add(d, root, "id", c.getIDs()[0]);
+		add(d, root, "picture", c.getPicture());
+		add(d, root, "asset_bundle", c.getAssetBundle());
+		add(d, root, "set", c.getSet());
+		add(d, root, "name", c.getName());
+		if (c.getFusionLevel() > 0)
+			add(d, root, "fusion_level", c.getFusionLevel());
+		add(d, root, "rarity", c.getRarity());
+		add(d, root, "type", c.getFaction());
+		if (c.getCardType() == Card.CardType.ASSAULT || c.getCardType() == Card.CardType.COMMANDER)
+			add(d, root, "attack", (c.getInfos()[0]).attack);
+		add(d, root, "health", (c.getInfos()[0]).health);
+		if (c.getCardType() != Card.CardType.COMMANDER)
+			add(d, root, "cost", (c.getInfos()[0]).cost);
+		addSkills(d, root, c.getInfos()[0].getSkills());
+		Card.CardInstance.Info[] inf = c.getInfos();
+		for (int i = 1; i < (c.getInfos()).length; i++) {
+			Element u = d.createElement("upgrade");
+			root.appendChild(d.createComment("!!! TODO change card_id !!!"));
+			add(d, u, "card_id", c.getIDs()[i]);
+			add(d, u, "level", i + 1);
+			addDiff(d, u, "attack", (inf[i - 1]).attack, (inf[i]).attack);
+			addDiff(d, u, "cost", (inf[i - 1]).cost, (inf[i]).cost);
+			addDiff(d, u, "health", (inf[i - 1]).health, (inf[i]).health);
+			addDiffSkills(d, u, inf[i - 1].getSkills(), inf[i].getSkills());
+			root.appendChild(u);
+		}
+		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		Transformer transformer = null;
+		try {
+			transformer = transformerFactory.newTransformer();
+		} catch (TransformerConfigurationException e) {
+			e.printStackTrace();
+		}
+		transformer.setOutputProperty("indent", "yes");
+		transformer.setOutputProperty("omit-xml-declaration", "yes");
+		DOMSource domSource = new DOMSource(d);
+		StringWriter outWriter = new StringWriter();
+		StreamResult streamResult = new StreamResult(outWriter);
+		try {
+			transformer.transform(domSource, streamResult);
+		} catch (TransformerException e) {
+			e.printStackTrace();
+		}
+		return outWriter.toString();
+	}
+
+	private void addDiffSkills(Document d, Element root, SkillSpec[] ss1, SkillSpec[] ss2) {
+		boolean changed = (ss1.length == ss2.length);
+		for (int i = 0; i < ss1.length && i < ss2.length; i++) {
+			if (!ss1[i].equals(ss2[i]))
+				changed = true;
+		}
+		if (changed)
+			addSkills(d, root, ss2);
+	}
+
+	private void addDiff(Document d, Element root, String n, int i, int o) {
+		if (i != o)
+			add(d, root, n, o);
+	}
+
+	private void addSkills(Document d, Element root, SkillSpec[] sss) {
+		byte b;
+		int i;
+		SkillSpec[] arrayOfSkillSpec;
+		for (i = (arrayOfSkillSpec = sss).length, b = 0; b < i;) {
+			SkillSpec ss = arrayOfSkillSpec[b];
+			Element up = d.createElement("skill");
+			addSkillAttrID(up, ss.getId());
+			if (ss.isAll())
+				up.setAttribute("all", "1");
+			addSkillAttr(up, "x", ss.getX());
+			addSkillAttr(up, "y", GlobalData.stringToFaction(ss.getY()));
+			addSkillAttr(up, "c", ss.getC());
+			addSkillAttr(up, "n", ss.getN());
+			addSkillAttr(up, "trigger", ss.getTrigger());
+			addSkillAttr(up, "s", ss.getS());
+			addSkillAttr(up, "s2", ss.getS2());
+			addSkillAttr(up, "card_id", ss.getCard_id());
+			root.appendChild(up);
+			b++;
+		}
+	}
+
+	private void addSkillAttrID(Element u, String id) {
+		if (id.equals("mortar")) {
+			u.setAttribute("id", "besiege");
+		} else if (id.equals("armor")) {
+			u.setAttribute("id", "armored");
+		} else {
+			u.setAttribute("id", id);
+		}
+	}
+
+	private void addSkillAttr(Element u, String n, int v) {
+		if (v > 0)
+			u.setAttribute(n, ""+v);
+	}
+
+	private void addSkillAttr(Element u, String n, String v) {
+		if (!v.equals("no_skill") && !v.equals("allfactions") && !v.equals("activate"))
+			u.setAttribute(n, v);
+	}
+
+	private void add(Document document, Element root, String f, String v) {
+		Element firstName = document.createElement(f);
+		firstName.appendChild(document.createTextNode(v));
+		root.appendChild(firstName);
+	}
+	private void add(Document document, Element root, String f, int v) {
+		add(document,root,f,""+v);
 	}
 }

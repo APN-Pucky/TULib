@@ -6,38 +6,49 @@ import de.neuwirthinformatik.Alexander.TU.TU;
 import de.neuwirthinformatik.Alexander.TU.util.StringUtil;
 import lombok.Data;
 
+// TODO why no lombok Data?
 public class Card {
-	 public static final Card NULL = new Card(new int[] { 0 }, "NULL", 0, 0, new int[] {}, 0, 0,0,new CardInstance.Info[] {new CardInstance.Info(0,0,0,0,new SkillSpec[] {})},"",0);
-     public final int[] ids;
-     public final CardInstance.Info[] infos;
-     public final int fusion_level;
-     public final String name;
-     public final int rarity;
-     public final String picture;
-     public final int asset_bundle;
-     public final int[] materials;
-     public final int faction;
-     public final CardType type;
-     public final CardCategory category;
-     public final int fort_type;
-     public final int set;
-     // further stats; skilz...
+	public static final Card NULL = new Card(new int[] { 0 }, "NULL", 0, 0, new int[] {}, 0, 0, 0,
+			new CardInstance.Info[] { new CardInstance.Info(0, 0, 0, 0, new SkillSpec[] {}) }, "", 0);
+	public final int[] ids;
+	public final CardInstance.Info[] infos;
+	public final int fusion_level;
+	public final String name;
+	public final int rarity;
+	public final String picture;
+	public final int asset_bundle;
+	public final int[] materials;
+	public final int faction;
+	public final CardType type;
+	public final CardCategory category;
+	public final int fort_type;
+	public final int set;
+	// further stats; skilz...
 
-     public Card(int[] ids, String name, int rarity, int lvl, int[] mats, int fort, int set,int f, CardInstance.Info[] infos,String pic, int bundle) {
-             this.ids = ids;
-             this.name = name;
-             this.rarity = rarity;
-             this.fusion_level = lvl;
-             this.materials = mats;
-             this.type = CardType.getByID(ids[0]);
-             this.fort_type = fort;
-             this.set = set;
-             this.category = CardCategory.getByID(ids[0], fort, set);
-             this.infos = infos;
-             this.faction = f;
-             this.picture = pic;
-             this.asset_bundle = bundle;
-     }
+	public Card(int[] ids, String name, int rarity, int lvl, int[] mats, int fort, int set, int f,
+			CardInstance.Info[] infos, String pic, int bundle) {
+		this.ids = ids;
+		this.name = name;
+		this.rarity = rarity;
+		this.fusion_level = lvl;
+		this.materials = mats;
+		this.type = CardType.getByID(ids[0]);
+		this.fort_type = fort;
+		this.set = set;
+		this.category = CardCategory.getByID(ids[0], fort, set);
+		this.infos = infos;
+		this.faction = f;
+		this.picture = pic;
+		this.asset_bundle = bundle;
+	}
+
+	public int getFortType() {
+		return this.fort_type;
+	}
+
+	public int getSet() {
+		return this.set;
+	}
 
 	public int[] getMaterials() {
 		return materials;
@@ -51,16 +62,14 @@ public class Card {
 		return name;
 	}
 
-	public String getPicture()
-	{
+	public String getPicture() {
 		return picture;
 	}
-	
-	public int getAssetBundle()
-	{
+
+	public int getAssetBundle() {
 		return asset_bundle;
 	}
-	
+
 	public int getFusionLevel() {
 		return fusion_level;
 	}
@@ -83,14 +92,12 @@ public class Card {
 				return i;
 		return -1;
 	}
-	
-	public CardType getCardType()
-	{
+
+	public CardType getCardType() {
 		return type;
 	}
-	
-	public int getFaction()
-	{
+
+	public int getFaction() {
 		return (faction);
 	}
 
@@ -132,13 +139,12 @@ public class Card {
 		;
 		return name + "[" + ret + "]" + "{" + rarity + "}";
 	}
-	
+
 	public String description() {
-		return new CardInstance(ids[ids.length-1],this,infos[infos.length-1]).description(); //Max Card 
+		return new CardInstance(ids[ids.length - 1], this, infos[infos.length - 1]).description(); // Max Card
 	}
-	
-	public String getUnitType()
-	{
+
+	public String getUnitType() {
 		int id = getHighestID();
 		if ((1000 <= id && id < 2000) || (25000 <= id && id < 30000)) {
 			return "Commander";
@@ -152,38 +158,95 @@ public class Card {
 	}
 
 	public enum Faction {
-		imperial(1),raider(2),bloodthirsty(3),xeno(4),righteous(5),progenitor(6),allfaction(0);
+		imperial(1), raider(2), bloodthirsty(3), xeno(4), righteous(5), progenitor(6), allfaction(0);
+
 		private int p;
-		private Faction(int n){p=n;}
-		public static Faction get(String s){for(Faction m : values())if(m.toString().equalsIgnoreCase(s))return m;return null;}
-		public static Faction get(int s){for(Faction m : values())if(m.p == s)return m;return null;}
-		//public String toString(){return ""+p;}
-		public int toInt(){return p;}
+
+		private Faction(int n) {
+			p = n;
+		}
+
+		public static Faction get(String s) {
+			for (Faction m : values())
+				if (m.toString().equalsIgnoreCase(s))
+					return m;
+			return null;
+		}
+
+		public static Faction get(int s) {
+			for (Faction m : values())
+				if (m.p == s)
+					return m;
+			return null;
+		}
+
+		// public String toString(){return ""+p;}
+		public int toInt() {
+			return p;
+		}
 	}
-	
+
 	public enum Rarity {
-		common(1),rare(2),epic(3),legendary(4),vindicator(5),mythic(6);
+		common(1), rare(2), epic(3), legendary(4), vindicator(5), mythic(6);
+
 		private int p;
-		private Rarity(int n){p=n;}
-		public static Rarity get(String s){for(Rarity m : values())if(m.toString().equalsIgnoreCase(s))return m;return null;}
-		public static Rarity get(int s){for(Rarity m : values())if(m.p == s)return m;return null;}
-		//public String toString(){return ""+p;}
-		public int toInt(){return p;}
+
+		private Rarity(int n) {
+			p = n;
+		}
+
+		public static Rarity get(String s) {
+			for (Rarity m : values())
+				if (m.toString().equalsIgnoreCase(s))
+					return m;
+			return null;
+		}
+
+		public static Rarity get(int s) {
+			for (Rarity m : values())
+				if (m.p == s)
+					return m;
+			return null;
+		}
+
+		// public String toString(){return ""+p;}
+		public int toInt() {
+			return p;
+		}
 	}
-	
+
 	public enum Level {
-		single(0),dual(1),quad(2);
+		single(0), dual(1), quad(2);
+
 		private int p;
-		private Level(int n){p=n;}
-		public static Level get(String s){for(Level m : values())if(m.toString().equalsIgnoreCase(s))return m;return null;}
-		public static Level get(int s){for(Level m : values())if(m.p == s)return m;return null;}
-		//public String toString(){return ""+p;}
-		public int toInt(){return p;}
+
+		private Level(int n) {
+			p = n;
+		}
+
+		public static Level get(String s) {
+			for (Level m : values())
+				if (m.toString().equalsIgnoreCase(s))
+					return m;
+			return null;
+		}
+
+		public static Level get(int s) {
+			for (Level m : values())
+				if (m.p == s)
+					return m;
+			return null;
+		}
+
+		// public String toString(){return ""+p;}
+		public int toInt() {
+			return p;
+		}
 	}
 
 	public static enum CardType {
-		ASSAULT, COMMANDER, STRUCTURE,DOMINION;// , FORTRESS_DEFENSE, FORTRESS_SIEGE,
-										// DOMINION, DOMINION_MATERIAL;
+		ASSAULT, COMMANDER, STRUCTURE, DOMINION;// , FORTRESS_DEFENSE, FORTRESS_SIEGE,
+		// DOMINION, DOMINION_MATERIAL;
 
 		public static CardType getByID(int id) {
 			if (id < 1000)
@@ -248,29 +311,26 @@ public class Card {
 	public static class CardInstance {
 		@Data
 		public static class Info {
-			final int attack, health, cost,level;
+			final int attack, health, cost, level;
 			final SkillSpec[] skills;
 
-			/*public Info(int attack, int health,int cost,int level, SkillSpec[] skills) {
-				this.attack = attack;
-				this.health = health;
-				this.level = level;
-				this.cost = cost;
-				this.skills = skills;
-			}*/
+			/*
+			 * public Info(int attack, int health,int cost,int level, SkillSpec[] skills) {
+			 * this.attack = attack; this.health = health; this.level = level; this.cost =
+			 * cost; this.skills = skills; }
+			 */
 			public String description() {
 				String ret = "";
-				ret += attack + "/" + health + "/"+ cost + "\n";
-				for(SkillSpec s : skills)
-				{
+				ret += attack + "/" + health + "/" + cost + "\n";
+				for (SkillSpec s : skills) {
 					ret += s + "\n";
 				}
 				ret += "\n";
-				return StringUtil.removeLastCharacter(ret,2);
+				return StringUtil.removeLastCharacter(ret, 2);
 			}
 		}
 
-		public static final CardInstance NULL = new CardInstance(0, Card.NULL,null);
+		public static final CardInstance NULL = new CardInstance(0, Card.NULL, null);
 		private final int id;
 		private final Info info;
 		private final Card c;
@@ -287,77 +347,61 @@ public class Card {
 			}
 		}
 
-		/*private CardInstance(int id, Card card) {
-			this(id, card, card.getInfos()[card.getPositionID(id)]);
-		}*/
+		/*
+		 * private CardInstance(int id, Card card) { this(id, card,
+		 * card.getInfos()[card.getPositionID(id)]); }
+		 */
 
-		/*private CardInstance(int id) {
-			this(id, Data.getCardByID(id));
-		}*/
-		public static CardInstance get(int id)
-        {
-        	if(id==0)
-        	{
-        		return NULL;
-        	}
-        	else
-        	{
-        		return get(id,GlobalData.getCardByID(id));
-        	}
-        }
-        
-        public static CardInstance get(int id,Card c)
-        {
-        	if(id==0)
-        	{
-        		return NULL;
-        	}
-        	else
-        	{
-        		Info[] infs =c.getInfos();
-        		int pos = c.getPositionID(id);
-        		if(pos >=infs.length || pos < 0)
-        		{
-        			TU.log.e("Error Creating Card " + c.getName(), "CardInstance");
-            		return NULL;
-        		}
-        		return get(id,c,infs[pos]);
-        	}
-        }
-        
-        public static CardInstance get(int id, Card c, Info i)
-        {
-        	if(id==0 || c.equals(Card.NULL))
-        	{
-        		return NULL;
-        	}
-        	else
-        	{
-        		return new CardInstance(id,c,i);
-        	}
-        }
-		public Info getInfo()
-		{
+		/*
+		 * private CardInstance(int id) { this(id, Data.getCardByID(id)); }
+		 */
+		public static CardInstance get(int id) {
+			if (id == 0) {
+				return NULL;
+			} else {
+				return get(id, GlobalData.getCardByID(id));
+			}
+		}
+
+		public static CardInstance get(int id, Card c) {
+			if (id == 0) {
+				return NULL;
+			} else {
+				Info[] infs = c.getInfos();
+				int pos = c.getPositionID(id);
+				if (pos >= infs.length || pos < 0) {
+					TU.log.e("Error Creating Card " + c.getName(), "CardInstance");
+					return NULL;
+				}
+				return get(id, c, infs[pos]);
+			}
+		}
+
+		public static CardInstance get(int id, Card c, Info i) {
+			if (id == 0 || c.equals(Card.NULL)) {
+				return NULL;
+			} else {
+				return new CardInstance(id, c, i);
+			}
+		}
+
+		public Info getInfo() {
 			return info;
 		}
-		
-		public int getCost()
-		{
+
+		public int getCost() {
 			return info.cost;
 		}
-		
-		public int getHealth()
-		{
+
+		public int getHealth() {
 			return info.health;
 		}
-		
-		public int getAttack()
-		{
+
+		public int getAttack() {
 			return info.attack;
 		}
-		
-		public SkillSpec[] getSkills()
-		{
+
+		public SkillSpec[] getSkills() {
 			return info.skills;
 		}
 
@@ -380,36 +424,34 @@ public class Card {
 		public String toString() {
 			return getName();
 		}
-		
+
 		public int getFaction() {
 			return c.getFaction();
 		}
-		
+
 		public CardType getCardType() {
 			return c.getCardType();
 		}
-		
+
 		public String description() {
 			String ret = getName() + "\n";
 			ret += StringUtil.capitalizeOnlyFirstLetters(GlobalData.factionToString(getFaction())) + " ";
 			ret += StringUtil.capitalizeOnlyFirstLetters(GlobalData.rarityToString(getRarity())) + " ";
-			ret += StringUtil.capitalizeOnlyFirstLetters(getCardType().toString()) +" ";
-			ret += StringUtil.capitalizeOnlyFirstLetters(GlobalData.fusionToString(getFusionLevel()))+ "\n";
-			ret += info.attack + "/" + info.health + "/"+ info.cost + "\n";
-			for(SkillSpec s : info.skills)
-			{
+			ret += StringUtil.capitalizeOnlyFirstLetters(getCardType().toString()) + " ";
+			ret += StringUtil.capitalizeOnlyFirstLetters(GlobalData.fusionToString(getFusionLevel())) + "\n";
+			ret += info.attack + "/" + info.health + "/" + info.cost + "\n";
+			for (SkillSpec s : info.skills) {
 				ret += s + "\n";
 			}
 			ret += "\n";
-			for(SkillSpec s : info.skills)
-			{
-				if(s.card_id>0)ret += get(s.card_id).description() + "\n\n";
+			for (SkillSpec s : info.skills) {
+				if (s.card_id > 0)
+					ret += get(s.card_id).description() + "\n\n";
 			}
-			return StringUtil.removeLastCharacter(ret,2);
+			return StringUtil.removeLastCharacter(ret, 2);
 		}
-		
-		public String getUnitType()
-		{
+
+		public String getUnitType() {
 			return c.getUnitType();
 		}
 
@@ -438,7 +480,7 @@ public class Card {
 		}
 
 		public int getLevel() {
-			//return info.level;
+			// return info.level;
 			return c.getPositionID(id) + 1;
 		}
 
@@ -468,7 +510,7 @@ public class Card {
 			}
 			return cost;
 		}
-		
+
 		@Override
 		public boolean equals(Object obj) {
 			if (this == obj)
