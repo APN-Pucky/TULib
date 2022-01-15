@@ -81,7 +81,7 @@ public class XMLParser {
 
 				dbFactory = DocumentBuilderFactory.newInstance();
 				dBuilder = dbFactory.newDocumentBuilder();
-				document = dBuilder.parse(TU.class.getResourceAsStream("/resources/cardSources.xml"));
+				document = dBuilder.parse(TU.class.getResourceAsStream("/cardSources.xml"));
 				document.getDocumentElement().normalize();
 
 			} catch (Exception e) {
