@@ -141,7 +141,7 @@ public class GlobalData {
 
 		if (!m.find()) {
 			Card c = getCardByName(name);
-			if (c == null)
+			if (c == null || c == Card.NULL)
 				System.out.println("WTFFFFFFFFFFF!!!!!!!! --2--  " + name);
 			return getCardInstanceById(c.getIDs()[c.getIDs().length - 1], c);
 		}
