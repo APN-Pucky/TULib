@@ -43,6 +43,7 @@ public class GlobalData {
 	private static final String key = "willthispasspass";
 	private static final int buffer_size = 2048;
 	// end crypto
+	public static String xml_time = "";
 	public static String line_seperator = System.getProperty("line.seperator");
 	public static String file_seperator = File.separator;
 	static XMLParser xml = null;
@@ -55,8 +56,13 @@ public class GlobalData {
 	public static int[][] frame_borders;
 	public static HashMap<String, int[]> icon_borders;
 	public static HashMap<String, int[]> skill_borders;
+	public static HashMap<String, String> skill_desc;
 
+	
 	public static void init() {
+		init(true);
+	}
+	public static void init(boolean nullxml) {
 		xml = new XMLParser();
 		fusions = xml.loadFusions();
 		missions = xml.loadMissions();
@@ -65,20 +71,28 @@ public class GlobalData {
 		frame_borders = xml.laodFrame();
 		icon_borders = xml.loadIcon();
 		skill_borders = xml.loadSkill();
+		skill_desc = xml.loadSkillDesc();
 
 		Pair<Card[], Card[]> p = xml.loadCards();
 		distinct_cards = p.t;
 		all_cards = p.u;
-		xml = null;
+		if(nullxml)
+			xml = null;
+		xml_time = Task.time();
 		// for(Fusion f : fusions)all_cards[f.getID()].setMaterials(f.getMaterials());
 	}
 
 	public static void simple_update() {
+		simple_update(true);
+	}
+
+	public static void simple_update(boolean nullxml) {
 		xml = new XMLParser();
 		Pair<Card[], Card[]> p = xml.loadCards();
 		distinct_cards = p.t;
 		all_cards = p.u;
-		xml = null;
+		if (nullxml)
+			xml = null;
 	}
 
 	public static int[] getIDsFromCardInstances(CardInstance[] cis) {
