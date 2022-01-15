@@ -2,7 +2,6 @@ dist/
 cardpack*
 unitypuck.spec
 __pycache__/
-*.png
 *.jpg
 .gradle
 build
