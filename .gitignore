@@ -4,6 +4,8 @@ unitypuck.spec
 __pycache__/
 *.png
 *.jpg
+.gradle
+build
 
 # Created by https://www.gitignore.io/api/eclipse
 
