@@ -219,7 +219,7 @@ public class XMLParser {
 	public Pair<Card[], Card[]> loadCards() {
 		System.out.println("Loading Cards");
 		int max_id = 0;
-		Card[] distinct_cards = new Card[card_count()];
+		Card[] distinct_cards = new Card[card_count()+1];
 		int id, rarity, fusion_level, fort_type, set, bundle;
 		String name, picture;
 		int f;
