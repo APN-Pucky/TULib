@@ -52,7 +52,7 @@ public class GUI {
 	public static Image icon = null;
 	static {
 	try {
-	    icon = ImageIO.read(TU.class.getResourceAsStream("/resources/skull.png"));
+	    icon = ImageIO.read(TU.class.getResourceAsStream("/skull.png"));
 	} catch (IOException ex) {
 	    ex.printStackTrace();
 	}
