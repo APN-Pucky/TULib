@@ -35,7 +35,7 @@ public class XMLParser {
 	private int card_count = 1;
 	private int fusion_count = 0;
 	private int mission_count = 0;
-	private Document[] card_documents;
+	private Document[] card_documents = new Document[CARD_SECTIONS_COUNT + 1];
 	private Document fusion_document;
 	private Document mission_document;
 	private Document level_document;
