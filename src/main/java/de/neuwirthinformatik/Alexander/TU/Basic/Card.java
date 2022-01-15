@@ -351,7 +351,7 @@ public class Card {
 			this(id, card, card.getInfos()[card.getPositionID(id)]);
 		}
 
-		private CardInstance(int id) {
+		public CardInstance(int id) {
 			this(id, GlobalData.getCardByID(id));
 		}
 
