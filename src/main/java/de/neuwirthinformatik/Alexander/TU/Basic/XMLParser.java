@@ -48,23 +48,23 @@ public class XMLParser {
 		}
 		return sum;
 	}
-	
-	public void reloadLatestCardSection() {reloadLatestCardSection(CARD_SECTIONS_COUNT);}
+
+	public void reloadLatestCardSection() {
+		reloadLatestCardSection(CARD_SECTIONS_COUNT);
+	}
+
 	public void reloadLatestCardSection(int sec) {
-		try
-		{
+		try {
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-		
-			card_documents[sec]= dBuilder.parse(new BufferedInputStream(
-					new URL("http://mobile-dev.tyrantonline.com/assets/cards_section_" + sec+ ".xml").openStream()));
+
+			card_documents[sec] = dBuilder.parse(new BufferedInputStream(
+					new URL("http://mobile-dev.tyrantonline.com/assets/cards_section_" + sec + ".xml").openStream()));
 			card_documents[sec].getDocumentElement().normalize();
 			NodeList nList = card_documents[sec].getElementsByTagName("unit");
 			card_per_sec[sec] = nList.getLength();
-			//card_count += nList.getLength();
-		}
-		catch(Exception e)
-		{
+			// card_count += nList.getLength();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -141,7 +141,7 @@ public class XMLParser {
 							CARD_SECTIONS_COUNT++;
 					}
 					card_documents = new Document[CARD_SECTIONS_COUNT + 1];
-					card_per_sec = new Integer[CARD_SECTIONS_COUNT+1];
+					card_per_sec = new Integer[CARD_SECTIONS_COUNT + 1];
 					card_per_sec[0] = 0;
 					for (int i = 1; i <= CARD_SECTIONS_COUNT; i++) {
 						File inputFile = new File("data/cards_section_" + i + ".xml");
@@ -219,7 +219,7 @@ public class XMLParser {
 	public Pair<Card[], Card[]> loadCards() {
 		System.out.println("Loading Cards");
 		int max_id = 0;
-		Card[] distinct_cards = new Card[card_count()+1];
+		Card[] distinct_cards = new Card[card_count() + 1];
 		int id, rarity, fusion_level, fort_type, set, bundle;
 		String name, picture;
 		int f;
@@ -434,15 +434,17 @@ public class XMLParser {
 		Card[] all_cards = new Card[max_id + 1];
 		// Card[] all_cards = new Card[100000+1];
 		for (Card c : distinct_cards) {
-			for (int it_id : c.getIDs()) {
-				if (it_id > 100000) {
-					if (StringUtil.containsIgnoreSpecial(c.name, "test")
-							|| StringUtil.containsIgnoreSpecial(c.name, "twin"))
-						break;
-					System.out.println("Fixed id for " + c.name + " [" + it_id + "]");
-					it_id /= 10;
+			if (c != null) {
+				for (int it_id : c.getIDs()) {
+					if (it_id > 100000) {
+						if (StringUtil.containsIgnoreSpecial(c.name, "test")
+								|| StringUtil.containsIgnoreSpecial(c.name, "twin"))
+							break;
+						System.out.println("Fixed id for " + c.name + " [" + it_id + "]");
+						it_id /= 10;
+					}
+					all_cards[it_id] = c;
 				}
-				all_cards[it_id] = c;
 			}
 		}
 		return new Pair<Card[], Card[]>(distinct_cards, all_cards);
