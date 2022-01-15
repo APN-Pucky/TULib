@@ -1,7 +1,10 @@
 package de.neuwirthinformatik.Alexander.TU.Basic;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.InputStream;
 import java.io.StringWriter;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -15,6 +18,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.springframework.core.io.ResourceLoader;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -27,6 +31,7 @@ import de.neuwirthinformatik.Alexander.TU.util.StringUtil;
 
 public class XMLParser {
 	private int CARD_SECTIONS_COUNT = 0;
+	private Integer[] card_per_sec = new Integer[CARD_SECTIONS_COUNT + 1];
 	private int card_count = 1;
 	private int fusion_count = 0;
 	private int mission_count = 0;
@@ -34,53 +39,130 @@ public class XMLParser {
 	private Document fusion_document;
 	private Document mission_document;
 	private Document level_document;
+	private Document skill_document;
 	private Document document;
 
-	public XMLParser(boolean empty) {
+	public int card_count() {
+		int sum = 0;
+		for (Integer i : card_per_sec) {
+			sum += i;
+		}
+		return sum;
+	}
+
+	public XMLParser(boolean empty, boolean download) {
 		if (!empty) {
 			System.out.println("XMLParser Start");
 			try {
-				File dir = new File("data/");
-				for (File f : dir.listFiles()) {
-					if (f.getName().matches("cards_section_\\d+.xml")
-							&& GlobalData.readFile(f.getAbsolutePath()).length() > 10)
-						CARD_SECTIONS_COUNT++;
-				}
-				card_documents = new Document[CARD_SECTIONS_COUNT + 1];
-				for (int i = 1; i <= CARD_SECTIONS_COUNT; i++) {
-					File inputFile = new File("data/cards_section_" + i + ".xml");
+				if (download) {
+					System.out.println("XMLParser DOWNLOAD");
+					boolean stop = false;
+					int i = 0;
+					ArrayList<Document> al = new ArrayList<Document>();
+					ArrayList<Integer> aint = new ArrayList<Integer>();
+					al.add(null);
+					aint.add(1);
+					while (!stop) {
+						// File inputFile = new File("data/cards_section_"+i+".xml");
+						DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+						DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+						Document card_document;
+						try {
+							i++;
+							al.add(card_document = dBuilder.parse(new BufferedInputStream(
+									new URL("http://mobile-dev.tyrantonline.com/assets/cards_section_" + i + ".xml")
+											.openStream())));
+							CARD_SECTIONS_COUNT++;
+							card_document.getDocumentElement().normalize();
+							NodeList nList = card_document.getElementsByTagName("unit");
+							aint.add(nList.getLength());
+							// card_count += nList.getLength();
+						} catch (Exception e) {
+							stop = true;
+						}
+					}
+					card_documents = al.toArray(card_documents);
+					card_per_sec = aint.toArray(card_per_sec);
+
+					// File inputFile = new File("data/fusion_recipes_cj2.xml");
 					DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 					DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-					card_documents[i] = dBuilder.parse(inputFile);
-					card_documents[i].getDocumentElement().normalize();
-					NodeList nList = card_documents[i].getElementsByTagName("unit");
-					card_count += nList.getLength();
+					fusion_document = dBuilder.parse(new BufferedInputStream(
+							new URL("http://mobile-dev.tyrantonline.com/assets/fusion_recipes_cj2.xml").openStream()));
+					fusion_document.getDocumentElement().normalize();
+					NodeList nList = fusion_document.getElementsByTagName("fusion_recipe");
+					fusion_count += nList.getLength();
+
+					// inputFile = new File("data/missions.xml");
+					dbFactory = DocumentBuilderFactory.newInstance();
+					dBuilder = dbFactory.newDocumentBuilder();
+					mission_document = dBuilder.parse(new BufferedInputStream(
+							new URL("http://mobile-dev.tyrantonline.com/assets/missions.xml").openStream()));
+					mission_document.getDocumentElement().normalize();
+					nList = mission_document.getElementsByTagName("mission");
+					mission_count += nList.getLength();
+
+					// inputFile = new File("data/levels.xml");
+					dbFactory = DocumentBuilderFactory.newInstance();
+					dBuilder = dbFactory.newDocumentBuilder();
+					level_document = dBuilder.parse(new BufferedInputStream(
+							new URL("http://mobile-dev.tyrantonline.com/assets/levels.xml").openStream()));
+					level_document.getDocumentElement().normalize();
+
+					dbFactory = DocumentBuilderFactory.newInstance();
+					dBuilder = dbFactory.newDocumentBuilder();
+					skill_document = dBuilder.parse(new BufferedInputStream(
+							new URL("http://mobile-dev.tyrantonline.com/assets/skills_set.xml").openStream()));
+					skill_document.getDocumentElement().normalize();
+				} else {
+					File dir = new File("data/");
+					for (File f : dir.listFiles()) {
+						if (f.getName().matches("cards_section_\\d+.xml")
+								&& GlobalData.readFile(f.getAbsolutePath()).length() > 10)
+							CARD_SECTIONS_COUNT++;
+					}
+					card_documents = new Document[CARD_SECTIONS_COUNT + 1];
+					for (int i = 1; i <= CARD_SECTIONS_COUNT; i++) {
+						File inputFile = new File("data/cards_section_" + i + ".xml");
+						DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+						DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+						card_documents[i] = dBuilder.parse(inputFile);
+						card_documents[i].getDocumentElement().normalize();
+						NodeList nList = card_documents[i].getElementsByTagName("unit");
+						card_count += nList.getLength();
+					}
+
+					File inputFile = new File("data/fusion_recipes_cj2.xml");
+					DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+					DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+					fusion_document = dBuilder.parse(inputFile);
+					fusion_document.getDocumentElement().normalize();
+					NodeList nList = fusion_document.getElementsByTagName("fusion_recipe");
+					fusion_count += nList.getLength();
+
+					inputFile = new File("data/missions.xml");
+					dbFactory = DocumentBuilderFactory.newInstance();
+					dBuilder = dbFactory.newDocumentBuilder();
+					mission_document = dBuilder.parse(inputFile);
+					mission_document.getDocumentElement().normalize();
+					nList = mission_document.getElementsByTagName("mission");
+					mission_count += nList.getLength();
+
+					inputFile = new File("data/levels.xml");
+					dbFactory = DocumentBuilderFactory.newInstance();
+					dBuilder = dbFactory.newDocumentBuilder();
+					level_document = dBuilder.parse(inputFile);
+					level_document.getDocumentElement().normalize();
+
+					inputFile = new File("data/skill_set.xml");
+					dbFactory = DocumentBuilderFactory.newInstance();
+					dBuilder = dbFactory.newDocumentBuilder();
+					skill_document = dBuilder.parse(inputFile);
+					skill_document.getDocumentElement().normalize();
 				}
 
-				File inputFile = new File("data/fusion_recipes_cj2.xml");
 				DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 				DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-				fusion_document = dBuilder.parse(inputFile);
-				fusion_document.getDocumentElement().normalize();
-				NodeList nList = fusion_document.getElementsByTagName("fusion_recipe");
-				fusion_count += nList.getLength();
-
-				inputFile = new File("data/missions.xml");
-				dbFactory = DocumentBuilderFactory.newInstance();
-				dBuilder = dbFactory.newDocumentBuilder();
-				mission_document = dBuilder.parse(inputFile);
-				mission_document.getDocumentElement().normalize();
-				nList = mission_document.getElementsByTagName("mission");
-				mission_count += nList.getLength();
-
-				inputFile = new File("data/levels.xml");
-				dbFactory = DocumentBuilderFactory.newInstance();
-				dBuilder = dbFactory.newDocumentBuilder();
-				level_document = dBuilder.parse(inputFile);
-				level_document.getDocumentElement().normalize();
-
-				dbFactory = DocumentBuilderFactory.newInstance();
-				dBuilder = dbFactory.newDocumentBuilder();
 				document = dBuilder.parse(TU.class.getResourceAsStream("/cardSources.xml"));
 				document.getDocumentElement().normalize();
 
@@ -93,7 +175,24 @@ public class XMLParser {
 	}
 
 	public XMLParser() {
-		this(false);
+		this(false, false);
+	}
+
+	public HashMap<String, String> loadSkillDesc() {
+		NodeList nList = skill_document.getElementsByTagName("skillType");
+		HashMap<String, String> skill_borders = new HashMap<String, String>();
+		for (int temp = 0; temp < nList.getLength(); temp++) {
+			Node nNode = nList.item(temp);
+			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+				Element eElement = (Element) nNode;
+				String name = eElement.getElementsByTagName("name").item(0).getTextContent().toLowerCase();
+				String desc = "";
+				if (eElement.getElementsByTagName("desc").getLength() != 0)
+					desc = eElement.getElementsByTagName("desc").item(0).getTextContent().toLowerCase();
+				skill_borders.put(name, desc);
+			}
+		}
+		return skill_borders;
 	}
 
 	public Pair<Card[], Card[]> loadCards() {
@@ -642,7 +741,7 @@ public class XMLParser {
 
 	private void addSkillAttr(Element u, String n, int v) {
 		if (v > 0)
-			u.setAttribute(n, ""+v);
+			u.setAttribute(n, "" + v);
 	}
 
 	private void addSkillAttr(Element u, String n, String v) {
@@ -655,7 +754,8 @@ public class XMLParser {
 		firstName.appendChild(document.createTextNode(v));
 		root.appendChild(firstName);
 	}
+
 	private void add(Document document, Element root, String f, int v) {
-		add(document,root,f,""+v);
+		add(document, root, f, "" + v);
 	}
 }
