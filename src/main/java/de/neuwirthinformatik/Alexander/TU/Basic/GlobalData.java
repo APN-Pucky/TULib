@@ -63,7 +63,7 @@ public class GlobalData {
 		init(true);
 	}
 	public static void init(boolean nullxml) {
-		xml = new XMLParser(false,nullxml);
+		xml = new XMLParser(false,!nullxml);
 		fusions = xml.loadFusions();
 		missions = xml.loadMissions();
 		levels = xml.loadLevels();
