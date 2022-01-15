@@ -347,14 +347,14 @@ public class Card {
 			}
 		}
 
-		/*
-		 * private CardInstance(int id, Card card) { this(id, card,
-		 * card.getInfos()[card.getPositionID(id)]); }
-		 */
+		private CardInstance(int id, Card card) {
+			this(id, card, card.getInfos()[card.getPositionID(id)]);
+		}
 
-		/*
-		 * private CardInstance(int id) { this(id, Data.getCardByID(id)); }
-		 */
+		private CardInstance(int id) {
+			this(id, GlobalData.getCardByID(id));
+		}
+
 		public static CardInstance get(int id) {
 			if (id == 0) {
 				return NULL;
