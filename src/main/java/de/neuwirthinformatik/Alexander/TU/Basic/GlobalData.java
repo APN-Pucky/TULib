@@ -97,7 +97,13 @@ public class GlobalData {
 		if (nullxml)
 			xml = null;
 	}
-
+	public static CardInstance getCardInstance(String idorname) {
+		if (idorname.matches("\\d+")) {
+			return new CardInstance(Integer.parseInt(idorname));
+		} else {
+			return GlobalData.getCardInstanceByNameAndLevel(StringUtil.capitalizeOnlyFirstLetters(idorname));
+		}
+	}
 	public static int[] getIDsFromCardInstances(CardInstance[] cis) {
 		int[] arr = new int[cis.length];
 		for (int i = 0; i < cis.length; i++)
