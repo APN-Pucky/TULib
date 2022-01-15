@@ -37,8 +37,8 @@ public class Render {
 	Font optimus;
 	Font arial;
 	public Render() throws FontFormatException, IOException {
-		optimus = Font.createFont(Font.TRUETYPE_FONT, TU.class.getResourceAsStream("/resources/Optimus.otf"));
-		arial = Font.createFont(Font.TRUETYPE_FONT, TU.class.getResourceAsStream("/resources/arialbold.ttf"));
+		optimus = Font.createFont(Font.TRUETYPE_FONT, TU.class.getResourceAsStream("/Optimus.otf"));
+		arial = Font.createFont(Font.TRUETYPE_FONT, TU.class.getResourceAsStream("/arialbold.ttf"));
 	}
 	
 	public BufferedImage renderTree(CardInstance c)
@@ -289,9 +289,9 @@ public class Render {
 	public static void draw(Graphics g, String img, int sx,int  sy,int sw,int sh,int dx,int dy,int dw,int dh)
 	{
 		try {
-			g.drawImage(ImageIO.read(TU.class.getResourceAsStream("/resources/"+img+".png")),  dx,dy,dx+dw,dy+dh,sx,sy,sx+sw,sy+sh,null);
+			g.drawImage(ImageIO.read(TU.class.getResourceAsStream("/"+img+".png")),  dx,dy,dx+dw,dy+dh,sx,sy,sx+sw,sy+sh,null);
 		} catch (IOException e) {
-			System.out.println("resources/"+img + ".png not found");
+			System.out.println(""+img + ".png not found");
 			e.printStackTrace();
 		}
 	}
