@@ -175,7 +175,7 @@ public class XMLParser {
 					level_document = dBuilder.parse(inputFile);
 					level_document.getDocumentElement().normalize();
 
-					inputFile = new File("data/skill_set.xml");
+					inputFile = new File("data/skills_set.xml");
 					dbFactory = DocumentBuilderFactory.newInstance();
 					dBuilder = dbFactory.newDocumentBuilder();
 					skill_document = dBuilder.parse(inputFile);
