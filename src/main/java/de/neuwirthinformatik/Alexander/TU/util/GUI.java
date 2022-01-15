@@ -24,7 +24,6 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
-import javax.swing.JFileChooser;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -38,18 +37,15 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.Spring;
 import javax.swing.SpringLayout;
-import javax.swing.UIManager;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.plaf.basic.BasicLookAndFeel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.DefaultCaret;
 import javax.swing.text.NumberFormatter;
 
-import com.bulenkov.darcula.DarculaLaf;
+import com.github.weisj.darklaf.LafManager;
+import com.github.weisj.darklaf.theme.DarculaTheme;
 
 import de.neuwirthinformatik.Alexander.TU.TU;
 import de.neuwirthinformatik.Alexander.TU.Basic.GlobalData;
-import de.neuwirthinformatik.Alexander.TU.util.Task;
 
 public class GUI {
 
@@ -65,6 +61,8 @@ public class GUI {
 	
 	public static void setLookAndFeel()
 	{
+		LafManager.install(new DarculaTheme());
+		/*
 		try {
 			BasicLookAndFeel s = new DarculaLaf();
 			UIManager.setLookAndFeel(s);
@@ -78,6 +76,7 @@ public class GUI {
 				e2.printStackTrace();
 			}
 		}
+		*/
 	}
 	
 	public static void info(String title , String msg) {
