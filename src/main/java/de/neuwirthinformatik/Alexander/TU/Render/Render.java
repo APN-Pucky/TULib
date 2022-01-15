@@ -354,8 +354,8 @@ public class Render {
 		System.out.println("Exec extract");
 		Process p = builder.start();*/
 		System.out.println(f.getAbsolutePath());
-		System.out.println("python unitypuck.py --name " + card_name + " --outdir " + f.toPath().toString() + " " + file);
-		ProcessBuilder builder = new ProcessBuilder("python", "unitypuck.py", "--name", card_name,
+		System.out.println("python3 unitypuck.py --name " + card_name + " --outdir " + f.toPath().toString() + " " + file);
+		ProcessBuilder builder = new ProcessBuilder("python3", "unitypuck.py", "--name", card_name,
 				"--outdir", f.toPath().toString(), file);
 		//ProcessBuilder builder = new ProcessBuilder("unitypuck.exe", "--name", card_name,
 		//		"--outdir", f.toPath().toString(), file);
