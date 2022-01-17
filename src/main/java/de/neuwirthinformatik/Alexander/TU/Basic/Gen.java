@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import de.neuwirthinformatik.Alexander.TU.Basic.Card.CardInstance;
+import de.neuwirthinformatik.Alexander.TU.Basic.Card.CardType;
 import de.neuwirthinformatik.Alexander.TU.util.StringUtil;
 
 
@@ -15,6 +16,7 @@ public class Gen {
 	private static final double mutate_percentage = 0.3;
 	private static final double crossover_percentage = 0.3;
 	private static final double struct_probabilty = 0.25;
+	private static final double com_probabilty = 0.25;
 	// card
 	private static final double mutate_attack_percent = 0.05;
 	private static final double mutate_health_percent = 0.05;
@@ -60,6 +62,16 @@ public class Gen {
 		// Overlord").description());
 	}
 	
+	public static CardType getCardType(CardInstance.Info t, int seedr) {
+		if (couldBeCommander(t) && r.nextDouble() < struct_probabilty) {
+			return CardType.STRUCTURE;
+		}
+		if (couldBeStruct(t) && r.nextDouble() < com_probabilty) {
+			return CardType.COMMANDER;
+		}
+		return CardType.ASSAULT;
+
+	}
 	public static CardInstance.Info getSingleInfo(int seedr) {
 		r.setSeed(seedr);
 		CardInstance.Info[] is = genInfo(seedr);
@@ -200,6 +212,15 @@ public class Gen {
 				|| s.getId().equals("enrage") || s.getId().equals("rush") || s.getId().equals("heal")
 				|| s.getId().equals("mend") || s.getId().equals("fortify") || s.getId().equals("summon")
 				|| s.getId().equals("enhance") || s.getId().equals("evolve"));
+	}
+	
+	private static boolean couldBeCommander(CardInstance.Info i) {
+		for(SkillSpec s : i.getSkills()) {
+			if (s.getId().equals("wall")) {
+				return false;
+			}
+		}
+		return couldBeStruct(i);
 	}
 
 	private static boolean couldBeStruct(CardInstance.Info i) {
