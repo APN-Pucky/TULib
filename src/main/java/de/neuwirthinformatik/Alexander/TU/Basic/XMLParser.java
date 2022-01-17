@@ -134,6 +134,7 @@ public class XMLParser {
 							new URL("http://mobile-dev.tyrantonline.com/assets/skills_set.xml").openStream()));
 					skill_document.getDocumentElement().normalize();
 				} else {
+					System.out.println("NOT DOWNLOAD");
 					File dir = new File("data/");
 					for (File f : dir.listFiles()) {
 						if (f.getName().matches("cards_section_\\d+.xml")

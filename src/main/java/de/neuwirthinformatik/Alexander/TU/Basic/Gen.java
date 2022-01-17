@@ -5,7 +5,11 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import de.neuwirthinformatik.Alexander.TU.Basic.Card.CardInstance;
+import de.neuwirthinformatik.Alexander.TU.Basic.Card.CardInstance.Info;
 import de.neuwirthinformatik.Alexander.TU.Basic.Card.CardType;
+import de.neuwirthinformatik.Alexander.TU.Basic.Card.Faction;
+import de.neuwirthinformatik.Alexander.TU.Basic.Card.Level;
+import de.neuwirthinformatik.Alexander.TU.Basic.Card.Rarity;
 import de.neuwirthinformatik.Alexander.TU.util.StringUtil;
 
 
@@ -15,8 +19,18 @@ public class Gen {
 	private static final int generations = 10;
 	private static final double mutate_percentage = 0.3;
 	private static final double crossover_percentage = 0.3;
+
 	private static final double struct_probabilty = 0.25;
 	private static final double com_probabilty = 0.25;
+
+	private static final double level2_probabilty = 0.10;
+	private static final double level1_probabilty = 0.25;
+
+	private static final double mythic_probabilty = 0.01;
+	private static final double vindicator_probabilty = 0.05;
+	private static final double legendary_probabilty = 0.15;
+	private static final double epic_probabilty = 0.45;
+	private static final double rare_probabilty = 0.75;
 	// card
 	private static final double mutate_attack_percent = 0.05;
 	private static final double mutate_health_percent = 0.05;
@@ -62,16 +76,7 @@ public class Gen {
 		// Overlord").description());
 	}
 	
-	public static CardType getCardType(CardInstance.Info t, int seedr) {
-		if (couldBeCommander(t) && r.nextDouble() < struct_probabilty) {
-			return CardType.STRUCTURE;
-		}
-		if (couldBeStruct(t) && r.nextDouble() < com_probabilty) {
-			return CardType.COMMANDER;
-		}
-		return CardType.ASSAULT;
-
-	}
+	
 	public static CardInstance.Info getSingleInfo(int seedr) {
 		r.setSeed(seedr);
 		CardInstance.Info[] is = genInfo(seedr);
@@ -97,6 +102,74 @@ public class Gen {
 		
 		gen(is);
 		return is;
+	}
+	public static CardType genCardType(CardInstance.Info t) {
+		if (couldBeCommander(t) && r.nextDouble() < struct_probabilty) {
+			return CardType.STRUCTURE;
+		}
+		if (couldBeStruct(t) && r.nextDouble() < com_probabilty) {
+			return CardType.COMMANDER;
+		}
+		return CardType.ASSAULT;
+	}
+	public static Level genLevel() {
+		double d =r.nextDouble();
+		if(d < level2_probabilty) {
+			return Level.quad;
+		}
+		if(d < level1_probabilty) {
+			return Level.dual;
+		}
+		else {
+			return Level.single;
+		}
+	}
+	public static Rarity genRarity() {
+		double d =r.nextDouble();
+		if(d < mythic_probabilty) {
+			return Rarity.mythic;
+		}
+		if(d < vindicator_probabilty) {
+			return Rarity.vindicator;
+		}
+		if(d < legendary_probabilty) {
+			return Rarity.legendary;
+		}
+		if(d < epic_probabilty) {
+			return Rarity.epic;
+		}
+		if(d < rare_probabilty) {
+			return Rarity.rare;
+		}
+		return Rarity.common;
+	}
+	public static Faction genFaction(CardInstance.Info t) {
+		Faction faction = Faction.get(r.nextInt(7));
+		for (SkillSpec ss : t.getSkills()) {
+				if (!ss.getY().equals("allfactions")) {
+					faction = Faction.get(ss.getY());
+				}
+		}
+		return faction;
+	}
+	public static CardInstance genCardInstance(String name, int seed) {
+		CardInstance.Info i = Gen.getSingleInfo(seed);
+		int did_num = 999999;
+		int mrank = 6;
+		int rank = 6;
+		Info[] ia = new Info[mrank];
+		int[] ids = new int[mrank];
+		for(int j =0; j < ids.length;j++)ids[j]=did_num+j;
+		//ids[rank-1] = 2; // TODO Define card id somewhere close to name
+		ia[rank-1] = i;
+		Card c = new Card(ids,name,
+				genRarity().toInt(),
+				genLevel().toInt(),
+				new int[] {},0,0,
+				genFaction(i).toInt()
+				,ia, "",0);
+		CardInstance ci = CardInstance.get(999999,Card.NULL,i);
+		return ci;
 	}
 	
 	public static String gen(int seedr) {
