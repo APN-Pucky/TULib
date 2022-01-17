@@ -59,7 +59,14 @@ public class Gen {
 		// System.out.println(GlobalData.getCardInstanceByNameAndLevel("Obsidian
 		// Overlord").description());
 	}
-	public static String gen(int seedr) {
+	
+	public static CardInstance.Info getSingleInfo(int seedr) {
+		r.setSeed(seedr);
+		CardInstance.Info[] is = genInfo(seedr);
+		return is[r.nextInt(is.length)];
+	}
+	
+	public static CardInstance.Info[] genInfo(int seedr) {
 		ArrayList<Card> printed = new ArrayList<Card>();
 		int number = pool_size;
 		CardInstance.Info[] is = new CardInstance.Info[number];
@@ -75,14 +82,19 @@ public class Gen {
 				is[number] = GlobalData.getCardInstanceById(c.getHighestID()).getInfo();
 			}
 		}
-		r.setSeed(System.currentTimeMillis()+seedr);
-		int i = 1;
+		
+		gen(is);
+		return is;
+	}
+	
+	public static String gen(int seedr) {
+		CardInstance.Info[] is = genInfo(seedr);
 		String msg = "";
 		String faction = "allfaction";
 		while (faction.equals("allfaction"))
 			faction = GlobalData.factionToString(r.nextInt(7));
 		boolean summon;
-		gen(is);
+		int i = 1;
 		do {
 			summon = false;
 			CardInstance.Info t = is[i-1];
