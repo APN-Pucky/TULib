@@ -3,6 +3,7 @@ cardpack*
 unitypuck.spec
 __pycache__/
 *.jpg
+data
 .gradle
 build
 

@@ -46,34 +46,14 @@ public class Gen {
 
 	private static Random r = new Random();
 
-	static public void main(String[] s) throws Exception {
+	
+	
+	public static void main(String[] args) {
 		GlobalData.init();
-		// String web = Wget.wGet("https://www.amazon.co.uk/dp/B018GRDG5O");
-		// String web = Wget.wGet("https://www.amazon.de/dp/B018GWRCV8");
-		// String web =
-		// Wget.wGet("https://www.amazon.com/Amazon-50-000-Coins/dp/B018HB6E80");
-		/*
-		 * CardInstance.Info[] is = new CardInstance.Info[5]; is[0] =
-		 * GlobalData.getCardInstanceByNameAndLevel("Obsidian Overlord").getInfo();
-		 * is[1] = GlobalData.getCardInstanceByNameAndLevel("Miasma Master").getInfo();
-		 * is[2] =
-		 * GlobalData.getCardInstanceByNameAndLevel("HyperSec Hunter").getInfo(); is[3]
-		 * = GlobalData.getCardInstanceByNameAndLevel("Warp Fabricator").getInfo();
-		 * is[4] = GlobalData.getCardInstanceByNameAndLevel("Dreamhaunter").getInfo();
-		 * 
-		 * System.out.println(is[0]); System.out.println(mutate(is[0]));
-		 * System.out.println(gen(is));
-		 */
-		/*
-			System.out.println(varby1(0,mutate_cost_probability));
-		}
-		System.out.println(" \n");*/
-		for(int i = 0; i < 10;i++)
-		{
-		System.out.println(gen(i*i));}
-		System.exit(0);
-		// System.out.println(GlobalData.getCardInstanceByNameAndLevel("Obsidian
-		// Overlord").description());
+		String name = "DR_F3LL";
+		int seed = name.hashCode();
+		CardInstance ci = Gen.genCardInstance(name,seed);
+		System.out.println(genCardType(ci.getInfo()));
 	}
 	
 	
@@ -101,6 +81,8 @@ public class Gen {
 		}
 		
 		gen(is);
+		for(Info i : is)
+			System.out.println(i);
 		return is;
 	}
 	public static CardType genCardType(CardInstance.Info t) {
@@ -168,7 +150,7 @@ public class Gen {
 				new int[] {},0,0,
 				genFaction(i).toInt()
 				,ia, "",0);
-		CardInstance ci = CardInstance.get(999999,Card.NULL,i);
+		CardInstance ci = CardInstance.get(999999,c,i);
 		return ci;
 	}
 	
