@@ -126,7 +126,7 @@ public class Gen {
 		return Rarity.common;
 	}
 	public static Faction genFaction(CardInstance.Info t) {
-		Faction faction = Faction.get(r.nextInt(7));
+		Faction faction = Faction.get(1+r.nextInt(6));
 		for (SkillSpec ss : t.getSkills()) {
 				if (!ss.getY().equals("allfactions")) {
 					faction = Faction.get(ss.getY());
