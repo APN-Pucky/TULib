@@ -3,6 +3,7 @@ package de.neuwirthinformatik.Alexander.TU.util;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -13,11 +14,14 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import javax.imageio.ImageIO;
+
 public class Wget {
 	public static enum Status {
 		Success, MalformedUrl, IoException, UnableToCloseOutputStream;
 	}
 	
+
 
 	public static String sendGet(String url) {
 		String ret = null;

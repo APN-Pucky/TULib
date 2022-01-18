@@ -15,7 +15,7 @@ import de.neuwirthinformatik.Alexander.TU.util.StringUtil;
 
 public class Gen {
 	// gen
-	private static final int pool_size = 50;
+	private static final int pool_size = 100;
 	private static final int generations = 10;
 	private static final double mutate_percentage = 0.3;
 	private static final double crossover_percentage = 0.3;
@@ -80,9 +80,11 @@ public class Gen {
 			}
 		}
 		
-		gen(is);
 		for(Info i : is)
 			System.out.println(i);
+		System.out.println("/pool");
+		
+		gen(is);
 		return is;
 	}
 	public static CardType genCardType(CardInstance.Info t) {
@@ -433,8 +435,7 @@ public class Gen {
 		boolean all = varbool(s.isAll(), mutate_all_probability);
 		String y = varfaction(s.getY(), mutate_y_probability);
 		String trigger = vartrigger(s.getTrigger(), mutate_trigger_probability);
-		int card_id = s.getCard_id() > 0 ? 25293 : 0;
-
+		int card_id = s.getCard_id() > 0 ? GlobalData.distinct_cards[r.nextInt(GlobalData.distinct_cards.length)].getHighestID() : 0;
 
 		return new SkillSpec(s.getId(), x, y, n, c, s.getS(), s.getS2(), all, card_id, trigger);
 	}
