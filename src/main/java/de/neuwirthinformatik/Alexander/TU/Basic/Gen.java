@@ -53,6 +53,7 @@ public class Gen {
 		String name = "DR_F3LL";
 		int seed = name.hashCode();
 		CardInstance ci = Gen.genCardInstance(name,seed);
+		System.out.println(ci.getInfo());
 		System.out.println(genCardType(ci.getInfo()));
 	}
 	
@@ -80,9 +81,6 @@ public class Gen {
 			}
 		}
 		
-		for(Info i : is)
-			System.out.println(i);
-		System.out.println("/pool");
 		
 		gen(is);
 		return is;
@@ -152,7 +150,7 @@ public class Gen {
 				new int[] {},0,0,
 				genFaction(i).toInt()
 				,ia, "",0);
-		CardInstance ci = CardInstance.get(999999,c,i);
+		CardInstance ci = CardInstance.get(999999+rank-1,c,i);
 		return ci;
 	}
 	
