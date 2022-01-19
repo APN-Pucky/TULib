@@ -84,7 +84,7 @@ public class Gen {
 
 	public static CardType genCardType(CardInstance.Info t) {
 		if (couldBeStruct(t) && r.nextDouble() < dom_probabilty) {
-			return CardType.STRUCTURE;
+			return CardType.DOMINION;
 		}
 		if (couldBeCommander(t) && r.nextDouble() < com_probabilty) {
 			return CardType.COMMANDER;
