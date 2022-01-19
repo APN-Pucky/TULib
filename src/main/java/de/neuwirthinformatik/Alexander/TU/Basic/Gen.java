@@ -19,8 +19,9 @@ public class Gen {
 	private static final double mutate_percentage = 0.3;
 	private static final double crossover_percentage = 0.3;
 
+	private static final double dom_probabilty = 0.05;
+	private static final double com_probabilty = 0.15;
 	private static final double struct_probabilty = 0.25;
-	private static final double com_probabilty = 0.25;
 
 	private static final double level2_probabilty = 0.10;
 	private static final double level1_probabilty = 0.25;
@@ -82,12 +83,16 @@ public class Gen {
 	}
 
 	public static CardType genCardType(CardInstance.Info t) {
-		if (couldBeCommander(t) && r.nextDouble() < struct_probabilty) {
+		if (couldBeStruct(t) && r.nextDouble() < dom_probabilty) {
 			return CardType.STRUCTURE;
 		}
-		if (couldBeStruct(t) && r.nextDouble() < com_probabilty) {
+		if (couldBeCommander(t) && r.nextDouble() < com_probabilty) {
 			return CardType.COMMANDER;
 		}
+		if (couldBeStruct(t) && r.nextDouble() < struct_probabilty) {
+			return CardType.STRUCTURE;
+		}
+		
 		return CardType.ASSAULT;
 	}
 
