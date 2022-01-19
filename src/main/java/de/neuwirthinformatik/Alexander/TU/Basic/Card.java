@@ -26,20 +26,25 @@ public class Card {
 	// further stats; skilz...
 
 	public Card(int[] ids, String name, int rarity, int lvl, int[] mats, int fort, int set, int f,
-			CardInstance.Info[] infos, String pic, int bundle) {
+			CardInstance.Info[] infos, String pic, int bundle, CardType ct,CardCategory category) {
 		this.ids = ids;
 		this.name = name;
 		this.rarity = rarity;
 		this.fusion_level = lvl;
 		this.materials = mats;
-		this.type = CardType.getByID(ids[0]);
+		this.type = ct;
 		this.fort_type = fort;
 		this.set = set;
-		this.category = CardCategory.getByID(ids[0], fort, set);
+		this.category = category;
 		this.infos = infos;
 		this.faction = f;
 		this.picture = pic;
 		this.asset_bundle = bundle;
+	}
+
+	public Card(int[] ids, String name, int rarity, int lvl, int[] mats, int fort, int set, int f,
+			CardInstance.Info[] infos, String pic, int bundle) {
+		this(ids,name,rarity,lvl,mats,fort,set,f,infos,pic,bundle,CardType.getByID(ids[0]),CardCategory.getByID(ids[0], fort, set));
 	}
 
 	public int getFortType() {
@@ -96,6 +101,8 @@ public class Card {
 	public CardType getCardType() {
 		return type;
 	}
+
+	
 
 	public int getFaction() {
 		return (faction);
@@ -432,6 +439,8 @@ public class Card {
 		public CardType getCardType() {
 			return c.getCardType();
 		}
+
+		
 
 		public String description() {
 			String ret = getName() + "\n";

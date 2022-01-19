@@ -3,6 +3,7 @@ package de.neuwirthinformatik.Alexander.TU.Basic;
 import java.util.ArrayList;
 import java.util.Random;
 
+import de.neuwirthinformatik.Alexander.TU.Basic.Card.CardCategory;
 import de.neuwirthinformatik.Alexander.TU.Basic.Card.CardInstance;
 import de.neuwirthinformatik.Alexander.TU.Basic.Card.CardInstance.Info;
 import de.neuwirthinformatik.Alexander.TU.Basic.Card.CardType;
@@ -150,10 +151,10 @@ public class Gen {
 		// ids[rank-1] = 2; // TODO Define card id somewhere close to name
 		ia[rank - 1] = i;
 		Card c = new Card(ids, name, genRarity().toInt(), genLevel().toInt(), new int[] {}, 0, 0, genFaction(i).toInt(),
-				ia, "", 0);
+				ia, "", 0,Gen.genCardType(i),CardCategory.NORMAL);
 		CardInstance ci = CardInstance.get(999999 + rank - 1, c, i);
 		if(!check(ci) || !cir.check(ci)) {
-			return genCardInstance(name,seed+1);
+			return genCardInstance(name,seed+1,cir);
 		}
 		return ci;
 	}

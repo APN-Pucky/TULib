@@ -1,0 +1,264 @@
+[33mcommit 2f702203a2093c6047b54ce9404020c91f43d4bd[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;33mtag: 0.2.19[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Wed Jan 19 08:50:52 2022 +0100
+
+    req
+
+[33mcommit 330778e58b78db705f85cd9a77e02a52d934456a[m[33m ([m[1;33mtag: 0.2.18[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Wed Jan 19 07:53:17 2022 +0100
+
+    Fix gen struct attack bug and summon all bug
+
+[33mcommit 5f11da4b165335902e6ef689fd043eec894d0ab5[m[33m ([m[1;33mtag: 0.2.17[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Tue Jan 18 11:12:27 2022 +0100
+
+    Fix allfaction faction
+
+[33mcommit b5f7cb5676741a21b762ca211f1f95a4465eabae[m[33m ([m[1;33mtag: 0.2.16[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Tue Jan 18 01:55:43 2022 +0100
+
+    Fix level
+
+[33mcommit 2cb526a2e9d2b12ee521ab68f84ed8c2e4b714d2[m[33m ([m[1;33mtag: 0.2.15[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Tue Jan 18 01:35:29 2022 +0100
+
+    Random summons
+
+[33mcommit aee9ed788adf0dd44172a82bd8b702e4ef868bd3[m[33m ([m[1;33mtag: 0.2.14[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Tue Jan 18 00:02:12 2022 +0100
+
+    ++
+
+[33mcommit 41bb8af957d26e4bd1d081ec9f7b2cd34913d5de[m[33m ([m[1;33mtag: 0.2.13[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Mon Jan 17 23:52:43 2022 +0100
+
+    NEw version
+
+[33mcommit 8404e6ee0ad9d9099c7a66fde3b4c8b5d9a64557[m[33m ([m[1;33mtag: 0.2.12[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Mon Jan 17 22:00:31 2022 +0100
+
+    gen++ again
+
+[33mcommit 309fc3373ddd5a476ab2958c60a8df92b069e5a1[m[33m ([m[1;33mtag: 0.2.11[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Mon Jan 17 21:32:07 2022 +0100
+
+    Add gen single
+
+[33mcommit 9285600e48aa85d7e982aae4be260309ac908f2a[m[33m ([m[1;33mtag: 0.2.10[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 23:48:14 2022 +0100
+
+    Fix dep
+
+[33mcommit ec2dc7fe42916811fdfbe486b4e72dfd8786c80a[m[33m ([m[1;33mtag: 0.2.9[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 23:20:56 2022 +0100
+
+    get CI
+
+[33mcommit 1f7f15432e1ae29ab78e109549e2b2716d79a72d[m[33m ([m[1;33mtag: 0.2.8[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 23:00:06 2022 +0100
+
+    Weird that line has one card less
+
+[33mcommit 3d273c630eb4beeae7e1a3fe52fa2b65e8870e99[m[33m ([m[1;33mtag: 0.2.7[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 22:17:24 2022 +0100
+
+    +1
+
+[33mcommit 26ab9b4434294dd89cee55ea847af52649914d45[m[33m ([m[1;33mtag: 0.2.6[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 22:07:08 2022 +0100
+
+    Fix typo
+
+[33mcommit 72e2293641239ec1de1321ee26e6e05b9a458b83[m[33m ([m[1;33mtag: 0.2.5[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 21:33:01 2022 +0100
+
+    Fix some stuf
+
+[33mcommit 13862f8acedd194b0960dcba6e3957b92bb33a47[m[33m ([m[1;33mtag: 0.2.4[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 21:02:30 2022 +0100
+
+    Fixed
+
+[33mcommit c31868ecf7cde5ade3c3a7c14f10ff400b83e8bc[m[33m ([m[1;33mtag: 0.2.3[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 20:58:05 2022 +0100
+
+    Move Gen
+
+[33mcommit edcd88bd9e36373586aee60cc84126c596a1dec9[m[33m ([m[1;33mtag: 0.2.2[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 20:46:50 2022 +0100
+
+    Fix NP
+
+[33mcommit 596f7add638b8ad75171f580f3917a78803abd8c[m[33m ([m[1;33mtag: 0.2.1[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 20:36:45 2022 +0100
+
+    Fix null dl xml
+
+[33mcommit e1fbe1fee71bc46c472ae84fd05db8aa2204aa41[m[33m ([m[1;33mtag: 0.2.0[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 19:57:35 2022 +0100
+
+    Final compatibility with apn-pucky chat bot
+
+[33mcommit 6c7b10ba91fa768f1bbbc9b5029a2e2e439c12ce[m[33m ([m[1;33mtag: 0.1.4[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 19:53:02 2022 +0100
+
+    Cosntructor back
+
+[33mcommit b586c9c520d9605fe6c8128cee0880ff53e1e720[m[33m ([m[1;33mtag: 0.1.3[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 19:44:50 2022 +0100
+
+    GD ++
+
+[33mcommit 236b542ea1348957e15255ea248e03004e05e40a[m[33m ([m[1;33mtag: 0.1.2[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 18:51:01 2022 +0100
+
+    XMLParse++
+
+[33mcommit a371b63ac50669444cb7ca16262d5348c34c1b2a[m[33m ([m[1;33mtag: 0.1.1[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 18:20:22 2022 +0100
+
+    check ++
+
+[33mcommit 157abd3a0b417e4b64fb91658557581c2047c46e[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 17:46:05 2022 +0100
+
+    Release with and without version in name
+
+[33mcommit bf5c94357dba4166b82d4014a915cf92577b16fc[m[33m ([m[1;33mtag: 0.1.0[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 17:37:02 2022 +0100
+
+    RM Render
+
+[33mcommit 7432f77176010119dc13a06252c92bb99a96dab0[m[33m ([m[1;33mtag: 0.0.12[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 16:26:33 2022 +0100
+
+    Fix render
+
+[33mcommit 3a2125be81f089c1f4774ee8cb4948a53dc48a63[m[33m ([m[1;33mtag: 0.0.11[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 15:59:02 2022 +0100
+
+    use py3
+
+[33mcommit 86862d9ef97bb211b19754c69c562023a0e2035d[m[33m ([m[1;33mtag: 0.0.10[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 15:44:57 2022 +0100
+
+    Fix resource again
+
+[33mcommit 4936914276dd6cc8a3b30bc4d4dfcb7911880a9e[m[33m ([m[1;33mtag: 0.0.9[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 15:33:31 2022 +0100
+
+    add missing resources
+
+[33mcommit a6a528137efab1258cdf8989ffe6b3b7b6e28e76[m[33m ([m[1;33mtag: 0.0.8[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 15:30:56 2022 +0100
+
+    Again
+
+[33mcommit c7a2cd31d68af17b11dabb0ab314ae8ad31ed841[m[33m ([m[1;33mtag: 0.0.7[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 15:28:04 2022 +0100
+
+    New resource location
+
+[33mcommit b57c6b3bfe8876ef2ef30cf97405152987ae5e52[m[33m ([m[1;33mtag: 0.0.6[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 15:08:50 2022 +0100
+
+    Fix naming?
+
+[33mcommit 9207406fc7674ee2425937185ad4e8121f28769e[m[33m ([m[1;33mtag: 0.0.5[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 15:01:41 2022 +0100
+
+    release with version in name
+
+[33mcommit 479e0b7abc6adca0f0c8870fe7be624848b2453b[m[33m ([m[1;33mtag: 0.0.4[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 14:56:24 2022 +0100
+
+    ++ for TUR
+
+[33mcommit 5f9c882658b35449adab7bdcf6538d158b653ee8[m[33m ([m[1;33mtag: 0.0.3[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 14:49:37 2022 +0100
+
+    Empty xmlparse
+
+[33mcommit 6709ee7e50c63af56675e886178de5b100294831[m[33m ([m[1;33mtag: 0.0.2[m[33m)[m
+Merge: 0e1b0b7 bd95a10
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 14:35:02 2022 +0100
+
+    t pushMerge branch 'master' of github.com:APN-Pucky/TULib
+
+[33mcommit 0e1b0b7e4489bcad7c597e0761244722d3d3dfb2[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 14:34:04 2022 +0100
+
+    Move stuff
+
+[33mcommit bd95a107fade45a675da794d3d5952431181f6ea[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 13:29:42 2022 +0100
+
+    Create README.md
+
+[33mcommit 1bb53d34e7056fa4b0b5cf8550b2aaa0bf2dc789[m[33m ([m[1;33mtag: 0.0.1[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 13:25:54 2022 +0100
+
+    wrapper again
+
+[33mcommit b468589a44160c8f3b6d4eb5d8f31cdda61d137b[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 13:22:23 2022 +0100
+
+    Add gradle wrappers
+
+[33mcommit a7067a7ab08f8f8c215347b4bc7143d438150dfb[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 13:21:19 2022 +0100
+
+    Add build workflow
+
+[33mcommit 677e6f560c9ef3654798c713e6d7a5c04db16bb9[m[33m ([m[1;33mtag: 0.0.0[m[33m)[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 13:15:20 2022 +0100
+
+    switch to gradle
+
+[33mcommit 698a67c050205312a51a23697b2d1f97d1c0f758[m
+Author: APN-Pucky <APN-Pucky@users.noreply.github.com>
+Date:   Sat Jan 15 12:57:15 2022 +0100
+
+    init
