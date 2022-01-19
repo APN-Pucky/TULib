@@ -92,7 +92,7 @@ public class Gen {
 		if (couldBeStruct(t) && r.nextDouble() < struct_probabilty) {
 			return CardType.STRUCTURE;
 		}
-		
+
 		return CardType.ASSAULT;
 	}
 
@@ -137,14 +137,16 @@ public class Gen {
 		}
 		return faction;
 	}
-	public interface CardInstanceRequirement{
-	    boolean check(CardInstance param1);
+
+	public interface CardInstanceRequirement {
+		boolean check(CardInstance param1);
 	}
 
 	public static CardInstance genCardInstance(String name, int seed) {
 		return genCardInstance(name, seed, (ci) -> true);
 	}
-	public static CardInstance genCardInstance(String name, int seed,CardInstanceRequirement cir) {
+
+	public static CardInstance genCardInstance(String name, int seed, CardInstanceRequirement cir) {
 		CardInstance.Info i = Gen.getSingleInfo(seed);
 		int did_num = 999999;
 		int mrank = 6;
@@ -156,10 +158,10 @@ public class Gen {
 		// ids[rank-1] = 2; // TODO Define card id somewhere close to name
 		ia[rank - 1] = i;
 		Card c = new Card(ids, name, genRarity().toInt(), genLevel().toInt(), new int[] {}, 0, 0, genFaction(i).toInt(),
-				ia, "", 0,Gen.genCardType(i),CardCategory.NORMAL);
+				ia, "", 0, Gen.genCardType(i), CardCategory.NORMAL);
 		CardInstance ci = CardInstance.get(999999 + rank - 1, c, i);
-		if(!check(ci) || !cir.check(ci)) {
-			return genCardInstance(name,seed+1,cir);
+		if (!check(ci) || !cir.check(ci)) {
+			return genCardInstance(name, seed + 1, cir);
 		}
 		return ci;
 	}
@@ -252,6 +254,15 @@ public class Gen {
 				}
 
 			}
+		}
+		if (ci.getCardType() == CardType.COMMANDER) {
+			if(wall) return -2;
+			for (int j = 0; j < i.getSkills().length; j++) {
+				if (i.getSkills()[j].getTrigger().equals("death")) {
+					return -3;
+				}
+			}
+
 		}
 
 		return 0;
