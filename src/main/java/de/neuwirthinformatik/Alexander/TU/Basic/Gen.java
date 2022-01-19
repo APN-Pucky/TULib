@@ -179,7 +179,7 @@ public class Gen {
 			if ((type == CardType.STRUCTURE && !couldBeStruct(i))
 					|| (type == CardType.COMMANDER && !couldBeCommander(i))
 					|| (type == CardType.DOMINION && !couldBeStruct(i))) {
-				return genCardInstance(name, seed + 1, tmp, force_com);
+				return genCardInstance(name, seed + 1, tmp,tmp_type, force_com);
 			}
 		} else {
 			type = Gen.genCardType(i);
