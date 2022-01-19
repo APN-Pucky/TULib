@@ -20,8 +20,8 @@ public class Gen {
 	private static final double crossover_percentage = 0.3;
 
 	private static final double dom_probabilty = 0.05;
-	private static final double com_probabilty = 0.45;
-	private static final double struct_probabilty = 0.65;
+	private static final double com_probabilty = 0.25;
+	private static final double struct_probabilty = 0.35;
 
 	private static final double level2_probabilty = 0.10;
 	private static final double level1_probabilty = 0.25;
@@ -34,7 +34,7 @@ public class Gen {
 	// card
 	private static final double mutate_attack_percent = 0.05;
 	private static final double mutate_health_percent = 0.05;
-	private static final double mutate_cost_probability = 0.05; 
+	private static final double mutate_cost_probability = 0.01;
 
 	// skill
 	private static final double mutate_x_percent = 0.05;
@@ -50,7 +50,7 @@ public class Gen {
 		GlobalData.init();
 		String name = "DR_F3LL";
 		int seed = name.hashCode();
-		CardInstance ci = Gen.genCardInstance(name, seed,(c) ->c.getCost()==0);
+		CardInstance ci = Gen.genCardInstance(name, seed, (c) -> c.getCost() == 0);
 		System.out.println(ci.getInfo());
 		System.out.println(genCardType(ci.getInfo()));
 	}
@@ -147,7 +147,22 @@ public class Gen {
 	}
 
 	public static CardInstance genCardInstance(String name, int seed, CardInstanceRequirement cir) {
+		return genCardInstance(name, seed, cir, false);
+	}
+
+	public static CardInstance genCardInstance(String name, int seed, boolean force_com) {
+		return genCardInstance(name, seed, (ci) -> true, force_com);
+	}
+
+	public static CardInstance genCardInstance(String name, int seed, CardInstanceRequirement cir, boolean force_com) {
 		CardInstance.Info i = Gen.getSingleInfo(seed);
+		if (force_com) {
+			i = new CardInstance.Info(i.attack, i.health, 0, i.level, i.getSkills());
+			final CardInstanceRequirement tmp = cir;
+			cir = (ccc) -> {
+				return tmp.check(ccc) && ccc.getCardType() == CardType.COMMANDER;
+			};
+		}
 		int did_num = 999999;
 		int mrank = 6;
 		int rank = 6;
@@ -327,7 +342,7 @@ public class Gen {
 				return false;
 			}
 		}
-		return couldBeStruct(i) && i.getCost()==0;
+		return couldBeStruct(i) && i.getCost() == 0;
 	}
 
 	private static boolean couldBeStruct(CardInstance.Info i) {
@@ -488,7 +503,7 @@ public class Gen {
 		int card_id = 0;
 		if (s.getCard_id() > 0) {
 			Card cc = null;
-			while(cc==null)
+			while (cc == null)
 				cc = GlobalData.distinct_cards[r.nextInt(GlobalData.distinct_cards.length)];
 			card_id = cc.getHighestID();
 		}
