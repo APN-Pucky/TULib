@@ -256,7 +256,8 @@ public class Gen {
 			}
 		}
 		if (ci.getCardType() == CardType.COMMANDER) {
-			if(wall) return -2;
+			if (wall)
+				return -2;
 			for (int j = 0; j < i.getSkills().length; j++) {
 				if (i.getSkills()[j].getTrigger().equals("death")) {
 					return -3;
@@ -484,9 +485,13 @@ public class Gen {
 		boolean all = varbool(s.isAll(), mutate_all_probability);
 		String y = varfaction(s.getY(), mutate_y_probability);
 		String trigger = vartrigger(s.getTrigger(), mutate_trigger_probability);
-		int card_id = s.getCard_id() > 0
-				? GlobalData.distinct_cards[r.nextInt(GlobalData.distinct_cards.length)].getHighestID()
-				: 0;
+		int card_id = 0;
+		if (s.getCard_id() > 0) {
+			Card cc = null;
+			while(cc==null)
+				cc = GlobalData.distinct_cards[r.nextInt(GlobalData.distinct_cards.length)];
+			card_id = cc.getHighestID();
+		}
 
 		return new SkillSpec(s.getId(), x, y, n, c, s.getS(), s.getS2(), all, card_id, trigger);
 	}
