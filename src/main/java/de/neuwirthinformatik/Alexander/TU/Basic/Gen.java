@@ -546,7 +546,7 @@ public class Gen {
 		int card_id = 0;
 		if (s.getCard_id() > 0) {
 			Card cc = null;
-			while (cc == null)
+			while (cc == null || cc.getCardType() == CardType.COMMANDER || cc.getCardType() == CardType.DOMINION)
 				cc = GlobalData.distinct_cards[r.nextInt(GlobalData.distinct_cards.length)];
 			card_id = cc.getHighestID();
 		}
