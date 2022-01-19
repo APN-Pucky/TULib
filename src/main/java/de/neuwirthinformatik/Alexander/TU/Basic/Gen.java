@@ -131,8 +131,14 @@ public class Gen {
 		}
 		return faction;
 	}
+	public interface CardInstanceRequirement{
+	    boolean check(CardInstance param1);
+	}
 
 	public static CardInstance genCardInstance(String name, int seed) {
+		return genCardInstance(name, seed, (ci) -> true);
+	}
+	public static CardInstance genCardInstance(String name, int seed,CardInstanceRequirement cir) {
 		CardInstance.Info i = Gen.getSingleInfo(seed);
 		int did_num = 999999;
 		int mrank = 6;
@@ -146,7 +152,7 @@ public class Gen {
 		Card c = new Card(ids, name, genRarity().toInt(), genLevel().toInt(), new int[] {}, 0, 0, genFaction(i).toInt(),
 				ia, "", 0);
 		CardInstance ci = CardInstance.get(999999 + rank - 1, c, i);
-		if(!check(ci)) {
+		if(!check(ci) || !cir.check(ci)) {
 			return genCardInstance(name,seed+1);
 		}
 		return ci;
