@@ -19,9 +19,9 @@ public class Gen {
 	private static final double mutate_percentage = 0.3;
 	private static final double crossover_percentage = 0.3;
 
-	private static final double dom_probabilty = 0.05;
+	private static final double dom_probabilty = 0.10;
 	private static final double com_probabilty = 0.25;
-	private static final double struct_probabilty = 0.35;
+	private static final double struct_probabilty = 0.60;
 
 	private static final double level2_probabilty = 0.10;
 	private static final double level1_probabilty = 0.25;
@@ -163,8 +163,23 @@ public class Gen {
 	}
 
 	public static CardInstance genCardInstance(String name, int seed, CardInstanceRequirement cir, boolean force_com) {
-		CardInstance.Info i = Gen.getSingleInfo(seed, force_com);
+		return genCardInstance(name, seed, cir, force_com ? CardType.COMMANDER : null, force_com);
+	}
+
+	public static CardInstance genCardInstance(String name, int seed, CardInstanceRequirement cir, CardType type,
+			boolean force_com) {
 		final CardInstanceRequirement tmp = cir;
+		final CardType tmp_type = type;
+		CardInstance.Info i = Gen.getSingleInfo(seed, force_com);
+		if (type != null) {
+			if ((type == CardType.STRUCTURE && !couldBeStruct(i))
+					|| (type == CardType.COMMANDER && !couldBeCommander(i))
+					|| (type == CardType.DOMINION && !couldBeStruct(i))) {
+				return genCardInstance(name, seed + 1, tmp, force_com);
+			}
+		} else {
+			type = Gen.genCardType(i);
+		}
 		if (force_com) {
 			cir = (ccc) -> {
 				return tmp.check(ccc) && ccc.getCardType() == CardType.COMMANDER;
@@ -180,10 +195,10 @@ public class Gen {
 		// ids[rank-1] = 2; // TODO Define card id somewhere close to name
 		ia[rank - 1] = i;
 		Card c = new Card(ids, name, genRarity().toInt(), genLevel().toInt(), new int[] {}, 0, 0, genFaction(i).toInt(),
-				ia, "", 0, Gen.genCardType(i), CardCategory.NORMAL);
+				ia, "", 0, type, CardCategory.NORMAL);
 		CardInstance ci = CardInstance.get(999999 + rank - 1, c, i);
 		if (!check(ci) || !cir.check(ci)) {
-			return genCardInstance(name, seed + 1, tmp, force_com);
+			return genCardInstance(name, seed + 1, tmp, tmp_type, force_com);
 		}
 		return ci;
 	}
