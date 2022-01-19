@@ -34,7 +34,7 @@ public class Gen {
 	// card
 	private static final double mutate_attack_percent = 0.05;
 	private static final double mutate_health_percent = 0.05;
-	private static final double mutate_cost_probability = 0.01;
+	private static final double mutate_cost_probability = 0.05; 
 
 	// skill
 	private static final double mutate_x_percent = 0.05;
@@ -50,7 +50,7 @@ public class Gen {
 		GlobalData.init();
 		String name = "DR_F3LL";
 		int seed = name.hashCode();
-		CardInstance ci = Gen.genCardInstance(name, seed);
+		CardInstance ci = Gen.genCardInstance(name, seed,(c) ->c.getCost()==0);
 		System.out.println(ci.getInfo());
 		System.out.println(genCardType(ci.getInfo()));
 	}
