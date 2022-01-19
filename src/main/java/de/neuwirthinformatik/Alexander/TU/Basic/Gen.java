@@ -20,8 +20,8 @@ public class Gen {
 	private static final double crossover_percentage = 0.3;
 
 	private static final double dom_probabilty = 0.05;
-	private static final double com_probabilty = 0.15;
-	private static final double struct_probabilty = 0.25;
+	private static final double com_probabilty = 0.45;
+	private static final double struct_probabilty = 0.65;
 
 	private static final double level2_probabilty = 0.10;
 	private static final double level1_probabilty = 0.25;
