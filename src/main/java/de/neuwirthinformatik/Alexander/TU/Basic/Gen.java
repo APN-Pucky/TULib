@@ -327,7 +327,7 @@ public class Gen {
 				return false;
 			}
 		}
-		return couldBeStruct(i);
+		return couldBeStruct(i) && i.getCost()==0;
 	}
 
 	private static boolean couldBeStruct(CardInstance.Info i) {
