@@ -425,6 +425,8 @@ public class Gen {
 				return false;
 			if (s.getId().equals("poison"))
 				return false;
+			if (s.getId().equals("disease"))
+				return false;
 			if (s.getId().equals("allegiance"))
 				return false;
 			if (s.getId().equals("valor"))
