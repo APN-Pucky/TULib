@@ -154,6 +154,10 @@ public class Gen {
 		return genCardInstance(name, seed, (ci) -> true);
 	}
 
+	public static CardInstance genCardInstance(String name, int seed, CardType ct) {
+		return genCardInstance(name, seed, (ci) -> true, ct, false);
+	}
+
 	public static CardInstance genCardInstance(String name, int seed, CardInstanceRequirement cir) {
 		return genCardInstance(name, seed, cir, false);
 	}
