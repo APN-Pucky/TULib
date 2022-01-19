@@ -1,6 +1,5 @@
 package de.neuwirthinformatik.Alexander.TU.Basic;
 
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -11,7 +10,6 @@ import de.neuwirthinformatik.Alexander.TU.Basic.Card.Faction;
 import de.neuwirthinformatik.Alexander.TU.Basic.Card.Level;
 import de.neuwirthinformatik.Alexander.TU.Basic.Card.Rarity;
 import de.neuwirthinformatik.Alexander.TU.util.StringUtil;
-
 
 public class Gen {
 	// gen
@@ -46,24 +44,21 @@ public class Gen {
 
 	private static Random r = new Random();
 
-	
-	
 	public static void main(String[] args) {
 		GlobalData.init();
 		String name = "DR_F3LL";
 		int seed = name.hashCode();
-		CardInstance ci = Gen.genCardInstance(name,seed);
+		CardInstance ci = Gen.genCardInstance(name, seed);
 		System.out.println(ci.getInfo());
 		System.out.println(genCardType(ci.getInfo()));
 	}
-	
-	
+
 	public static CardInstance.Info getSingleInfo(int seedr) {
 		r.setSeed(seedr);
 		CardInstance.Info[] is = genInfo(seedr);
 		return is[r.nextInt(is.length)];
 	}
-	
+
 	public static CardInstance.Info[] genInfo(int seedr) {
 		ArrayList<Card> printed = new ArrayList<Card>();
 		int number = pool_size;
@@ -80,11 +75,11 @@ public class Gen {
 				is[number] = GlobalData.getCardInstanceById(c.getHighestID()).getInfo();
 			}
 		}
-		
-		
+
 		gen(is);
 		return is;
 	}
+
 	public static CardType genCardType(CardInstance.Info t) {
 		if (couldBeCommander(t) && r.nextDouble() < struct_probabilty) {
 			return CardType.STRUCTURE;
@@ -94,46 +89,49 @@ public class Gen {
 		}
 		return CardType.ASSAULT;
 	}
+
 	public static Level genLevel() {
-		double d =r.nextDouble();
-		if(d < level2_probabilty) {
+		double d = r.nextDouble();
+		if (d < level2_probabilty) {
 			return Level.quad;
 		}
-		if(d < level1_probabilty) {
+		if (d < level1_probabilty) {
 			return Level.dual;
-		}
-		else {
+		} else {
 			return Level.single;
 		}
 	}
+
 	public static Rarity genRarity() {
-		double d =r.nextDouble();
-		if(d < mythic_probabilty) {
+		double d = r.nextDouble();
+		if (d < mythic_probabilty) {
 			return Rarity.mythic;
 		}
-		if(d < vindicator_probabilty) {
+		if (d < vindicator_probabilty) {
 			return Rarity.vindicator;
 		}
-		if(d < legendary_probabilty) {
+		if (d < legendary_probabilty) {
 			return Rarity.legendary;
 		}
-		if(d < epic_probabilty) {
+		if (d < epic_probabilty) {
 			return Rarity.epic;
 		}
-		if(d < rare_probabilty) {
+		if (d < rare_probabilty) {
 			return Rarity.rare;
 		}
 		return Rarity.common;
 	}
+
 	public static Faction genFaction(CardInstance.Info t) {
-		Faction faction = Faction.get(1+r.nextInt(6));
+		Faction faction = Faction.get(1 + r.nextInt(6));
 		for (SkillSpec ss : t.getSkills()) {
-				if (!ss.getY().equals("allfactions")) {
-					faction = Faction.get(ss.getY());
-				}
+			if (!ss.getY().equals("allfactions")) {
+				faction = Faction.get(ss.getY());
+			}
 		}
 		return faction;
 	}
+
 	public static CardInstance genCardInstance(String name, int seed) {
 		CardInstance.Info i = Gen.getSingleInfo(seed);
 		int did_num = 999999;
@@ -141,19 +139,19 @@ public class Gen {
 		int rank = 6;
 		Info[] ia = new Info[mrank];
 		int[] ids = new int[mrank];
-		for(int j =0; j < ids.length;j++)ids[j]=did_num+j;
-		//ids[rank-1] = 2; // TODO Define card id somewhere close to name
-		ia[rank-1] = i;
-		Card c = new Card(ids,name,
-				genRarity().toInt(),
-				genLevel().toInt(),
-				new int[] {},0,0,
-				genFaction(i).toInt()
-				,ia, "",0);
-		CardInstance ci = CardInstance.get(999999+rank-1,c,i);
+		for (int j = 0; j < ids.length; j++)
+			ids[j] = did_num + j;
+		// ids[rank-1] = 2; // TODO Define card id somewhere close to name
+		ia[rank - 1] = i;
+		Card c = new Card(ids, name, genRarity().toInt(), genLevel().toInt(), new int[] {}, 0, 0, genFaction(i).toInt(),
+				ia, "", 0);
+		CardInstance ci = CardInstance.get(999999 + rank - 1, c, i);
+		if(!check(ci)) {
+			return genCardInstance(name,seed+1);
+		}
 		return ci;
 	}
-	
+
 	public static String gen(int seedr) {
 		CardInstance.Info[] is = genInfo(seedr);
 		String msg = "";
@@ -164,7 +162,7 @@ public class Gen {
 		int i = 1;
 		do {
 			summon = false;
-			CardInstance.Info t = is[i-1];
+			CardInstance.Info t = is[i - 1];
 			String desc = t.description();
 			String type;
 			if (couldBeStruct(t) && r.nextDouble() < struct_probabilty) {
@@ -172,7 +170,7 @@ public class Gen {
 				desc = t.description();
 				type = "Structure";
 			} else {
-				type= "Assault";
+				type = "Assault";
 			}
 			for (SkillSpec ss : t.getSkills()) {
 				if (!ss.getY().equals("allfactions")) {
@@ -180,12 +178,12 @@ public class Gen {
 				}
 				if (ss.getId().equals("summon")) {
 					summon = true;
-					desc =desc.replace(GlobalData.getNameAndLevelByID(ss.getCard_id()), "Gen #" + (i + 1));
+					desc = desc.replace(GlobalData.getNameAndLevelByID(ss.getCard_id()), "Gen #" + (i + 1));
 				}
 			}
 			msg += "Gen #" + i + "\n";
 			msg += StringUtil.capitalizeOnlyFirstLetters(faction) + " ";
-			
+
 			msg += type;
 			msg += "\n";
 			msg += desc;
@@ -213,26 +211,56 @@ public class Gen {
 	}
 
 	private static boolean check(CardInstance.Info i) {
-		int errr = checkI(i);
-		//System.out.println(errr);
+		int errr = checkInfo(i);
+		// System.out.println(errr);
 		if (errr < 0)
 			return false;
 		return true;
 	}
 
-	private static int checkI(CardInstance.Info i) {
+	private static boolean check(CardInstance ci) {
+		int errr = checkCardInstance(ci);
+		// System.out.println(errr);
+		if (errr < 0)
+			return false;
+		return true;
+	}
+
+	private static int checkCardInstance(CardInstance ci) {
+		boolean wall = false;
+		Info i = ci.getInfo();
+		for (int j = 0; j < i.getSkills().length; j++) {
+			if (i.getSkills()[j].getId().equals("wall"))
+				wall = true;
+		}
+		if (ci.getCardType() == CardType.STRUCTURE || ci.getCardType() == CardType.DOMINION) {
+			for (int j = 0; j < i.getSkills().length; j++) {
+				if (i.getSkills()[j].getTrigger().equals("attacked") && !wall) {
+					return -1;
+				}
+
+			}
+		}
+
+		return 0;
+	}
+
+	private static int checkInfo(CardInstance.Info i) {
 		boolean wall = false;
 		boolean flurry = false;
 		for (int j = 0; j < i.getSkills().length; j++) {
 			if (i.getSkills()[j].getX() == 0 && !i.getSkills()[j].getId().equals("wall")
 					&& !i.getSkills()[j].getId().equals("jam") && !i.getSkills()[j].getId().equals("summon")
-					&& !i.getSkills()[j].getId().equals("flurry")&& !i.getSkills()[j].getId().equals("overload"))
+					&& !i.getSkills()[j].getId().equals("flurry") && !i.getSkills()[j].getId().equals("overload"))
 				return -1;
 			if (i.getSkills()[j].isAll()
 					&& (!couldBeTrigger(i.getSkills()[j]) || i.getSkills()[j].getId().equals("mimic")))
 				return -2;
-			if (!i.getSkills()[j].getTrigger().equals("activate") && (!couldBeTrigger(i.getSkills()[j]) || i.getSkills()[j].getC()>0))
+			if (!i.getSkills()[j].getTrigger().equals("activate")
+					&& (!couldBeTrigger(i.getSkills()[j]) || i.getSkills()[j].getC() > 0))
 				return -3;
+			if (i.getSkills()[j].getId().equals("summon") && i.getSkills()[j].isAll())
+				return -9;
 
 			if (i.getSkills()[j].getId().equals("wall"))
 				wall = true;
@@ -244,7 +272,7 @@ public class Gen {
 			}
 		}
 		if (flurry) {
-			
+
 			for (SkillSpec s : i.getSkills()) {
 				if (s.getId().equals("jam"))
 					return -6;
@@ -268,9 +296,9 @@ public class Gen {
 				|| s.getId().equals("mend") || s.getId().equals("fortify") || s.getId().equals("summon")
 				|| s.getId().equals("enhance") || s.getId().equals("evolve"));
 	}
-	
+
 	private static boolean couldBeCommander(CardInstance.Info i) {
-		for(SkillSpec s : i.getSkills()) {
+		for (SkillSpec s : i.getSkills()) {
 			if (s.getId().equals("wall")) {
 				return false;
 			}
@@ -366,9 +394,9 @@ public class Gen {
 			}
 		}
 		CardInstance.Info tmp = new CardInstance.Info(attack, health, cost, level, skills);
-		//System.out.println("Check:" + tmp + " = " + i1 + " + " + i2);
+		// System.out.println("Check:" + tmp + " = " + i1 + " + " + i2);
 		if (!check(tmp)) {
-			//System.out.println("check");
+			// System.out.println("check");
 			return crossover(i1, i2);
 		}
 		return tmp;
@@ -397,7 +425,7 @@ public class Gen {
 	}
 
 	private static int cross(int a, int b) {
-		return new int[] { a, b, (a + b) / 2, (a + b+1) / 2}[r.nextInt(4)];
+		return new int[] { a, b, (a + b) / 2, (a + b + 1) / 2 }[r.nextInt(4)];
 	}
 
 	public static CardInstance.Info mutate(CardInstance.Info i) {
@@ -409,19 +437,19 @@ public class Gen {
 		int level = i.getLevel();
 		if (cost < 0)
 			cost = 0;
-		if(cost >=5)
+		if (cost >= 5)
 			cost = 4;
 		if (health <= 0)
 			health = 1;
-		if(attack <0)
+		if (attack < 0)
 			attack = 0;
 		SkillSpec[] skills = new SkillSpec[i.getSkills().length];
 		for (int j = 0; j < skills.length; j++) {
 			skills[j] = mutate(i.getSkills()[j]);
 		}
-		CardInstance.Info t= new CardInstance.Info(attack, health, cost, level, skills);
-		//System.out.println("Check:" + t + " = " + i);
-		if(!check(t))
+		CardInstance.Info t = new CardInstance.Info(attack, health, cost, level, skills);
+		// System.out.println("Check:" + t + " = " + i);
+		if (!check(t))
 			return mutate(i);
 		return t;
 	}
@@ -433,7 +461,9 @@ public class Gen {
 		boolean all = varbool(s.isAll(), mutate_all_probability);
 		String y = varfaction(s.getY(), mutate_y_probability);
 		String trigger = vartrigger(s.getTrigger(), mutate_trigger_probability);
-		int card_id = s.getCard_id() > 0 ? GlobalData.distinct_cards[r.nextInt(GlobalData.distinct_cards.length)].getHighestID() : 0;
+		int card_id = s.getCard_id() > 0
+				? GlobalData.distinct_cards[r.nextInt(GlobalData.distinct_cards.length)].getHighestID()
+				: 0;
 
 		return new SkillSpec(s.getId(), x, y, n, c, s.getS(), s.getS2(), all, card_id, trigger);
 	}
