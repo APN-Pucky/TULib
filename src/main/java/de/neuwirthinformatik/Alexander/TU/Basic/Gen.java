@@ -271,7 +271,17 @@ public class Gen {
 			if (i.getSkills()[j].getId().equals("wall"))
 				wall = true;
 		}
+		if ( ci.getCardType() == CardType.DOMINION || ci.getCardType() == CardType.COMMANDER) {
+			for (int j = 0; j < i.getSkills().length; j++) {
+				if (i.getSkills()[j].getTrigger().equals("play")) {
+					return -7;
+				}
+			}
+		}
 		if (ci.getCardType() == CardType.STRUCTURE || ci.getCardType() == CardType.DOMINION) {
+			if( !couldBeStruct(ci.getInfo())) {
+				return -6;
+			}
 			for (int j = 0; j < i.getSkills().length; j++) {
 				if (i.getSkills()[j].getTrigger().equals("attacked") && !wall) {
 					return -1;
@@ -280,11 +290,17 @@ public class Gen {
 			}
 		}
 		if (ci.getCardType() == CardType.COMMANDER) {
+			if( !couldBeCommander(ci.getInfo())) {
+				return -5;
+			}
 			if (wall)
 				return -2;
 			for (int j = 0; j < i.getSkills().length; j++) {
 				if (i.getSkills()[j].getTrigger().equals("death")) {
 					return -3;
+				}
+				if( i.getSkills()[j].getId().equals("evade")) {
+					return -4;
 				}
 			}
 
@@ -309,7 +325,6 @@ public class Gen {
 				return -3;
 			if (i.getSkills()[j].getId().equals("summon") && i.getSkills()[j].isAll())
 				return -9;
-
 			if (i.getSkills()[j].getId().equals("wall"))
 				wall = true;
 			if (i.getSkills()[j].getId().equals("flurry"))
@@ -320,7 +335,6 @@ public class Gen {
 			}
 		}
 		if (flurry) {
-
 			for (SkillSpec s : i.getSkills()) {
 				if (s.getId().equals("jam"))
 					return -6;
