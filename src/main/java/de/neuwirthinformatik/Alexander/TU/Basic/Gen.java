@@ -58,16 +58,18 @@ public class Gen {
 	public static CardInstance.Info getSingleInfo(int seedr) {
 		return getSingleInfo(seedr, false);
 	}
-	public static CardInstance.Info getSingleInfo(int seedr,boolean force_com) {
+
+	public static CardInstance.Info getSingleInfo(int seedr, boolean force_com) {
 		r.setSeed(seedr);
-		CardInstance.Info[] is = genInfo(seedr,force_com);
+		CardInstance.Info[] is = genInfo(seedr, force_com);
 		return is[r.nextInt(is.length)];
 	}
 
 	public static CardInstance.Info[] genInfo(int seedr) {
 		return genInfo(seedr, false);
 	}
-	public static CardInstance.Info[] genInfo(int seedr,boolean force_com) {
+
+	public static CardInstance.Info[] genInfo(int seedr, boolean force_com) {
 		ArrayList<Card> printed = new ArrayList<Card>();
 		int number = pool_size;
 		CardInstance.Info[] is = new CardInstance.Info[number];
@@ -84,7 +86,7 @@ public class Gen {
 			}
 		}
 
-		gen(is,force_com);
+		gen(is, force_com);
 		return is;
 	}
 
@@ -161,7 +163,7 @@ public class Gen {
 	}
 
 	public static CardInstance genCardInstance(String name, int seed, CardInstanceRequirement cir, boolean force_com) {
-		CardInstance.Info i = Gen.getSingleInfo(seed,force_com);
+		CardInstance.Info i = Gen.getSingleInfo(seed, force_com);
 		final CardInstanceRequirement tmp = cir;
 		if (force_com) {
 			cir = (ccc) -> {
@@ -181,7 +183,7 @@ public class Gen {
 				ia, "", 0, Gen.genCardType(i), CardCategory.NORMAL);
 		CardInstance ci = CardInstance.get(999999 + rank - 1, c, i);
 		if (!check(ci) || !cir.check(ci)) {
-			return genCardInstance(name, seed + 1, tmp,force_com);
+			return genCardInstance(name, seed + 1, tmp, force_com);
 		}
 		return ci;
 	}
@@ -232,18 +234,19 @@ public class Gen {
 	}
 
 	private static CardInstance.Info gen(CardInstance.Info[] is) {
-		return gen(is,false);
+		return gen(is, false);
 	}
-	private static CardInstance.Info gen(CardInstance.Info[] is,boolean force_com) {
+
+	private static CardInstance.Info gen(CardInstance.Info[] is, boolean force_com) {
 		for (int i = 0; i < generations * is.length; i++) {
 			int i1 = r.nextInt(is.length);
 			int i2 = r.nextInt(is.length);
 			int i3 = r.nextInt(is.length);
-			is[i1] = mutate(is[i1],force_com);
-			CardInstance.Info tmp = crossover(is[i2], is[i3],force_com);
-			is[i2] = crossover(is[i2], is[i3],force_com);
+			is[i1] = mutate(is[i1], force_com);
+			CardInstance.Info tmp = crossover(is[i2], is[i3], force_com);
+			is[i2] = crossover(is[i2], is[i3], force_com);
 			is[i3] = tmp;
-			//System.out.println(tmp.getCost());
+			// System.out.println(tmp.getCost());
 		}
 		return is[r.nextInt(is.length)];
 	}
@@ -271,7 +274,15 @@ public class Gen {
 			if (i.getSkills()[j].getId().equals("wall"))
 				wall = true;
 		}
-		if ( ci.getCardType() == CardType.DOMINION || ci.getCardType() == CardType.COMMANDER) {
+		if (ci.getCardType() == CardType.DOMINION || ci.getCardType() == CardType.STRUCTURE) {
+			for (int j = 0; j < i.getSkills().length; j++) {
+				if (i.getSkills()[j].getId().equals("counter") && !wall) {
+					return -4;
+				}
+			}
+
+		}
+		if (ci.getCardType() == CardType.DOMINION || ci.getCardType() == CardType.COMMANDER) {
 			for (int j = 0; j < i.getSkills().length; j++) {
 				if (i.getSkills()[j].getTrigger().equals("play")) {
 					return -7;
@@ -279,7 +290,7 @@ public class Gen {
 			}
 		}
 		if (ci.getCardType() == CardType.STRUCTURE || ci.getCardType() == CardType.DOMINION) {
-			if( !couldBeStruct(ci.getInfo())) {
+			if (!couldBeStruct(ci.getInfo())) {
 				return -6;
 			}
 			for (int j = 0; j < i.getSkills().length; j++) {
@@ -290,7 +301,7 @@ public class Gen {
 			}
 		}
 		if (ci.getCardType() == CardType.COMMANDER) {
-			if( !couldBeCommander(ci.getInfo())) {
+			if (!couldBeCommander(ci.getInfo())) {
 				return -5;
 			}
 			if (wall)
@@ -299,7 +310,7 @@ public class Gen {
 				if (i.getSkills()[j].getTrigger().equals("death")) {
 					return -3;
 				}
-				if( i.getSkills()[j].getId().equals("evade")) {
+				if (i.getSkills()[j].getId().equals("evade")) {
 					return -4;
 				}
 			}
@@ -365,7 +376,7 @@ public class Gen {
 				return false;
 			}
 		}
-		return couldBeStruct(i) && i.getCost()==0;
+		return couldBeStruct(i) && i.getCost() == 0;
 	}
 
 	private static boolean couldBeStruct(CardInstance.Info i) {
@@ -427,10 +438,11 @@ public class Gen {
 	public static CardInstance.Info crossover(CardInstance.Info i1, CardInstance.Info i2) {
 		return crossover(i1, i2, false);
 	}
-	public static CardInstance.Info crossover(CardInstance.Info i1, CardInstance.Info i2,boolean force_com) {
+
+	public static CardInstance.Info crossover(CardInstance.Info i1, CardInstance.Info i2, boolean force_com) {
 		int attack = cross(i1.getAttack(), i2.getAttack());
 		int health = cross(i1.getHealth(), i2.getHealth());
-		int cost = force_com? 0 : cross(i1.getCost(), i2.getCost());
+		int cost = force_com ? 0 : cross(i1.getCost(), i2.getCost());
 		int level = cross(i1.getLevel(), i2.getLevel());
 
 		SkillSpec[] skills = new SkillSpec[Math.max(i1.getSkills().length, i2.getSkills().length)];
@@ -462,7 +474,7 @@ public class Gen {
 		// System.out.println("Check:" + tmp + " = " + i1 + " + " + i2);
 		if (!check(tmp)) {
 			// System.out.println("check");
-			return crossover(i1, i2,force_com);
+			return crossover(i1, i2, force_com);
 		}
 		return tmp;
 	}
@@ -496,12 +508,14 @@ public class Gen {
 	public static CardInstance.Info mutate(CardInstance.Info i) {
 		return mutate(i, false);
 	}
-	public static CardInstance.Info mutate(CardInstance.Info i,boolean force_com) {
+
+	public static CardInstance.Info mutate(CardInstance.Info i, boolean force_com) {
 		int attack = (int) (i.getAttack() + r.nextInt(2 * (1 + (int) (i.getAttack() * mutate_attack_percent)))
 				- i.getAttack() * mutate_attack_percent);
 		int health = (int) (i.getHealth() + r.nextInt(2 * (1 + (int) (i.getHealth() * mutate_health_percent)))
 				- i.getHealth() * mutate_health_percent);
-		int cost = force_com? 0 : (r.nextDouble() < mutate_cost_probability ? i.getCost() + r.nextInt(3) - 1 : i.getCost());
+		int cost = force_com ? 0
+				: (r.nextDouble() < mutate_cost_probability ? i.getCost() + r.nextInt(3) - 1 : i.getCost());
 		int level = i.getLevel();
 		if (cost < 0)
 			cost = 0;
@@ -518,7 +532,7 @@ public class Gen {
 		CardInstance.Info t = new CardInstance.Info(attack, health, cost, level, skills);
 		// System.out.println("Check:" + t + " = " + i);
 		if (!check(t))
-			return mutate(i,force_com);
+			return mutate(i, force_com);
 		return t;
 	}
 
