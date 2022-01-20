@@ -1,0 +1,58 @@
+<unit>
+<!--!!! TODO change id pic asset_bundle set !!!-->
+<id>99999999</id>
+<picture/>
+<asset_bundle>0</asset_bundle>
+<set>0</set>
+<name>yourcardnamehere</name>
+<fusion_level>2</fusion_level>
+<rarity>1</rarity>
+<type>1</type>
+<attack>69</attack>
+<health>420</health>
+<cost>3</cost>
+<skill id="strike" trigger="attacked"/>
+<skill id="strike" trigger="attacked"/>
+<skill id="strike" trigger="attacked"/>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>99999998</card_id>
+<level>2</level>
+<skill id="strike" trigger="attacked"/>
+<skill id="strike" trigger="attacked"/>
+<skill id="strike" trigger="attacked"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>99999997</card_id>
+<level>3</level>
+<skill id="strike" trigger="attacked"/>
+<skill id="strike" trigger="attacked"/>
+<skill id="strike" trigger="attacked"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>99999996</card_id>
+<level>4</level>
+<skill id="strike" trigger="attacked"/>
+<skill id="strike" trigger="attacked"/>
+<skill id="strike" trigger="attacked"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>99999995</card_id>
+<level>5</level>
+<skill id="strike" trigger="attacked"/>
+<skill id="strike" trigger="attacked"/>
+<skill id="strike" trigger="attacked"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>99999994</card_id>
+<level>6</level>
+<skill id="strike" trigger="attacked"/>
+<skill id="strike" trigger="attacked"/>
+<skill id="strike" trigger="attacked"/>
+</upgrade>
+</unit>
+
