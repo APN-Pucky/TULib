@@ -227,7 +227,7 @@ public class GlobalData {
 
 	public static Card getCardByName(String s_name) {
 		for (Card c : distinct_cards) {
-			if (StringUtil.equalsIgnoreSpecial(c.getName(), s_name.trim()))
+			if ( c != null && StringUtil.equalsIgnoreSpecial(c.getName(), s_name.trim()))
 				return c;
 
 		}
