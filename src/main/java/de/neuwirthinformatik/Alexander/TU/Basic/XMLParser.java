@@ -45,6 +45,7 @@ public class XMLParser {
 		int sum = 0;
 		for (Integer i : card_per_sec) {
 			sum += i;
+			System.out.println(i);
 		}
 		return sum;
 	}
@@ -80,7 +81,7 @@ public class XMLParser {
 					ArrayList<Document> al = new ArrayList<Document>();
 					ArrayList<Integer> aint = new ArrayList<Integer>();
 					al.add(null);
-					aint.add(1);
+					aint.add(0);
 					while (!stop) {
 						// File inputFile = new File("data/cards_section_"+i+".xml");
 						DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
