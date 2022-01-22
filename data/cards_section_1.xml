@@ -21856,4 +21856,912 @@
 </upgrade>
 </unit>
 
+<unit>
+<!--!!! TODO change id pic asset_bundle set !!!-->
+<id>2000042</id>
+<picture/>
+<asset_bundle>0</asset_bundle>
+<set>0</set>
+<name>test</name>
+<fusion_level>2</fusion_level>
+<rarity>4</rarity>
+<type>6</type>
+<attack>6</attack>
+<health>20</health>
+<cost>2</cost>
+<skill id="stasis" x="2"/>
+<skill id="absorb" x="11"/>
+<skill id="fortify" x="5"/>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000043</card_id>
+<level>2</level>
+<skill id="stasis" x="2"/>
+<skill id="absorb" x="11"/>
+<skill id="fortify" x="5"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000044</card_id>
+<level>3</level>
+<skill id="stasis" x="2"/>
+<skill id="absorb" x="11"/>
+<skill id="fortify" x="5"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000045</card_id>
+<level>4</level>
+<skill id="stasis" x="2"/>
+<skill id="absorb" x="11"/>
+<skill id="fortify" x="5"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000046</card_id>
+<level>5</level>
+<skill id="stasis" x="2"/>
+<skill id="absorb" x="11"/>
+<skill id="fortify" x="5"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000047</card_id>
+<level>6</level>
+<skill id="stasis" x="2"/>
+<skill id="absorb" x="11"/>
+<skill id="fortify" x="5"/>
+</upgrade>
+</unit>
+
+<unit>
+<!--!!! TODO change id pic asset_bundle set !!!-->
+<id>2000054</id>
+<picture/>
+<asset_bundle>0</asset_bundle>
+<set>0</set>
+<name>simgentest</name>
+<fusion_level>2</fusion_level>
+<rarity>1</rarity>
+<type>5</type>
+<attack>6</attack>
+<health>21</health>
+<cost>3</cost>
+<skill card_id="44621" id="summon" trigger="play"/>
+<skill id="allegiance" x="10"/>
+<skill id="barrier" x="3"/>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000055</card_id>
+<level>2</level>
+<skill card_id="44621" id="summon" trigger="play"/>
+<skill id="allegiance" x="10"/>
+<skill id="barrier" x="3"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000056</card_id>
+<level>3</level>
+<skill card_id="44621" id="summon" trigger="play"/>
+<skill id="allegiance" x="10"/>
+<skill id="barrier" x="3"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000057</card_id>
+<level>4</level>
+<skill card_id="44621" id="summon" trigger="play"/>
+<skill id="allegiance" x="10"/>
+<skill id="barrier" x="3"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000058</card_id>
+<level>5</level>
+<skill card_id="44621" id="summon" trigger="play"/>
+<skill id="allegiance" x="10"/>
+<skill id="barrier" x="3"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000059</card_id>
+<level>6</level>
+<skill card_id="44621" id="summon" trigger="play"/>
+<skill id="allegiance" x="10"/>
+<skill id="barrier" x="3"/>
+</upgrade>
+</unit>
+
+<unit>
+<!--!!! TODO change id pic asset_bundle set !!!-->
+<id>2000060</id>
+<picture/>
+<asset_bundle>0</asset_bundle>
+<set>0</set>
+<name>simgentest2</name>
+<rarity>1</rarity>
+<type>2</type>
+<attack>5</attack>
+<health>22</health>
+<cost>2</cost>
+<skill id="refresh" x="14"/>
+<skill id="allegiance" x="9"/>
+<skill id="venom" x="10"/>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000061</card_id>
+<level>2</level>
+<skill id="refresh" x="14"/>
+<skill id="allegiance" x="9"/>
+<skill id="venom" x="10"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000062</card_id>
+<level>3</level>
+<skill id="refresh" x="14"/>
+<skill id="allegiance" x="9"/>
+<skill id="venom" x="10"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000063</card_id>
+<level>4</level>
+<skill id="refresh" x="14"/>
+<skill id="allegiance" x="9"/>
+<skill id="venom" x="10"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000064</card_id>
+<level>5</level>
+<skill id="refresh" x="14"/>
+<skill id="allegiance" x="9"/>
+<skill id="venom" x="10"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000065</card_id>
+<level>6</level>
+<skill id="refresh" x="14"/>
+<skill id="allegiance" x="9"/>
+<skill id="venom" x="10"/>
+</upgrade>
+</unit>
+
+<unit>
+<!--!!! TODO change id pic asset_bundle set !!!-->
+<id>2000066</id>
+<picture/>
+<asset_bundle>0</asset_bundle>
+<set>0</set>
+<name>simgentest_ASS</name>
+<fusion_level>1</fusion_level>
+<rarity>6</rarity>
+<type>3</type>
+<attack>8</attack>
+<health>18</health>
+<cost>2</cost>
+<skill id="scavenge" x="4"/>
+<skill id="avenge" x="4"/>
+<skill id="stasis" x="26"/>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000067</card_id>
+<level>2</level>
+<skill id="scavenge" x="4"/>
+<skill id="avenge" x="4"/>
+<skill id="stasis" x="26"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000068</card_id>
+<level>3</level>
+<skill id="scavenge" x="4"/>
+<skill id="avenge" x="4"/>
+<skill id="stasis" x="26"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000069</card_id>
+<level>4</level>
+<skill id="scavenge" x="4"/>
+<skill id="avenge" x="4"/>
+<skill id="stasis" x="26"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000070</card_id>
+<level>5</level>
+<skill id="scavenge" x="4"/>
+<skill id="avenge" x="4"/>
+<skill id="stasis" x="26"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000071</card_id>
+<level>6</level>
+<skill id="scavenge" x="4"/>
+<skill id="avenge" x="4"/>
+<skill id="stasis" x="26"/>
+</upgrade>
+</unit>
+
+<unit>
+<!--!!! TODO change id pic asset_bundle set !!!-->
+<id>26674</id>
+<picture/>
+<asset_bundle>0</asset_bundle>
+<set>0</set>
+<name>simgentest_COM</name>
+<rarity>2</rarity>
+<type>3</type>
+<attack>6</attack>
+<health>21</health>
+<skill id="absorb" x="16"/>
+<skill all="1" id="enrage" trigger="attacked" x="23"/>
+<skill id="stasis" x="12"/>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>26675</card_id>
+<level>2</level>
+<skill id="absorb" x="16"/>
+<skill all="1" id="enrage" trigger="attacked" x="23"/>
+<skill id="stasis" x="12"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>26676</card_id>
+<level>3</level>
+<skill id="absorb" x="16"/>
+<skill all="1" id="enrage" trigger="attacked" x="23"/>
+<skill id="stasis" x="12"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>26677</card_id>
+<level>4</level>
+<skill id="absorb" x="16"/>
+<skill all="1" id="enrage" trigger="attacked" x="23"/>
+<skill id="stasis" x="12"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>26678</card_id>
+<level>5</level>
+<skill id="absorb" x="16"/>
+<skill all="1" id="enrage" trigger="attacked" x="23"/>
+<skill id="stasis" x="12"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>26679</card_id>
+<level>6</level>
+<skill id="absorb" x="16"/>
+<skill all="1" id="enrage" trigger="attacked" x="23"/>
+<skill id="stasis" x="12"/>
+</upgrade>
+</unit>
+
+<unit>
+<!--!!! TODO change id pic asset_bundle set !!!-->
+<id>50414</id>
+<picture/>
+<asset_bundle>0</asset_bundle>
+<set>0</set>
+<name>simgentest_DOM</name>
+<fusion_level>1</fusion_level>
+<rarity>4</rarity>
+<type>4</type>
+<health>22</health>
+<cost>3</cost>
+<skill all="1" id="heal" x="27" y="1"/>
+<skill all="1" id="strike" trigger="death" x="17"/>
+<skill id="protect" x="6" y="4"/>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>50415</card_id>
+<level>2</level>
+<skill all="1" id="heal" x="27" y="1"/>
+<skill all="1" id="strike" trigger="death" x="17"/>
+<skill id="protect" x="6" y="4"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>50416</card_id>
+<level>3</level>
+<skill all="1" id="heal" x="27" y="1"/>
+<skill all="1" id="strike" trigger="death" x="17"/>
+<skill id="protect" x="6" y="4"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>50417</card_id>
+<level>4</level>
+<skill all="1" id="heal" x="27" y="1"/>
+<skill all="1" id="strike" trigger="death" x="17"/>
+<skill id="protect" x="6" y="4"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>50418</card_id>
+<level>5</level>
+<skill all="1" id="heal" x="27" y="1"/>
+<skill all="1" id="strike" trigger="death" x="17"/>
+<skill id="protect" x="6" y="4"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>50419</card_id>
+<level>6</level>
+<skill all="1" id="heal" x="27" y="1"/>
+<skill all="1" id="strike" trigger="death" x="17"/>
+<skill id="protect" x="6" y="4"/>
+</upgrade>
+</unit>
+
+<unit>
+<!--!!! TODO change id pic asset_bundle set !!!-->
+<id>2000072</id>
+<picture/>
+<asset_bundle>0</asset_bundle>
+<set>0</set>
+<name>simgentest2_ASS</name>
+<rarity>1</rarity>
+<type>6</type>
+<attack>6</attack>
+<health>20</health>
+<cost>2</cost>
+<skill card_id="15377" id="summon" trigger="play"/>
+<skill id="evade" x="5"/>
+<skill id="stasis" x="9"/>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000073</card_id>
+<level>2</level>
+<skill card_id="15377" id="summon" trigger="play"/>
+<skill id="evade" x="5"/>
+<skill id="stasis" x="9"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000074</card_id>
+<level>3</level>
+<skill card_id="15377" id="summon" trigger="play"/>
+<skill id="evade" x="5"/>
+<skill id="stasis" x="9"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000075</card_id>
+<level>4</level>
+<skill card_id="15377" id="summon" trigger="play"/>
+<skill id="evade" x="5"/>
+<skill id="stasis" x="9"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000076</card_id>
+<level>5</level>
+<skill card_id="15377" id="summon" trigger="play"/>
+<skill id="evade" x="5"/>
+<skill id="stasis" x="9"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000077</card_id>
+<level>6</level>
+<skill card_id="15377" id="summon" trigger="play"/>
+<skill id="evade" x="5"/>
+<skill id="stasis" x="9"/>
+</upgrade>
+</unit>
+
+<unit>
+<!--!!! TODO change id pic asset_bundle set !!!-->
+<id>26680</id>
+<picture/>
+<asset_bundle>0</asset_bundle>
+<set>0</set>
+<name>simgentest2_COM</name>
+<rarity>2</rarity>
+<type>1</type>
+<attack>7</attack>
+<health>21</health>
+<skill all="1" id="rally" trigger="attacked" x="8" y="5"/>
+<skill all="1" id="heal" trigger="attacked" x="1" y="1"/>
+<skill id="absorb" x="15"/>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>26681</card_id>
+<level>2</level>
+<skill all="1" id="rally" trigger="attacked" x="8" y="5"/>
+<skill all="1" id="heal" trigger="attacked" x="1" y="1"/>
+<skill id="absorb" x="15"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>26682</card_id>
+<level>3</level>
+<skill all="1" id="rally" trigger="attacked" x="8" y="5"/>
+<skill all="1" id="heal" trigger="attacked" x="1" y="1"/>
+<skill id="absorb" x="15"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>26683</card_id>
+<level>4</level>
+<skill all="1" id="rally" trigger="attacked" x="8" y="5"/>
+<skill all="1" id="heal" trigger="attacked" x="1" y="1"/>
+<skill id="absorb" x="15"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>26684</card_id>
+<level>5</level>
+<skill all="1" id="rally" trigger="attacked" x="8" y="5"/>
+<skill all="1" id="heal" trigger="attacked" x="1" y="1"/>
+<skill id="absorb" x="15"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>26685</card_id>
+<level>6</level>
+<skill all="1" id="rally" trigger="attacked" x="8" y="5"/>
+<skill all="1" id="heal" trigger="attacked" x="1" y="1"/>
+<skill id="absorb" x="15"/>
+</upgrade>
+</unit>
+
+<unit>
+<!--!!! TODO change id pic asset_bundle set !!!-->
+<id>50420</id>
+<picture/>
+<asset_bundle>0</asset_bundle>
+<set>0</set>
+<name>simgentest2_DOM</name>
+<rarity>3</rarity>
+<type>2</type>
+<health>20</health>
+<cost>2</cost>
+<skill id="absorb" x="30"/>
+<skill id="barrier" x="10"/>
+<skill card_id="33976" id="summon" trigger="death"/>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>50421</card_id>
+<level>2</level>
+<skill id="absorb" x="30"/>
+<skill id="barrier" x="10"/>
+<skill card_id="33976" id="summon" trigger="death"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>50422</card_id>
+<level>3</level>
+<skill id="absorb" x="30"/>
+<skill id="barrier" x="10"/>
+<skill card_id="33976" id="summon" trigger="death"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>50423</card_id>
+<level>4</level>
+<skill id="absorb" x="30"/>
+<skill id="barrier" x="10"/>
+<skill card_id="33976" id="summon" trigger="death"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>50424</card_id>
+<level>5</level>
+<skill id="absorb" x="30"/>
+<skill id="barrier" x="10"/>
+<skill card_id="33976" id="summon" trigger="death"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>50425</card_id>
+<level>6</level>
+<skill id="absorb" x="30"/>
+<skill id="barrier" x="10"/>
+<skill card_id="33976" id="summon" trigger="death"/>
+</upgrade>
+</unit>
+
+<unit>
+<!--!!! TODO change id pic asset_bundle set !!!-->
+<id>2000084</id>
+<picture/>
+<asset_bundle>0</asset_bundle>
+<set>0</set>
+<name>simgentest</name>
+<rarity>3</rarity>
+<type>5</type>
+<attack>6</attack>
+<health>21</health>
+<cost>2</cost>
+<skill id="scavenge" x="4"/>
+<skill all="1" id="protect" x="2" y="5"/>
+<skill id="absorb" x="20"/>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000085</card_id>
+<level>2</level>
+<skill id="scavenge" x="4"/>
+<skill all="1" id="protect" x="2" y="5"/>
+<skill id="absorb" x="20"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000086</card_id>
+<level>3</level>
+<skill id="scavenge" x="4"/>
+<skill all="1" id="protect" x="2" y="5"/>
+<skill id="absorb" x="20"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000087</card_id>
+<level>4</level>
+<skill id="scavenge" x="4"/>
+<skill all="1" id="protect" x="2" y="5"/>
+<skill id="absorb" x="20"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000088</card_id>
+<level>5</level>
+<skill id="scavenge" x="4"/>
+<skill all="1" id="protect" x="2" y="5"/>
+<skill id="absorb" x="20"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000089</card_id>
+<level>6</level>
+<skill id="scavenge" x="4"/>
+<skill all="1" id="protect" x="2" y="5"/>
+<skill id="absorb" x="20"/>
+</upgrade>
+</unit>
+
+<unit>
+<!--!!! TODO change id pic asset_bundle set !!!-->
+<id>2000090</id>
+<picture/>
+<asset_bundle>0</asset_bundle>
+<set>0</set>
+<name>simgentest_ASS</name>
+<rarity>3</rarity>
+<type>4</type>
+<attack>8</attack>
+<health>20</health>
+<cost>3</cost>
+<skill all="1" id="strike" x="8"/>
+<skill id="armored" x="26"/>
+<skill all="1" id="heal" trigger="play" x="29"/>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000091</card_id>
+<level>2</level>
+<skill all="1" id="strike" x="8"/>
+<skill id="armored" x="26"/>
+<skill all="1" id="heal" trigger="play" x="29"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000092</card_id>
+<level>3</level>
+<skill all="1" id="strike" x="8"/>
+<skill id="armored" x="26"/>
+<skill all="1" id="heal" trigger="play" x="29"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000093</card_id>
+<level>4</level>
+<skill all="1" id="strike" x="8"/>
+<skill id="armored" x="26"/>
+<skill all="1" id="heal" trigger="play" x="29"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000094</card_id>
+<level>5</level>
+<skill all="1" id="strike" x="8"/>
+<skill id="armored" x="26"/>
+<skill all="1" id="heal" trigger="play" x="29"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000095</card_id>
+<level>6</level>
+<skill all="1" id="strike" x="8"/>
+<skill id="armored" x="26"/>
+<skill all="1" id="heal" trigger="play" x="29"/>
+</upgrade>
+</unit>
+
+<unit>
+<!--!!! TODO change id pic asset_bundle set !!!-->
+<id>26698</id>
+<picture/>
+<asset_bundle>0</asset_bundle>
+<set>0</set>
+<name>simgentest_COM</name>
+<rarity>2</rarity>
+<type>3</type>
+<attack>9</attack>
+<health>22</health>
+<skill all="1" id="strike" x="2"/>
+<skill id="stasis" x="21"/>
+<skill id="absorb" x="26"/>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>26699</card_id>
+<level>2</level>
+<skill all="1" id="strike" x="2"/>
+<skill id="stasis" x="21"/>
+<skill id="absorb" x="26"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>26700</card_id>
+<level>3</level>
+<skill all="1" id="strike" x="2"/>
+<skill id="stasis" x="21"/>
+<skill id="absorb" x="26"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>26701</card_id>
+<level>4</level>
+<skill all="1" id="strike" x="2"/>
+<skill id="stasis" x="21"/>
+<skill id="absorb" x="26"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>26702</card_id>
+<level>5</level>
+<skill all="1" id="strike" x="2"/>
+<skill id="stasis" x="21"/>
+<skill id="absorb" x="26"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>26703</card_id>
+<level>6</level>
+<skill all="1" id="strike" x="2"/>
+<skill id="stasis" x="21"/>
+<skill id="absorb" x="26"/>
+</upgrade>
+</unit>
+
+<unit>
+<!--!!! TODO change id pic asset_bundle set !!!-->
+<id>50474</id>
+<picture/>
+<asset_bundle>0</asset_bundle>
+<set>0</set>
+<name>simgentest_DOM</name>
+<rarity>1</rarity>
+<type>1</type>
+<health>22</health>
+<cost>3</cost>
+<skill id="absorb" x="21"/>
+<skill all="1" id="heal" trigger="death" x="7" y="1"/>
+<skill id="evade" x="3"/>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>50475</card_id>
+<level>2</level>
+<skill id="absorb" x="21"/>
+<skill all="1" id="heal" trigger="death" x="7" y="1"/>
+<skill id="evade" x="3"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>50476</card_id>
+<level>3</level>
+<skill id="absorb" x="21"/>
+<skill all="1" id="heal" trigger="death" x="7" y="1"/>
+<skill id="evade" x="3"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>50477</card_id>
+<level>4</level>
+<skill id="absorb" x="21"/>
+<skill all="1" id="heal" trigger="death" x="7" y="1"/>
+<skill id="evade" x="3"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>50478</card_id>
+<level>5</level>
+<skill id="absorb" x="21"/>
+<skill all="1" id="heal" trigger="death" x="7" y="1"/>
+<skill id="evade" x="3"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>50479</card_id>
+<level>6</level>
+<skill id="absorb" x="21"/>
+<skill all="1" id="heal" trigger="death" x="7" y="1"/>
+<skill id="evade" x="3"/>
+</upgrade>
+</unit>
+
+<unit>
+<!--!!! TODO change id pic asset_bundle set !!!-->
+<id>2000096</id>
+<picture/>
+<asset_bundle>0</asset_bundle>
+<set>0</set>
+<name>simgentest2_ASS</name>
+<rarity>2</rarity>
+<type>6</type>
+<attack>6</attack>
+<health>21</health>
+<cost>3</cost>
+<skill card_id="59691" id="summon" trigger="play"/>
+<skill id="strike" x="8"/>
+<skill id="hunt" x="10"/>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000097</card_id>
+<level>2</level>
+<skill card_id="59691" id="summon" trigger="play"/>
+<skill id="strike" x="8"/>
+<skill id="hunt" x="10"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000098</card_id>
+<level>3</level>
+<skill card_id="59691" id="summon" trigger="play"/>
+<skill id="strike" x="8"/>
+<skill id="hunt" x="10"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000099</card_id>
+<level>4</level>
+<skill card_id="59691" id="summon" trigger="play"/>
+<skill id="strike" x="8"/>
+<skill id="hunt" x="10"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000100</card_id>
+<level>5</level>
+<skill card_id="59691" id="summon" trigger="play"/>
+<skill id="strike" x="8"/>
+<skill id="hunt" x="10"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>2000101</card_id>
+<level>6</level>
+<skill card_id="59691" id="summon" trigger="play"/>
+<skill id="strike" x="8"/>
+<skill id="hunt" x="10"/>
+</upgrade>
+</unit>
+
+<unit>
+<!--!!! TODO change id pic asset_bundle set !!!-->
+<id>26722</id>
+<picture/>
+<asset_bundle>0</asset_bundle>
+<set>0</set>
+<name>simgentest2_COM</name>
+<rarity>2</rarity>
+<type>4</type>
+<attack>6</attack>
+<health>23</health>
+<skill id="barrier" x="6"/>
+<skill all="1" id="entrap" trigger="attacked" x="9" y="6"/>
+<skill all="1" id="protect" x="1" y="4"/>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>26723</card_id>
+<level>2</level>
+<skill id="barrier" x="6"/>
+<skill all="1" id="entrap" trigger="attacked" x="9" y="6"/>
+<skill all="1" id="protect" x="1" y="4"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>26724</card_id>
+<level>3</level>
+<skill id="barrier" x="6"/>
+<skill all="1" id="entrap" trigger="attacked" x="9" y="6"/>
+<skill all="1" id="protect" x="1" y="4"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>26725</card_id>
+<level>4</level>
+<skill id="barrier" x="6"/>
+<skill all="1" id="entrap" trigger="attacked" x="9" y="6"/>
+<skill all="1" id="protect" x="1" y="4"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>26726</card_id>
+<level>5</level>
+<skill id="barrier" x="6"/>
+<skill all="1" id="entrap" trigger="attacked" x="9" y="6"/>
+<skill all="1" id="protect" x="1" y="4"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>26727</card_id>
+<level>6</level>
+<skill id="barrier" x="6"/>
+<skill all="1" id="entrap" trigger="attacked" x="9" y="6"/>
+<skill all="1" id="protect" x="1" y="4"/>
+</upgrade>
+</unit>
+
+<unit>
+<!--!!! TODO change id pic asset_bundle set !!!-->
+<id>50492</id>
+<picture/>
+<asset_bundle>0</asset_bundle>
+<set>0</set>
+<name>simgentest2_DOM</name>
+<rarity>3</rarity>
+<type>3</type>
+<health>20</health>
+<cost>2</cost>
+<skill id="refresh" x="7"/>
+<skill id="stasis" x="2"/>
+<skill id="barrier" x="24"/>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>50493</card_id>
+<level>2</level>
+<skill id="refresh" x="7"/>
+<skill id="stasis" x="2"/>
+<skill id="barrier" x="24"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>50494</card_id>
+<level>3</level>
+<skill id="refresh" x="7"/>
+<skill id="stasis" x="2"/>
+<skill id="barrier" x="24"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>50495</card_id>
+<level>4</level>
+<skill id="refresh" x="7"/>
+<skill id="stasis" x="2"/>
+<skill id="barrier" x="24"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>50496</card_id>
+<level>5</level>
+<skill id="refresh" x="7"/>
+<skill id="stasis" x="2"/>
+<skill id="barrier" x="24"/>
+</upgrade>
+<!--!!! TODO change card_id !!!-->
+<upgrade>
+<card_id>50497</card_id>
+<level>6</level>
+<skill id="refresh" x="7"/>
+<skill id="stasis" x="2"/>
+<skill id="barrier" x="24"/>
+</upgrade>
+</unit>
+
 </root>

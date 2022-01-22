@@ -254,18 +254,21 @@ public class TUO {
 		// Matcher m_SIM = p.matcher(lines[lines.length-3-score_lines]);
 		// m_SIM.find();m_SIM.group();m_SIM.find();m_SIM.group();m_SIM.find();
 		// int sim = Integer.parseInt(m_SIM.group());
-
-		Matcher m_WIN = p.matcher(lines[lines.length - 3 - score_lines]);
+		int ii=0;
+		for(ii =0 ; ii < lines.length;ii++) {if(lines[ii].contains("win%:"))break;}
+		Matcher m_WIN = p.matcher(lines[ii]);
 		// m_WIN.find();m_WIN.group();
 		m_WIN.find();
 		double win = Double.parseDouble(m_WIN.group());
 
-		Matcher m_STALL = p.matcher(lines[lines.length - 2 - score_lines]);
+		for(ii =0 ; ii < lines.length;ii++) {if(lines[ii].contains("stall%:"))break;}
+		Matcher m_STALL = p.matcher(lines[ii]);
 		// m_STALL.find();m_STALL.group();
 		m_STALL.find();
 		double stall = Double.parseDouble(m_STALL.group());
 
-		Matcher m_LOSS = p.matcher(lines[lines.length - 1 - score_lines]);
+		for(ii =0 ; ii < lines.length;ii++) {if(lines[ii].contains("loss%:"))break;}
+		Matcher m_LOSS = p.matcher(lines[ii]);
 		// m_LOSS.find();m_LOSS.group()
 		m_LOSS.find();
 		double loss = Double.parseDouble(m_LOSS.group());
