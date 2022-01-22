@@ -45,6 +45,9 @@ public class Gen {
 	private static final double mutate_trigger_probability = 0.01;
 
 	private static Random r = new Random();
+	private static Integer max_id = 2000000;
+	private static Integer max_com_id = 0;
+	private static Integer max_dom_id = 0;
 
 	public static void main(String[] args) {
 		GlobalData.init();
@@ -172,39 +175,57 @@ public class Gen {
 
 	public static CardInstance genCardInstance(String name, int seed, CardInstanceRequirement cir, CardType type,
 			boolean force_com) {
-		final CardInstanceRequirement tmp = cir;
-		final CardType tmp_type = type;
-		CardInstance.Info i = Gen.getSingleInfo(seed, force_com);
-		if (type != null) {
-			if ((type == CardType.STRUCTURE && !couldBeStruct(i))
-					|| (type == CardType.COMMANDER && !couldBeCommander(i))
-					|| (type == CardType.DOMINION && !couldBeStruct(i))) {
-				return genCardInstance(name, seed + 1, tmp,tmp_type, force_com);
+		synchronized (max_id) {
+			final CardInstanceRequirement tmp = cir;
+			final CardType tmp_type = type;
+			CardInstance.Info i = Gen.getSingleInfo(seed, force_com);
+			if (type != null) {
+				if ((type == CardType.STRUCTURE && !couldBeStruct(i))
+						|| (type == CardType.COMMANDER && !couldBeCommander(i))
+						|| (type == CardType.DOMINION && !couldBeStruct(i))) {
+					return genCardInstance(name, seed + 1, tmp, tmp_type, force_com);
+				}
+			} else {
+				type = Gen.genCardType(i);
 			}
-		} else {
-			type = Gen.genCardType(i);
+			if (force_com) {
+				cir = (ccc) -> {
+					return tmp.check(ccc) && ccc.getCardType() == CardType.COMMANDER;
+				};
+			}
+			int mrank = 6;
+			int rank = 6;
+			int did_num = 0;
+			if (type == CardType.ASSAULT)
+			{
+				did_num = (max_id > GlobalData.getHighestId()) ? max_id : (GlobalData.getHighestId() + 1);
+				max_id = did_num + mrank;
+			}
+			else if (type == CardType.COMMANDER) {
+					did_num = (max_com_id > GlobalData.getHighestIdCommander()) ? max_com_id : (GlobalData.getHighestIdCommander() + 1);
+					max_com_id = did_num + mrank;
+			}
+			else if (type == CardType.DOMINION) {
+					did_num = (max_dom_id > GlobalData.getHighestIdDominion()) ? max_dom_id : (GlobalData.getHighestIdDominion() + 1);
+					max_dom_id = did_num + mrank;
+			}
+
+			Info[] ia = new Info[mrank];
+			int[] ids = new int[mrank];
+			for (int j = 0; j < ids.length; j++) {
+				ids[j] = did_num + j;
+				ia[j] = i;
+			}
+			// ids[rank-1] = 2; // TODO Define card id somewhere close to name
+			ia[rank - 1] = i;
+			Card c = new Card(ids, name, genRarity().toInt(), genLevel().toInt(), new int[] {}, 0, 0,
+					genFaction(i).toInt(), ia, "", 0, type, CardCategory.NORMAL);
+			CardInstance ci = CardInstance.get(did_num + rank - 1, c, i);
+			if (!check(ci) || !cir.check(ci)) {
+				return genCardInstance(name, seed + 1, tmp, tmp_type, force_com);
+			}
+			return ci;
 		}
-		if (force_com) {
-			cir = (ccc) -> {
-				return tmp.check(ccc) && ccc.getCardType() == CardType.COMMANDER;
-			};
-		}
-		int did_num = 999999;
-		int mrank = 6;
-		int rank = 6;
-		Info[] ia = new Info[mrank];
-		int[] ids = new int[mrank];
-		for (int j = 0; j < ids.length; j++)
-			ids[j] = did_num + j;
-		// ids[rank-1] = 2; // TODO Define card id somewhere close to name
-		ia[rank - 1] = i;
-		Card c = new Card(ids, name, genRarity().toInt(), genLevel().toInt(), new int[] {}, 0, 0, genFaction(i).toInt(),
-				ia, "", 0, type, CardCategory.NORMAL);
-		CardInstance ci = CardInstance.get(999999 + rank - 1, c, i);
-		if (!check(ci) || !cir.check(ci)) {
-			return genCardInstance(name, seed + 1, tmp, tmp_type, force_com);
-		}
-		return ci;
 	}
 
 	public static String gen(int seedr) {

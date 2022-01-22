@@ -2,7 +2,10 @@ package de.neuwirthinformatik.Alexander.TU.Basic;
 
 import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.InputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.StringWriter;
 import java.net.URL;
 import java.util.ArrayList;
@@ -18,16 +21,20 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import org.springframework.core.io.ResourceLoader;
+import org.apache.commons.io.IOUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.kitfox.svg.Path;
+
 import de.neuwirthinformatik.Alexander.TU.TU;
 import de.neuwirthinformatik.Alexander.TU.Basic.Card.CardInstance;
 import de.neuwirthinformatik.Alexander.TU.util.Pair;
 import de.neuwirthinformatik.Alexander.TU.util.StringUtil;
+import de.neuwirthinformatik.Alexander.TU.util.Task;
+import de.neuwirthinformatik.Alexander.TU.util.Wget;
 
 public class XMLParser {
 	private int CARD_SECTIONS_COUNT = 0;
@@ -45,7 +52,6 @@ public class XMLParser {
 		int sum = 0;
 		for (Integer i : card_per_sec) {
 			sum += i;
-			System.out.println(i);
 		}
 		return sum;
 	}
@@ -199,6 +205,38 @@ public class XMLParser {
 
 	public XMLParser() {
 		this(false, false);
+	}
+	
+	public static int  downloadXML() {
+		return downloadXML(false, "data/");
+	}
+
+	public static int downloadXML(boolean dev, String path) {
+		String tyrant_url = (dev ? "http://mobile-dev.tyrantonline.com/assets/"
+				: "http://mobile.tyrantonline.com/assets/");
+		// XML
+		System.out.println("Downloading new XMLs ...");
+		final String[] arr = new String[] { "fusion_recipes_cj2", "missions", "levels", "skills_set" };
+		for (int i = 0; i < arr.length; i++) {
+			final String sec = arr[i] + ".xml";
+			Task.start(() -> Wget.wGet(path+ GlobalData.file_seperator + sec, tyrant_url + sec));
+		}
+		Task.start(() -> Wget.wGet(path+ GlobalData.file_seperator + "raids.xml",
+				"https://raw.githubusercontent.com/APN-Pucky/tyrant_optimize/merged/data/raids.xml"));
+		Task.start(() -> Wget.wGet(path+ GlobalData.file_seperator +  "bges.txt",
+				"https://raw.githubusercontent.com/APN-Pucky/tyrant_optimize/merged/data/bges.txt"));
+
+		//Task.start(() -> {
+			int i = 0;
+			Wget.Status status = Wget.Status.Success;
+			while (status == Wget.Status.Success) {
+				i++;
+				String sec = "cards_section_" + i + ".xml";
+				status = Wget.wGet(path+ GlobalData.file_seperator +  sec, tyrant_url + sec);
+			}
+		//});
+
+		return i-1;
 	}
 
 	public HashMap<String, String> loadSkillDesc() {
@@ -714,6 +752,15 @@ public class XMLParser {
 			e.printStackTrace();
 		}
 		return outWriter.toString();
+	}
+	
+	public void appendToCardSection(int section,Card c) throws FileNotFoundException, IOException {
+		File myfile = new File("data/cards_section_"+section+".xml");
+		String myencoding = "UTF-8";
+		String s = GlobalData.xml.getCardXML(c);
+		String content = IOUtils.toString(new FileInputStream(myfile), myencoding);
+		content = content.replaceAll("</root>", s + "\n</root>");
+		IOUtils.write(content, new FileOutputStream(myfile), myencoding);
 	}
 
 	private void addDiffSkills(Document d, Element root, SkillSpec[] ss1, SkillSpec[] ss2) {

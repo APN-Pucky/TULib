@@ -12,6 +12,7 @@ plugins {
     id 'maven-publish'
   	id "io.freefair.lombok" version "5.0.1"
     id 'com.palantir.git-version' version '0.12.3'
+    id 'cpp'
   	//id 'io.freefair.lombok' 
     //id 'com.palantir.git-version' 
 }
@@ -56,8 +57,11 @@ dependencies {
 	implementation group: 'org.jdom', name: 'jdom2', version: '2.0.6'
 	implementation group: 'com.esotericsoftware.yamlbeans', name: 'yamlbeans', version: '1.08'
 
-	//implementation 'com.github.APN-Pucky:GitJarUpdate:0.0.7'
+	implementation 'com.github.APN-Pucky:GitJarUpdate:0.0.8'
 }
+
+
+
 version = versionDetails().lastTag
 group = 'com.github.APN-Pucky'
 

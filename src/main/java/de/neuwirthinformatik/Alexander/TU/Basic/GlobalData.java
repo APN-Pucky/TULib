@@ -45,7 +45,7 @@ public class GlobalData {
 	public static String xml_time = "";
 	public static String line_seperator = System.getProperty("line.seperator");
 	public static String file_seperator = File.separator;
-	static XMLParser xml = null;
+	public static XMLParser xml = null;
 	public static Card[] distinct_cards;
 	public static Card[] all_cards;
 	public static Fusion[] fusions = new Fusion[] {};
@@ -57,12 +57,12 @@ public class GlobalData {
 	public static HashMap<String, int[]> skill_borders;
 	public static HashMap<String, String> skill_desc;
 
-	
 	public static void init() {
 		init(true);
 	}
+
 	public static void init(boolean nullxml) {
-		xml = new XMLParser(false,!nullxml);
+		xml = new XMLParser(false, !nullxml);
 		fusions = xml.loadFusions();
 		missions = xml.loadMissions();
 		levels = xml.loadLevels();
@@ -75,8 +75,8 @@ public class GlobalData {
 		Pair<Card[], Card[]> p = xml.loadCards();
 		distinct_cards = p.t;
 		all_cards = p.u;
-		if(nullxml)
-			xml = null;
+		// if(nullxml)
+		// xml = null;
 		xml_time = Task.time();
 		// for(Fusion f : fusions)all_cards[f.getID()].setMaterials(f.getMaterials());
 	}
@@ -86,16 +86,48 @@ public class GlobalData {
 	}
 
 	public static void simple_update(boolean nullxml) {
-		if(nullxml)
+		if (nullxml)
 			xml = new XMLParser();
 		else
 			xml.reloadLatestCardSection();
 		Pair<Card[], Card[]> p = xml.loadCards();
 		distinct_cards = p.t;
 		all_cards = p.u;
-		if (nullxml)
-			xml = null;
+		// if (nullxml)
+		// xml = null;
 	}
+
+	public static int getHighestId() {
+		int max = 0;
+		for (Card c : distinct_cards) {
+			int t = c.getHighestID();
+			if (t > max)
+				max = t;
+		}
+		return max;
+	}
+
+	public static int getHighestIdCommander() {
+		int max = 0;
+		for (Card c : distinct_cards) {
+			int t = c.getHighestID();
+			if (t > max && c.getCardType() == CardType.COMMANDER && !c.getName().contains("Test")) {
+				max = t;
+			}
+		}
+		return max;
+	}
+	public static int getHighestIdDominion() {
+		int max = 0;
+		for (Card c : distinct_cards) {
+			int t = c.getHighestID();
+			if (t > max && c.getCardType() == CardType.DOMINION&& !c.getName().contains("Test")) {
+				max = t;
+			}
+		}
+		return max;
+	}
+
 	public static CardInstance getCardInstance(String idorname) {
 		if (idorname.matches("\\d+")) {
 			return new CardInstance(Integer.parseInt(idorname));
@@ -103,6 +135,7 @@ public class GlobalData {
 			return GlobalData.getCardInstanceByNameAndLevel(StringUtil.capitalizeOnlyFirstLetters(idorname));
 		}
 	}
+
 	public static int[] getIDsFromCardInstances(CardInstance[] cis) {
 		int[] arr = new int[cis.length];
 		for (int i = 0; i < cis.length; i++)
@@ -227,7 +260,7 @@ public class GlobalData {
 
 	public static Card getCardByName(String s_name) {
 		for (Card c : distinct_cards) {
-			if ( c != null && StringUtil.equalsIgnoreSpecial(c.getName(), s_name.trim()))
+			if (c != null && StringUtil.equalsIgnoreSpecial(c.getName(), s_name.trim()))
 				return c;
 
 		}
@@ -413,43 +446,41 @@ public class GlobalData {
 		}
 		return deck;
 	}
-	public static Deck constructDeck(String deck)
-	{
-		int com=0,dom=0;
+
+	public static Deck constructDeck(String deck) {
+		int com = 0, dom = 0;
 		deck = GlobalData.removeHash(deck);
 		String[] ss = deck.split(", *");
 		ArrayList ids = new ArrayList<Integer>();
-		for(String s :ss) {
+		for (String s : ss) {
 			int id = getIDByNameAndLevel(s);
-			if(isCommander(id)){
+			if (isCommander(id)) {
 				com = id;
-			}
-			else if(isDominion(id)){
+			} else if (isDominion(id)) {
 				dom = id;
-			}
-			else {
+			} else {
 				ids.add(id);
 			}
 		}
 		int[] idss = new int[ids.size()];
-		for(int i = 0; i < idss.length; i++) {
+		for (int i = 0; i < idss.length; i++) {
 			idss[i] = (int) ids.get(i);
 		}
-		return new Deck(com,dom,idss);
+		return new Deck(com, dom, idss);
 	}
+
 	@Deprecated
-	public static Deck constructDeckOld(String deck)
-	{
+	public static Deck constructDeckOld(String deck) {
 		deck = GlobalData.removeHash(deck);
 		String[] ss = deck.split(", *");
 		int com = GlobalData.getIDByNameAndLevel(ss[0]);
 		int dom = GlobalData.getIDByNameAndLevel(ss[1]);
-		int[] ids = new int[ss.length-2];
-		for(int i =2; i < ss.length;i++)
-		{
-			ids[i-2] =  GlobalData.getIDByNameAndLevel(ss[i]);
-		};
-		return new Deck(com,dom,ids);
+		int[] ids = new int[ss.length - 2];
+		for (int i = 2; i < ss.length; i++) {
+			ids[i - 2] = GlobalData.getIDByNameAndLevel(ss[i]);
+		}
+		;
+		return new Deck(com, dom, ids);
 	}
 
 	public static Deck constructDeck(int[] deck) {
@@ -467,8 +498,6 @@ public class GlobalData {
 	public static int[] constructDeckArray(String deck) {
 		return constructDeck(deck).toIDArray();
 	}
-
-	
 
 	public static Card[] constructCardArray(String deck) {
 		deck = GlobalData.removeHash(deck);
