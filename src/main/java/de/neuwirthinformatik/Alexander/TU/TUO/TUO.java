@@ -17,7 +17,7 @@ import de.neuwirthinformatik.Alexander.TU.util.StringUtil;
 
 public class TUO {
 	public static int threads = 1;
-	public static String tuo = "tuo";
+	public static String tuo = "./tuo";
 	public static boolean force_full_deck = false;
 	public static boolean tuo_out = true;
 	public static final String wd = "";
@@ -40,7 +40,7 @@ public class TUO {
 
 		ArrayList<String> param = new ArrayList<String>();
 
-		param.add(wd + (Info.detectOS() == Info.OS.WINDOWS ? "" : "./") + tuo);
+		param.add(wd + tuo);
 		param.add("\"" + p.deck + "\"");
 		param.add("\"" + p.enemies + "\"");
 		param.add(p.mode.toString());
