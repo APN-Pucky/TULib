@@ -243,7 +243,9 @@ public class TUO {
 		Pattern p = Pattern.compile("\\d+\\.?\\d?\\d?");
 		int score_lines = 0;
 		double score = 0;
-		if (lines[lines.length - 1].contains("score")) {
+		int ii=0;
+		for(ii =0 ; ii < lines.length;ii++) {if(lines[ii].contains("score:"))break;}
+		if (ii != lines.length && lines[ii].contains("score:")) {
 			Matcher m_SCORE = p.matcher(lines[lines.length - 1]);
 			// m_LOSS.find();m_LOSS.group()
 			m_SCORE.find();
@@ -254,7 +256,6 @@ public class TUO {
 		// Matcher m_SIM = p.matcher(lines[lines.length-3-score_lines]);
 		// m_SIM.find();m_SIM.group();m_SIM.find();m_SIM.group();m_SIM.find();
 		// int sim = Integer.parseInt(m_SIM.group());
-		int ii=0;
 		for(ii =0 ; ii < lines.length;ii++) {if(lines[ii].contains("win%:"))break;}
 		Matcher m_WIN = p.matcher(lines[ii]);
 		// m_WIN.find();m_WIN.group();
