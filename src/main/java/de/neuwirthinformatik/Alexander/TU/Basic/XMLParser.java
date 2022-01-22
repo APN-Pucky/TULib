@@ -27,7 +27,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.kitfox.svg.Path;
 
 import de.neuwirthinformatik.Alexander.TU.TU;
 import de.neuwirthinformatik.Alexander.TU.Basic.Card.CardInstance;
@@ -37,6 +36,8 @@ import de.neuwirthinformatik.Alexander.TU.util.Task;
 import de.neuwirthinformatik.Alexander.TU.util.Wget;
 
 public class XMLParser {
+	public static int CARD_SECTIONS_COUNT_DOWNLOAD = 0;
+	
 	private int CARD_SECTIONS_COUNT = 0;
 	private Integer[] card_per_sec = new Integer[CARD_SECTIONS_COUNT + 1];
 	private int fusion_count = 0;
@@ -207,11 +208,11 @@ public class XMLParser {
 		this(false, false);
 	}
 	
-	public static int  downloadXML() {
-		return downloadXML(false, "data/");
+	public void downloadXML() {
+		downloadXML(false, "data/");
 	}
 
-	public static int downloadXML(boolean dev, String path) {
+	public void downloadXML(boolean dev, String path) {
 		String tyrant_url = (dev ? "http://mobile-dev.tyrantonline.com/assets/"
 				: "http://mobile.tyrantonline.com/assets/");
 		// XML
@@ -236,7 +237,7 @@ public class XMLParser {
 			}
 		//});
 
-		return i-1;
+		CARD_SECTIONS_COUNT_DOWNLOAD = i-1;
 	}
 
 	public HashMap<String, String> loadSkillDesc() {
