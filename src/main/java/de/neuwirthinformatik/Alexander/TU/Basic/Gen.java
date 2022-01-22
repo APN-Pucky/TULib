@@ -196,18 +196,17 @@ public class Gen {
 			int mrank = 6;
 			int rank = 6;
 			int did_num = 0;
-			if (type == CardType.ASSAULT)
-			{
+			if (type == CardType.ASSAULT) {
 				did_num = (max_id > GlobalData.getHighestId()) ? max_id : (GlobalData.getHighestId() + 1);
 				max_id = did_num + mrank;
-			}
-			else if (type == CardType.COMMANDER) {
-					did_num = (max_com_id > GlobalData.getHighestIdCommander()) ? max_com_id : (GlobalData.getHighestIdCommander() + 1);
-					max_com_id = did_num + mrank;
-			}
-			else if (type == CardType.DOMINION) {
-					did_num = (max_dom_id > GlobalData.getHighestIdDominion()) ? max_dom_id : (GlobalData.getHighestIdDominion() + 1);
-					max_dom_id = did_num + mrank;
+			} else if (type == CardType.COMMANDER) {
+				did_num = (max_com_id > GlobalData.getHighestIdCommander()) ? max_com_id
+						: (GlobalData.getHighestIdCommander() + 1);
+				max_com_id = did_num + mrank;
+			} else if (type == CardType.DOMINION) {
+				did_num = (max_dom_id > GlobalData.getHighestIdDominion()) ? max_dom_id
+						: (GlobalData.getHighestIdDominion() + 1);
+				max_dom_id = did_num + mrank;
 			}
 
 			Info[] ia = new Info[mrank];
@@ -310,6 +309,8 @@ public class Gen {
 	private static int checkCardInstance(CardInstance ci) {
 		boolean wall = false;
 		Info i = ci.getInfo();
+		if (i == null)
+			return -99;
 		for (int j = 0; j < i.getSkills().length; j++) {
 			if (i.getSkills()[j].getId().equals("wall"))
 				wall = true;
@@ -374,6 +375,11 @@ public class Gen {
 			if (!i.getSkills()[j].getTrigger().equals("activate")
 					&& (!couldBeTrigger(i.getSkills()[j]) || i.getSkills()[j].getC() > 0))
 				return -3;
+			if (i.getSkills()[j].getId().equals("summon")) {
+				if (GlobalData.getCardByID(i.getSkills()[j].getCard_id()).getCardType() == CardType.COMMANDER
+						|| GlobalData.getCardByID(i.getSkills()[j].getCard_id()).getCardType() == CardType.DOMINION)
+					return -20;
+			}
 			if (i.getSkills()[j].getId().equals("summon") && i.getSkills()[j].isAll())
 				return -9;
 			if (i.getSkills()[j].getId().equals("wall"))

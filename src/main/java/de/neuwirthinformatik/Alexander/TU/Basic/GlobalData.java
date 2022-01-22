@@ -196,8 +196,10 @@ public class GlobalData {
 
 		if (!m.find()) {
 			Card c = getCardByName(name);
-			if (c == null || c == Card.NULL)
+			if (c == null || c == Card.NULL) {
 				System.out.println("WTFFFFFFFFFFF!!!!!!!! --2--  " + name);
+				return null;
+			}
 			return getCardInstanceById(c.getIDs()[c.getIDs().length - 1], c);
 		}
 		String[] split = name.split("-");
