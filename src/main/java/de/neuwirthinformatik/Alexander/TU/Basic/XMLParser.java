@@ -756,7 +756,10 @@ public class XMLParser {
 	}
 	
 	public void appendToCardSection(int section,Card c) throws FileNotFoundException, IOException {
-		File myfile = new File("data/cards_section_"+section+".xml");
+		appendToCardSection("",section, c);
+	}
+	public void appendToCardSection(String data_dir,int section,Card c) throws FileNotFoundException, IOException {
+		File myfile = new File(data_dir + "data/cards_section_"+section+".xml");
 		String myencoding = "UTF-8";
 		String s = GlobalData.xml.getCardXML(c);
 		String content = IOUtils.toString(new FileInputStream(myfile), myencoding);
