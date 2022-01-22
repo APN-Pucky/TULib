@@ -46,8 +46,8 @@ public class Gen {
 
 	private static Random r = new Random();
 	private static Integer max_id = 2000000;
-	private static Integer max_com_id = 0;
-	private static Integer max_dom_id = 0;
+	public static Integer max_com_id = 0;
+	public static Integer max_dom_id = 0;
 
 	public static void main(String[] args) {
 		GlobalData.init();
