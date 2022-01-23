@@ -1,6 +1,7 @@
 package de.neuwirthinformatik.Alexander.TU.Basic;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 import de.neuwirthinformatik.Alexander.TU.Basic.Card.CardCategory;
@@ -48,6 +49,13 @@ public class Gen {
 	private static Integer max_id = 2000000;
 	public static Integer max_com_id = 0;
 	public static Integer max_dom_id = 0;
+	public static HashMap<CardType, Integer> max_ids = new HashMap<CardType, Integer>();
+	static {
+		max_ids.put(CardType.ASSAULT, 2000000);
+		max_ids.put(CardType.COMMANDER, 0);
+		max_ids.put(CardType.DOMINION, 0);
+		max_ids.put(CardType.STRUCTURE, 0);
+	}
 
 	public static void main(String[] args) {
 		GlobalData.init();
@@ -175,7 +183,7 @@ public class Gen {
 
 	public static CardInstance genCardInstance(String name, int seed, CardInstanceRequirement cir, CardType type,
 			boolean force_com) {
-		synchronized (max_id) {
+		synchronized (max_ids) {
 			final CardInstanceRequirement tmp = cir;
 			final CardType tmp_type = type;
 			CardInstance.Info i = Gen.getSingleInfo(seed, force_com);
@@ -196,18 +204,11 @@ public class Gen {
 			int mrank = 6;
 			int rank = 6;
 			int did_num = 0;
-			if (type == CardType.ASSAULT) {
-				did_num = (max_id > GlobalData.getHighestId()) ? max_id + 1 : (GlobalData.getHighestId() + 1);
-				max_id = did_num + mrank;
-			} else if (type == CardType.COMMANDER) {
-				did_num = (max_com_id > GlobalData.getHighestIdCommander()) ? max_com_id + 1
-						: (GlobalData.getHighestIdCommander() + 1);
-				max_com_id = did_num + mrank;
-			} else if (type == CardType.DOMINION) {
-				did_num = (max_dom_id > GlobalData.getHighestIdDominion()) ? max_dom_id + 1
-						: (GlobalData.getHighestIdDominion() + 1);
-				max_dom_id = did_num + mrank;
-			}
+
+			did_num = (max_ids.get(type) > GlobalData.getHighestId(type)) ? max_ids.get(type)
+					: GlobalData.getHighestId(type);
+			did_num++;
+			max_ids.put(type, did_num + mrank);
 
 			Info[] ia = new Info[mrank];
 			int[] ids = new int[mrank];
@@ -221,13 +222,7 @@ public class Gen {
 					genFaction(i).toInt(), ia, "", 0, type, CardCategory.NORMAL);
 			CardInstance ci = CardInstance.get(did_num + rank - 1, c, i);
 			if (!check(ci) || !cir.check(ci)) {
-				if (type == CardType.ASSAULT) {
-					max_id -= mrank;
-				} else if (type == CardType.COMMANDER) {
-					max_com_id -= mrank;
-				} else if (type == CardType.DOMINION) {
-					max_dom_id -= mrank;
-				}
+				max_ids.put(type, max_ids.get(type) - mrank);
 				return genCardInstance(name, seed + 1, tmp, tmp_type, force_com);
 			}
 			return ci;

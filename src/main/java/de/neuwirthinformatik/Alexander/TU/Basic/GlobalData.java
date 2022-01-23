@@ -106,7 +106,18 @@ public class GlobalData {
 		}
 		return max;
 	}
+	public static int getHighestId(CardType ct) {
+		int max = 0;
+		for (Card c : distinct_cards) {
+			int t = c.getHighestID();
+			if (t > max && c.getCardType() == ct && !c.getName().contains("Test")) {
+				max = t;
+			}
+		}
+		return max;
+	}
 
+	@Deprecated
 	public static int getHighestIdCommander() {
 		int max = 0;
 		for (Card c : distinct_cards) {
@@ -117,6 +128,7 @@ public class GlobalData {
 		}
 		return max;
 	}
+	@Deprecated
 	public static int getHighestIdDominion() {
 		int max = 0;
 		for (Card c : distinct_cards) {

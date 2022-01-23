@@ -37,46 +37,12 @@ public class FindBest_DR_F3LL_Deck {
 		}
 	}
 
-	public static int size = 250;
+	public static int size = 10;
 	public static String name = "DR_F3LL";
 	public static String[] stati = new String[size];
 	public static double[] scores = new double[size];
 	public static String[] good =new String [] {
-			"cda050ffa6ec42b6b1596ddba65ed96f",
-			"a3da65ce2c004506aa78dc5c7e77b0ec",
-			"3fa751bd85bb41d0a8bf123b47e2035f",
-			"7ee29d691a714f1f95205c0fa17d01ee",
-			"1b5171d618e8498fbdc7da16cdf573e4",
-			"4010118e0b2a456f9867d90734cc9f5c",
-			"ca797b485cec432c87f8f64af2f0ff14",
-			"a4dcb785345b4dc09a238b0b8e2c4c80",
-			"76e8895750514996b2a0a31da9b2a156",
-			"c88a1b3f385e42f6a9d6f939b30056fb",
-			"66676590bcc7457389b8a67bc360baaa",
-			"cf069550949840fc83773d02dc3d774a",
-			"98909c5d453e4d268abe297623a55ba8",
-			"9ddebbab1f9742afb55bab50cea2dc77",
-			"a36f0240c46f4d4696c0f5c784eaa2b6",
-			"cda050ffa6ec42b6b1596ddba65ed96f",
-			"1b5171d618e8498fbdc7da16cdf573e4",
-			"9ddebbab1f9742afb55bab50cea2dc77",
-			"98909c5d453e4d268abe297623a55ba8",
-			"7e496faa436641c99707ad0125fcd418",
-			"a3da65ce2c004506aa78dc5c7e77b0ec",
-			"3fa751bd85bb41d0a8bf123b47e2035f",
-			"ca797b485cec432c87f8f64af2f0ff14",
-			"eb422f45d1da44d7b51ba33cd61c736c",
-			"7ee29d691a714f1f95205c0fa17d01ee",
-			"4010118e0b2a456f9867d90734cc9f5c",
-			"66676590bcc7457389b8a67bc360baaa",
-			"cf069550949840fc83773d02dc3d774a",
-			"5296d6df77a040f8900874e028e60bd9",
-			"a36f0240c46f4d4696c0f5c784eaa2b6",
-			"84b6c0d94bc24238bedc261d9f049522",
-			"a4dcb785345b4dc09a238b0b8e2c4c80",
-			"48d8fc1516a9472e9f39447c9a75ed06",
-			"f69fdb54229d40cba47fa8b83c6437b6",
-			"76e8895750514996b2a0a31da9b2a156",
+			"c88a1b3f385e42f6a9d6f939b30056fb"
 
 	};
 
