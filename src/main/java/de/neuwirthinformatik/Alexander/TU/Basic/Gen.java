@@ -15,7 +15,8 @@ import de.neuwirthinformatik.Alexander.TU.util.StringUtil;
 
 public class Gen {
 	// gen
-	private static final int pool_size = 100;
+	private static final int pool_size = 25;
+	private static final int off_rng= 100;
 	private static final int generations = 10;
 	private static final double mutate_percentage = 0.3;
 	private static final double crossover_percentage = 0.3;
@@ -59,28 +60,7 @@ public class Gen {
 
 	public static void main(String[] args) {
 		GlobalData.init();
-		String name = "DR_F3LL";
-		int seed = name.hashCode();
-		CardInstance ci = Gen.genCardInstance(name, seed, true);
-		System.out.println(ci.getInfo());
-		System.out.println(genCardType(ci.getInfo()));
-	}
-
-	public static CardInstance.Info getSingleInfo(int seedr) {
-		return getSingleInfo(seedr, false);
-	}
-
-	public static CardInstance.Info getSingleInfo(int seedr, boolean force_com) {
-		r.setSeed(seedr);
-		CardInstance.Info[] is = genInfo(seedr, force_com);
-		return is[r.nextInt(is.length)];
-	}
-
-	public static CardInstance.Info[] genInfo(int seedr) {
-		return genInfo(seedr, false);
-	}
-
-	public static CardInstance.Info[] genInfo(int seedr, boolean force_com) {
+	
 		ArrayList<Card> printed = new ArrayList<Card>();
 		int number = pool_size;
 		CardInstance.Info[] is = new CardInstance.Info[number];
@@ -90,7 +70,46 @@ public class Gen {
 			if (c != null && c.fusion_level == 2 && !printed.contains(c)
 					&& !c.getName().toLowerCase().startsWith("test")
 					&& !c.getName().toLowerCase().startsWith("revolt ranger")
-					&& !c.getName().toLowerCase().startsWith("cephalodjinn")) {
+					&& !c.getName().toLowerCase().startsWith("cephalodjinn") && c.getCardType() == CardType.DOMINION) {
+				printed.add(c);
+				number--;
+				is[number] = GlobalData.getCardInstanceById(c.getHighestID()).getInfo();
+			}
+		}
+		System.out.println(number);
+	}
+
+	public static CardInstance.Info getSingleInfo(int seedr) {
+		return getSingleInfo(seedr, false);
+	}
+	public static CardInstance.Info getSingleInfo(int seedr,boolean force_com) {
+		return getSingleInfo(seedr, force_com,null);
+	}
+
+	public static CardInstance.Info getSingleInfo(int seedr, boolean force_com,CardType ct) {
+		r.setSeed(seedr);
+		CardInstance.Info[] is = genInfo(seedr, force_com,ct);
+		return is[r.nextInt(is.length)];
+	}
+
+	public static CardInstance.Info[] genInfo(int seedr) {
+		return genInfo(seedr, false);
+	}
+
+	public static CardInstance.Info[] genInfo(int seedr, boolean force_com) {
+		return genInfo(seedr, force_com,null);
+	}
+	public static CardInstance.Info[] genInfo(int seedr, boolean force_com,CardType ct) {
+		ArrayList<Card> printed = new ArrayList<Card>();
+		int number = pool_size;
+		CardInstance.Info[] is = new CardInstance.Info[number];
+		int offset = GlobalData.all_cards.length - ((ct != CardType.DOMINION && ct != CardType.COMMANDER) ? r.nextInt(off_rng):0);
+		for (int i = 1; i < GlobalData.all_cards.length && number > 0; i++) {
+			Card c = GlobalData.all_cards[offset - i];
+			if (c != null && c.fusion_level == 2 && !printed.contains(c)
+					&& !c.getName().toLowerCase().startsWith("test")
+					&& !c.getName().toLowerCase().startsWith("revolt ranger")
+					&& !c.getName().toLowerCase().startsWith("cephalodjinn") && (ct == null || c.getCardType() == ct)) {
 				printed.add(c);
 				number--;
 				is[number] = GlobalData.getCardInstanceById(c.getHighestID()).getInfo();
@@ -186,7 +205,7 @@ public class Gen {
 		synchronized (max_ids) {
 			final CardInstanceRequirement tmp = cir;
 			final CardType tmp_type = type;
-			CardInstance.Info i = Gen.getSingleInfo(seed, force_com);
+			CardInstance.Info i = Gen.getSingleInfo(seed, force_com,type);
 			if (type != null) {
 				if ((type == CardType.STRUCTURE && !couldBeStruct(i))
 						|| (type == CardType.COMMANDER && !couldBeCommander(i))
