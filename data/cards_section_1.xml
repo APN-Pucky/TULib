@@ -22764,4 +22764,515 @@
 </upgrade>
 </unit>
 
+<unit>
+    <!--!!! TODO change id pic asset_bundle set !!!-->
+    <id>2000102</id>
+    <picture/>
+    <asset_bundle>0</asset_bundle>
+    <set>0</set>
+    <name>test</name>
+    <rarity>3</rarity>
+    <type>2</type>
+    <attack>9</attack>
+    <health>23</health>
+    <cost>2</cost>
+    <skill id="legion" x="6"/>
+    <skill id="disease" x="30"/>
+    <skill card_id="295" id="summon" trigger="play"/>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>2000103</card_id>
+        <level>2</level>
+        <skill id="legion" x="6"/>
+        <skill id="disease" x="30"/>
+        <skill card_id="295" id="summon" trigger="play"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>2000104</card_id>
+        <level>3</level>
+        <skill id="legion" x="6"/>
+        <skill id="disease" x="30"/>
+        <skill card_id="295" id="summon" trigger="play"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>2000105</card_id>
+        <level>4</level>
+        <skill id="legion" x="6"/>
+        <skill id="disease" x="30"/>
+        <skill card_id="295" id="summon" trigger="play"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>2000106</card_id>
+        <level>5</level>
+        <skill id="legion" x="6"/>
+        <skill id="disease" x="30"/>
+        <skill card_id="295" id="summon" trigger="play"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>2000107</card_id>
+        <level>6</level>
+        <skill id="legion" x="6"/>
+        <skill id="disease" x="30"/>
+        <skill card_id="295" id="summon" trigger="play"/>
+    </upgrade>
+</unit>
+
+<unit>
+    <!--!!! TODO change id pic asset_bundle set !!!-->
+    <id>2000123</id>
+    <picture/>
+    <asset_bundle>0</asset_bundle>
+    <set>0</set>
+    <name>simgentest</name>
+    <rarity>1</rarity>
+    <type>5</type>
+    <attack>8</attack>
+    <health>22</health>
+    <cost>2</cost>
+    <skill card_id="44231" id="summon" trigger="play"/>
+    <skill id="disease" x="28"/>
+    <skill id="mark" x="8"/>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>2000124</card_id>
+        <level>2</level>
+        <skill card_id="44231" id="summon" trigger="play"/>
+        <skill id="disease" x="28"/>
+        <skill id="mark" x="8"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>2000125</card_id>
+        <level>3</level>
+        <skill card_id="44231" id="summon" trigger="play"/>
+        <skill id="disease" x="28"/>
+        <skill id="mark" x="8"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>2000126</card_id>
+        <level>4</level>
+        <skill card_id="44231" id="summon" trigger="play"/>
+        <skill id="disease" x="28"/>
+        <skill id="mark" x="8"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>2000127</card_id>
+        <level>5</level>
+        <skill card_id="44231" id="summon" trigger="play"/>
+        <skill id="disease" x="28"/>
+        <skill id="mark" x="8"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>2000128</card_id>
+        <level>6</level>
+        <skill card_id="44231" id="summon" trigger="play"/>
+        <skill id="disease" x="28"/>
+        <skill id="mark" x="8"/>
+    </upgrade>
+</unit>
+
+<unit>
+    <!--!!! TODO change id pic asset_bundle set !!!-->
+    <id>2000130</id>
+    <picture/>
+    <asset_bundle>0</asset_bundle>
+    <set>0</set>
+    <name>simgentest2</name>
+    <fusion_level>1</fusion_level>
+    <rarity>2</rarity>
+    <type>5</type>
+    <attack>7</attack>
+    <health>23</health>
+    <cost>1</cost>
+    <skill id="legion" x="7"/>
+    <skill id="absorb" x="29"/>
+    <skill card_id="4579" id="summon" trigger="play"/>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>2000131</card_id>
+        <level>2</level>
+        <skill id="legion" x="7"/>
+        <skill id="absorb" x="29"/>
+        <skill card_id="4579" id="summon" trigger="play"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>2000132</card_id>
+        <level>3</level>
+        <skill id="legion" x="7"/>
+        <skill id="absorb" x="29"/>
+        <skill card_id="4579" id="summon" trigger="play"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>2000133</card_id>
+        <level>4</level>
+        <skill id="legion" x="7"/>
+        <skill id="absorb" x="29"/>
+        <skill card_id="4579" id="summon" trigger="play"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>2000134</card_id>
+        <level>5</level>
+        <skill id="legion" x="7"/>
+        <skill id="absorb" x="29"/>
+        <skill card_id="4579" id="summon" trigger="play"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>2000135</card_id>
+        <level>6</level>
+        <skill id="legion" x="7"/>
+        <skill id="absorb" x="29"/>
+        <skill card_id="4579" id="summon" trigger="play"/>
+    </upgrade>
+</unit>
+
+<unit>
+    <!--!!! TODO change id pic asset_bundle set !!!-->
+    <id>2000137</id>
+    <picture/>
+    <asset_bundle>0</asset_bundle>
+    <set>0</set>
+    <name>simgentest_ASS</name>
+    <rarity>2</rarity>
+    <type>1</type>
+    <attack>6</attack>
+    <health>26</health>
+    <cost>2</cost>
+    <skill card_id="57971" id="summon" trigger="death"/>
+    <skill c="2" id="jam" n="4"/>
+    <skill id="allegiance" x="5"/>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>2000138</card_id>
+        <level>2</level>
+        <skill card_id="57971" id="summon" trigger="death"/>
+        <skill c="2" id="jam" n="4"/>
+        <skill id="allegiance" x="5"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>2000139</card_id>
+        <level>3</level>
+        <skill card_id="57971" id="summon" trigger="death"/>
+        <skill c="2" id="jam" n="4"/>
+        <skill id="allegiance" x="5"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>2000140</card_id>
+        <level>4</level>
+        <skill card_id="57971" id="summon" trigger="death"/>
+        <skill c="2" id="jam" n="4"/>
+        <skill id="allegiance" x="5"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>2000141</card_id>
+        <level>5</level>
+        <skill card_id="57971" id="summon" trigger="death"/>
+        <skill c="2" id="jam" n="4"/>
+        <skill id="allegiance" x="5"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>2000142</card_id>
+        <level>6</level>
+        <skill card_id="57971" id="summon" trigger="death"/>
+        <skill c="2" id="jam" n="4"/>
+        <skill id="allegiance" x="5"/>
+    </upgrade>
+</unit>
+
+<unit>
+    <!--!!! TODO change id pic asset_bundle set !!!-->
+    <id>26728</id>
+    <picture/>
+    <asset_bundle>0</asset_bundle>
+    <set>0</set>
+    <name>simgentest_COM</name>
+    <rarity>3</rarity>
+    <type>2</type>
+    <attack>0</attack>
+    <health>46</health>
+    <skill id="enhance" s="protect" x="1"/>
+    <skill all="1" id="enfeeble" x="1"/>
+    <skill all="1" id="protect" x="1" y="2"/>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>26729</card_id>
+        <level>2</level>
+        <skill id="enhance" s="protect" x="1"/>
+        <skill all="1" id="enfeeble" x="1"/>
+        <skill all="1" id="protect" x="1" y="2"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>26730</card_id>
+        <level>3</level>
+        <skill id="enhance" s="protect" x="1"/>
+        <skill all="1" id="enfeeble" x="1"/>
+        <skill all="1" id="protect" x="1" y="2"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>26731</card_id>
+        <level>4</level>
+        <skill id="enhance" s="protect" x="1"/>
+        <skill all="1" id="enfeeble" x="1"/>
+        <skill all="1" id="protect" x="1" y="2"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>26732</card_id>
+        <level>5</level>
+        <skill id="enhance" s="protect" x="1"/>
+        <skill all="1" id="enfeeble" x="1"/>
+        <skill all="1" id="protect" x="1" y="2"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>26733</card_id>
+        <level>6</level>
+        <skill id="enhance" s="protect" x="1"/>
+        <skill all="1" id="enfeeble" x="1"/>
+        <skill all="1" id="protect" x="1" y="2"/>
+    </upgrade>
+</unit>
+
+<unit>
+    <!--!!! TODO change id pic asset_bundle set !!!-->
+    <id>50499</id>
+    <picture/>
+    <asset_bundle>0</asset_bundle>
+    <set>0</set>
+    <name>simgentest_DOM</name>
+    <fusion_level>2</fusion_level>
+    <rarity>2</rarity>
+    <type>3</type>
+    <health>11</health>
+    <cost>4</cost>
+    <skill all="1" id="enhance" s="venom" x="1"/>
+    <skill id="mimic" x="1"/>
+    <skill id="entrap" x="2"/>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>50500</card_id>
+        <level>2</level>
+        <skill all="1" id="enhance" s="venom" x="1"/>
+        <skill id="mimic" x="1"/>
+        <skill id="entrap" x="2"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>50501</card_id>
+        <level>3</level>
+        <skill all="1" id="enhance" s="venom" x="1"/>
+        <skill id="mimic" x="1"/>
+        <skill id="entrap" x="2"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>50502</card_id>
+        <level>4</level>
+        <skill all="1" id="enhance" s="venom" x="1"/>
+        <skill id="mimic" x="1"/>
+        <skill id="entrap" x="2"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>50503</card_id>
+        <level>5</level>
+        <skill all="1" id="enhance" s="venom" x="1"/>
+        <skill id="mimic" x="1"/>
+        <skill id="entrap" x="2"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>50504</card_id>
+        <level>6</level>
+        <skill all="1" id="enhance" s="venom" x="1"/>
+        <skill id="mimic" x="1"/>
+        <skill id="entrap" x="2"/>
+    </upgrade>
+</unit>
+
+<unit>
+    <!--!!! TODO change id pic asset_bundle set !!!-->
+    <id>2000144</id>
+    <picture/>
+    <asset_bundle>0</asset_bundle>
+    <set>0</set>
+    <name>simgentest2_ASS</name>
+    <rarity>1</rarity>
+    <type>6</type>
+    <attack>5</attack>
+    <health>24</health>
+    <cost>2</cost>
+    <skill all="1" id="enrage" trigger="play" x="17"/>
+    <skill card_id="31974" id="summon" trigger="play"/>
+    <skill id="strike" x="10"/>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>2000145</card_id>
+        <level>2</level>
+        <skill all="1" id="enrage" trigger="play" x="17"/>
+        <skill card_id="31974" id="summon" trigger="play"/>
+        <skill id="strike" x="10"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>2000146</card_id>
+        <level>3</level>
+        <skill all="1" id="enrage" trigger="play" x="17"/>
+        <skill card_id="31974" id="summon" trigger="play"/>
+        <skill id="strike" x="10"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>2000147</card_id>
+        <level>4</level>
+        <skill all="1" id="enrage" trigger="play" x="17"/>
+        <skill card_id="31974" id="summon" trigger="play"/>
+        <skill id="strike" x="10"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>2000148</card_id>
+        <level>5</level>
+        <skill all="1" id="enrage" trigger="play" x="17"/>
+        <skill card_id="31974" id="summon" trigger="play"/>
+        <skill id="strike" x="10"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>2000149</card_id>
+        <level>6</level>
+        <skill all="1" id="enrage" trigger="play" x="17"/>
+        <skill card_id="31974" id="summon" trigger="play"/>
+        <skill id="strike" x="10"/>
+    </upgrade>
+</unit>
+
+<unit>
+    <!--!!! TODO change id pic asset_bundle set !!!-->
+    <id>26735</id>
+    <picture/>
+    <asset_bundle>0</asset_bundle>
+    <set>0</set>
+    <name>simgentest2_COM</name>
+    <rarity>2</rarity>
+    <type>5</type>
+    <attack>0</attack>
+    <health>54</health>
+    <skill all="1" id="protect" x="1" y="1"/>
+    <skill all="1" id="rally" x="1" y="3"/>
+    <skill all="1" id="heal" x="1" y="5"/>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>26736</card_id>
+        <level>2</level>
+        <skill all="1" id="protect" x="1" y="1"/>
+        <skill all="1" id="rally" x="1" y="3"/>
+        <skill all="1" id="heal" x="1" y="5"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>26737</card_id>
+        <level>3</level>
+        <skill all="1" id="protect" x="1" y="1"/>
+        <skill all="1" id="rally" x="1" y="3"/>
+        <skill all="1" id="heal" x="1" y="5"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>26738</card_id>
+        <level>4</level>
+        <skill all="1" id="protect" x="1" y="1"/>
+        <skill all="1" id="rally" x="1" y="3"/>
+        <skill all="1" id="heal" x="1" y="5"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>26739</card_id>
+        <level>5</level>
+        <skill all="1" id="protect" x="1" y="1"/>
+        <skill all="1" id="rally" x="1" y="3"/>
+        <skill all="1" id="heal" x="1" y="5"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>26740</card_id>
+        <level>6</level>
+        <skill all="1" id="protect" x="1" y="1"/>
+        <skill all="1" id="rally" x="1" y="3"/>
+        <skill all="1" id="heal" x="1" y="5"/>
+    </upgrade>
+</unit>
+
+<unit>
+    <!--!!! TODO change id pic asset_bundle set !!!-->
+    <id>50506</id>
+    <picture/>
+    <asset_bundle>0</asset_bundle>
+    <set>0</set>
+    <name>simgentest2_DOM</name>
+    <rarity>3</rarity>
+    <type>4</type>
+    <health>11</health>
+    <cost>4</cost>
+    <skill all="1" id="enhance" s="tribute" x="1"/>
+    <skill all="1" id="rally" x="1"/>
+    <skill id="mimic" x="1"/>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>50507</card_id>
+        <level>2</level>
+        <skill all="1" id="enhance" s="tribute" x="1"/>
+        <skill all="1" id="rally" x="1"/>
+        <skill id="mimic" x="1"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>50508</card_id>
+        <level>3</level>
+        <skill all="1" id="enhance" s="tribute" x="1"/>
+        <skill all="1" id="rally" x="1"/>
+        <skill id="mimic" x="1"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>50509</card_id>
+        <level>4</level>
+        <skill all="1" id="enhance" s="tribute" x="1"/>
+        <skill all="1" id="rally" x="1"/>
+        <skill id="mimic" x="1"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>50510</card_id>
+        <level>5</level>
+        <skill all="1" id="enhance" s="tribute" x="1"/>
+        <skill all="1" id="rally" x="1"/>
+        <skill id="mimic" x="1"/>
+    </upgrade>
+    <!--!!! TODO change card_id !!!-->
+    <upgrade>
+        <card_id>50511</card_id>
+        <level>6</level>
+        <skill all="1" id="enhance" s="tribute" x="1"/>
+        <skill all="1" id="rally" x="1"/>
+        <skill id="mimic" x="1"/>
+    </upgrade>
+</unit>
+
 </root>

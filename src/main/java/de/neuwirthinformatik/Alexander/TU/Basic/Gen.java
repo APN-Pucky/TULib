@@ -45,6 +45,7 @@ public class Gen {
 	private static final double mutate_all_probability = 0.01;
 	private static final double mutate_y_probability = 0.01;
 	private static final double mutate_trigger_probability = 0.01;
+	private static final double mutate_summon_probability = 0.01;
 
 	private static Random r = new Random();
 	private static Integer max_id = 2000000;
@@ -604,8 +605,9 @@ public class Gen {
 			return mutate(i, force_com);
 		return t;
 	}
+	
 
-	public static SkillSpec mutate(SkillSpec s) {
+	public static SkillSpec mutate(SkillSpec s ) {
 		int x = varby(s.getX(), mutate_x_percent);
 		int n = varby1(s.getN(), mutate_n_probability);
 		int c = varby1(s.getC(), mutate_c_probability);
@@ -613,9 +615,9 @@ public class Gen {
 		String y = varfaction(s.getY(), mutate_y_probability);
 		String trigger = vartrigger(s.getTrigger(), mutate_trigger_probability);
 		int card_id = 0;
-		if (s.getCard_id() > 0) {
+		if (s.getCard_id() > 0 && r.nextDouble() < mutate_summon_probability) {
 			Card cc = null;
-			while (cc == null || cc.getCardType() == CardType.COMMANDER || cc.getCardType() == CardType.DOMINION)
+			while (cc == null || cc.getCardType() == CardType.COMMANDER || cc.getCardType() == CardType.DOMINION )
 				cc = GlobalData.distinct_cards[r.nextInt(GlobalData.distinct_cards.length)];
 			card_id = cc.getHighestID();
 		}
