@@ -614,8 +614,8 @@ public class Gen {
 		boolean all = varbool(s.isAll(), mutate_all_probability);
 		String y = varfaction(s.getY(), mutate_y_probability);
 		String trigger = vartrigger(s.getTrigger(), mutate_trigger_probability);
-		int card_id = 0;
-		if (s.getCard_id() > 0 && r.nextDouble() < mutate_summon_probability) {
+		int card_id = s.getCard_id();
+		if (card_id > 0 && r.nextDouble() < mutate_summon_probability) {
 			Card cc = null;
 			while (cc == null || cc.getCardType() == CardType.COMMANDER || cc.getCardType() == CardType.DOMINION )
 				cc = GlobalData.distinct_cards[r.nextInt(GlobalData.distinct_cards.length)];
