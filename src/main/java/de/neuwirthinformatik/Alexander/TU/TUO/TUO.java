@@ -211,6 +211,7 @@ public class TUO {
 			// BufferedReader br = new BufferedReader(new
 			// InputStreamReader(process.getErrorStream()));
 			String line;
+			
 
 			while ((line = br.readLine()) != null) {
 				result.append(line);
@@ -237,7 +238,7 @@ public class TUO {
 	}
 
 	public static Result parseSimReturn(String s,String name) {
-		// System.out.println(s);
+		System.out.println(s);
 		String[] lines = s.split("\n");
 
 		Pattern p = Pattern.compile("\\d+\\.?\\d?\\d?");

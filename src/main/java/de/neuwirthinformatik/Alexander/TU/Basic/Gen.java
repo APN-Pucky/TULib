@@ -197,14 +197,14 @@ public class Gen {
 			int rank = 6;
 			int did_num = 0;
 			if (type == CardType.ASSAULT) {
-				did_num = (max_id > GlobalData.getHighestId()) ? max_id : (GlobalData.getHighestId() + 1);
+				did_num = (max_id > GlobalData.getHighestId()) ? max_id + 1 : (GlobalData.getHighestId() + 1);
 				max_id = did_num + mrank;
 			} else if (type == CardType.COMMANDER) {
-				did_num = (max_com_id > GlobalData.getHighestIdCommander()) ? max_com_id
+				did_num = (max_com_id > GlobalData.getHighestIdCommander()) ? max_com_id + 1
 						: (GlobalData.getHighestIdCommander() + 1);
 				max_com_id = did_num + mrank;
 			} else if (type == CardType.DOMINION) {
-				did_num = (max_dom_id > GlobalData.getHighestIdDominion()) ? max_dom_id
+				did_num = (max_dom_id > GlobalData.getHighestIdDominion()) ? max_dom_id + 1
 						: (GlobalData.getHighestIdDominion() + 1);
 				max_dom_id = did_num + mrank;
 			}
@@ -221,6 +221,13 @@ public class Gen {
 					genFaction(i).toInt(), ia, "", 0, type, CardCategory.NORMAL);
 			CardInstance ci = CardInstance.get(did_num + rank - 1, c, i);
 			if (!check(ci) || !cir.check(ci)) {
+				if (type == CardType.ASSAULT) {
+					max_id -= mrank;
+				} else if (type == CardType.COMMANDER) {
+					max_com_id -= mrank;
+				} else if (type == CardType.DOMINION) {
+					max_dom_id -= mrank;
+				}
 				return genCardInstance(name, seed + 1, tmp, tmp_type, force_com);
 			}
 			return ci;

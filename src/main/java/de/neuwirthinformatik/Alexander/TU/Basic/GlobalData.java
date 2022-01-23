@@ -326,7 +326,8 @@ public class GlobalData {
 			s_id /= 10;
 		}
 		if (s_id >= all_cards.length) {
-			TU.log.e("UPDATE XMLS! "+ s_id, "DATA");
+			// TODO reuncomment
+			//TU.log.e("UPDATE XMLS! "+ s_id, "DATA");
 			return Card.NULL;
 		}
 		return all_cards[s_id];
