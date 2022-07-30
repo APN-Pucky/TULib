@@ -17,7 +17,7 @@ import de.neuwirthinformatik.Alexander.TU.util.StringUtil;
 
 public class TUO {
 	public static int threads = 1;
-	public static String tuo = "./tuo";
+	public static String tuo = "tuo";
 	public static boolean force_full_deck = false;
 	public static boolean tuo_out = true;
 	public static final String wd = "";

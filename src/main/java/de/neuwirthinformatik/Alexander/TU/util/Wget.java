@@ -108,10 +108,13 @@ public class Wget {
 	}
 	
 	public static Wget.Status wGet(String saveAsFile, String urlOfFile) {
+		File yourFile = new File(saveAsFile);
 		InputStream httpIn = null;
 		OutputStream fileOutput = null;
 		OutputStream bufferedOut = null;
 		try {
+			yourFile.getParentFile().mkdirs();
+			yourFile.createNewFile(); // if file already exists will do nothing
 			// check the http connection before we do anything to the fs
 			httpIn = new BufferedInputStream(new URL(urlOfFile).openStream());
 			// prep saving the file
