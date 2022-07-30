@@ -41,9 +41,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.text.DefaultCaret;
 import javax.swing.text.NumberFormatter;
 
-import com.github.weisj.darklaf.LafManager;
-import com.github.weisj.darklaf.theme.DarculaTheme;
-
 import de.neuwirthinformatik.Alexander.TU.TU;
 import de.neuwirthinformatik.Alexander.TU.Basic.GlobalData;
 
@@ -57,17 +54,7 @@ public class GUI {
 			ex.printStackTrace();
 		}
 	}
-
-	public static void setLookAndFeel() {
-		LafManager.install(new DarculaTheme());
-		/*
-		 * try { BasicLookAndFeel s = new DarculaLaf(); UIManager.setLookAndFeel(s); }
-		 * catch (Exception e) { // TODO Auto-generated catch block e.printStackTrace();
-		 * try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		 * 
-		 * } catch (Exception e2) { e2.printStackTrace(); } }
-		 */
-	}
+	
 
 	public static void info(String title, String msg) {
 		JOptionPane pane = new JOptionPane(new JScrollPane(GUI.area(msg)), JOptionPane.INFORMATION_MESSAGE);
