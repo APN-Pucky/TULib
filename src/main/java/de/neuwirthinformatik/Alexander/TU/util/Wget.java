@@ -16,12 +16,12 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
+import de.neuwirthinformatik.Alexander.TU.Basic.GlobalData;
+
 public class Wget {
 	public static enum Status {
-		Success, MalformedUrl, IoException, UnableToCloseOutputStream;
+		Success, MalformedUrl, IoException, UnableToCloseOutputStream,MovedPermanently;
 	}
-	
-
 
 	public static String sendGet(String url) {
 		String ret = null;
@@ -68,6 +68,7 @@ public class Wget {
 				return null;
 			}
 		}
+		if(ret.contains("301 Moved Permanently")) return null;
 		return ret;
 	}
 
@@ -102,6 +103,7 @@ public class Wget {
 				return null;
 			}
 		}
+		if(ret.contains("301 Moved Permanently")) return null;
 		return ret;
 	}
 	
@@ -147,6 +149,7 @@ public class Wget {
 				return Wget.Status.UnableToCloseOutputStream;
 			}
 		}
+		if(FileIO.readFile(saveAsFile).contains("301 Moved Permanently")) return Status.MovedPermanently;
 		return Wget.Status.Success;
 	}
 }
