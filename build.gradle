@@ -52,7 +52,7 @@ dependencies {
     implementation group: 'com.formdev', name: 'flatlaf', version: '0.45'
 	//implementation group: 'com.github.iconloader', name: 'icon-loader', version: '0.0.3'
 	
-	implementation 'com.github.APN-Pucky:GitJarUpdate:0.0.9'
+	implementation 'com.github.APN-Pucky:GitJarUpdate:0.0.10'
 
 }
 
