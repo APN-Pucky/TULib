@@ -11,7 +11,7 @@ plugins {
     id 'eclipse'
     id 'maven-publish'
   	id "io.freefair.lombok" version "5.0.1"
-    id 'com.palantir.git-version' version '0.12.3'
+    id 'com.palantir.git-version' version '3.0.0'
     id 'cpp'
   	//id 'io.freefair.lombok' 
     //id 'com.palantir.git-version' 
