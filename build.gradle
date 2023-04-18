@@ -44,7 +44,7 @@ dependencies {
     
     implementation 'org.json:json:20190722'
     implementation group: 'commons-io', name: 'commons-io', version: '2.5'
-    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.0.rc1'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.15.0-rc3'
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.11.0.rc1'
 	implementation group: 'org.jdom', name: 'jdom2', version: '2.0.6'
 	
